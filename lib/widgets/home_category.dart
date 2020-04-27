@@ -15,10 +15,10 @@ class CategoryTab extends StatelessWidget {
 
   Function getPage(tabName,context){
     switch(tabName){
-      case("Symptoms"): return ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=> SymptomsScreen()));
-      case("Precautions"): return ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=> PrecautionsScreen()));
-      case("Myths"): return ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=> MythsScreen()));
-      case("Virus"): return ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=> VirusDetailsScreen()));
+      case("Symptoms"): return ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=> SymptomsScreen(color: color,imgPath: imgPath)));
+      case("Precautions"): return ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=> PrecautionsScreen(color: color,imgPath: imgPath)));
+      case("Myths"): return ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=> MythsScreen(color: color,imgPath: imgPath)));
+      case("Virus"): return ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=> VirusDetailsScreen(color: color,imgPath: imgPath)));
       case("Updates"): return ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=> UpdatesScreen()));
       case("Statistics"): return ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=> WorldStatScreen()));
     }
@@ -40,13 +40,13 @@ class CategoryTab extends StatelessWidget {
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
-                  padding: EdgeInsets.only(left: 130),
+                  padding: EdgeInsets.only(left: 150,right: 20),
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: color.withOpacity(0.13),
                   ),
-                  height: 120,
+                  height: 125,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,7 +80,10 @@ class CategoryTab extends StatelessWidget {
               bottom: imgBottom,
               child: Container(
                   height: imgHeight,
-                  child: Image(image: AssetImage(imgPath)),
+                  child: Hero(
+                    tag: imgPath,
+                    child: Image(image: AssetImage(imgPath))
+                    ),
               ),
             ),
           ],
