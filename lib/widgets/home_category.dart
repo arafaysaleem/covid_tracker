@@ -8,39 +8,60 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class CategoryTab extends StatelessWidget {
-  final imgPath,tabName,tabDesc,imgHeight,imgLeft,imgBottom;
+  final imgPath, tabName, tabDesc, imgHeight, imgLeft, imgBottom;
   Color color;
 
-  CategoryTab({this.imgPath, this.tabName, this.color, this.tabDesc, this.imgHeight=150.0, this.imgLeft=15.0, this.imgBottom=-8.0});
+  CategoryTab(
+      {this.imgPath,
+      this.tabName,
+      this.color,
+      this.tabDesc,
+      this.imgHeight = 150.0,
+      this.imgLeft = 15.0,
+      this.imgBottom = -8.0});
 
-  Function getPage(tabName,context){
-    switch(tabName){
-      case("Symptoms"): return ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=> SymptomsScreen(color: color,imgPath: imgPath)));
-      case("Precautions"): return ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=> PrecautionsScreen(color: color,imgPath: imgPath)));
-      case("Myths"): return ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=> MythsScreen(color: color,imgPath: imgPath)));
-      case("Virus"): return ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=> VirusDetailsScreen(color: color,imgPath: imgPath)));
-      case("Updates"): return ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=> UpdatesScreen()));
-      case("Statistics"): return ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=> WorldStatScreen()));
+  Function getPage(tabName, context) {
+    switch (tabName) {
+      case ("Symptoms"):
+        return () => Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) =>
+                SymptomsScreen(color: color, imgPath: imgPath)));
+      case ("Precautions"):
+        return () => Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) =>
+                PrecautionsScreen(color: color, imgPath: imgPath)));
+      case ("Myths"):
+        return () => Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => MythsScreen(color: color, imgPath: imgPath)));
+      case ("Virus"):
+        return () => Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) =>
+                VirusDetailsScreen(color: color, imgPath: imgPath)));
+      case ("Updates"):
+        return () => Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => UpdatesScreen()));
+      case ("Statistics"):
+        return () => Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => WorldStatScreen()));
     }
-    return (){};
+    return () {};
   }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: getPage(tabName,context),
+      onTap: getPage(tabName, context),
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20,vertical: 7),
+        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
         height: 142,
         child: Stack(
           children: <Widget>[
-
             //Title Container
             Positioned.fill(
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
-                  padding: EdgeInsets.only(left: 150,right: 20),
+                  padding: EdgeInsets.only(left: 150, right: 20),
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -52,13 +73,12 @@ class CategoryTab extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                          "$tabName",
-                          style: TextStyle(
-                              color: color,
-                              fontFamily: "Montserrat",
-                              fontSize: 23,
-                              fontWeight: FontWeight.w700
-                          ),
+                        "$tabName",
+                        style: TextStyle(
+                            color: color,
+                            fontFamily: "Montserrat",
+                            fontSize: 23,
+                            fontWeight: FontWeight.w700),
                       ),
                       Text(
                         "$tabDesc",
@@ -66,8 +86,7 @@ class CategoryTab extends StatelessWidget {
                             color: color,
                             fontFamily: "Montserrat",
                             fontSize: 19,
-                            fontWeight: FontWeight.w500
-                        ),
+                            fontWeight: FontWeight.w500),
                       ),
                     ],
                   ),
@@ -79,11 +98,9 @@ class CategoryTab extends StatelessWidget {
               left: imgLeft,
               bottom: imgBottom,
               child: Container(
-                  height: imgHeight,
-                  child: Hero(
-                    tag: imgPath,
-                    child: Image(image: AssetImage(imgPath))
-                    ),
+                height: imgHeight,
+                child: Hero(
+                    tag: imgPath, child: Image(image: AssetImage(imgPath))),
               ),
             ),
           ],

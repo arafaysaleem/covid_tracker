@@ -9,6 +9,8 @@ class VirusDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         leading: IconButton(
           onPressed: ()=>Navigator.of(context).pop(),
