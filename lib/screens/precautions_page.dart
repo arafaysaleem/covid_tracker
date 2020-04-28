@@ -14,11 +14,11 @@ class PrecautionsScreen extends StatelessWidget {
     },
     {
       "prevention": "Wash Hands",
-      "desc": "Wash your hands often\nwith soap and water and\n for 20 seconds atleast.",
+      "desc": "Wash your hands often with soap and water and for 20 seconds atleast.",
       "imgPath": "assets/prevention/wash.png",
     },
     {
-      "prevention": "Cover Your Cough",
+      "prevention": "Cover Cough",
       "desc": "Cough or sneeze into your elbow or cover your mouth with a disposable napkin.",
       "imgPath": "assets/prevention/coughCover.png",
     },
@@ -28,14 +28,14 @@ class PrecautionsScreen extends StatelessWidget {
       "imgPath": "assets/prevention/sanitizer.png",
     },
     {
-      "prevention": "Avoid Face Touching",
-      "desc": "Don't touch your eyes,\nnose or mouth often\nand with unwashed hands.",
+      "prevention": "No Face Touching",
+      "desc": "Don't touch your eyes, nose or mouth often and with unwashed hands.",
       "imgPath": "assets/prevention/touch.png",
     },
     {
       "prevention": "Social Distancing",
       "desc":
-      "Maintain a safe distance from other people. Stay at home and avoid large gatherings.",
+      "Keep 7m distance from other people. Stay at home and avoid gatherings.",
       "imgPath": "assets/prevention/socialDistance.png",
     },
   ];
@@ -115,61 +115,65 @@ class PrecautionsScreen extends StatelessWidget {
           //Precaution Card Grid
           Flexible(
             fit: FlexFit.loose,
-            child: GridView.count(
-              physics: BouncingScrollPhysics(),
-              padding:
-              const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
-              crossAxisSpacing: 16.0,
-              mainAxisSpacing: 15.0,
-              scrollDirection: Axis.vertical,
-              crossAxisCount: 2,
-              childAspectRatio: (MediaQuery.of(context).size.width*17)/(MediaQuery.of(context).size.width*20),
-              children: preventions.map((prevention) {
-                return Material(
-                  borderRadius: BorderRadius.circular(15.0),
-                  elevation: 5,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(14, 10, 14, 0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        Image(
-                          image: AssetImage(prevention["imgPath"]),
-                          height: 100.0,
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          "${prevention["prevention"]}",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontFamily: "Montserrat",
-                            color: Colors.black,
-                            fontWeight: FontWeight.w600,
+            child: Container(
+              width: 360.0,
+              child: GridView.count(
+                physics: BouncingScrollPhysics(),
+                padding:
+                const EdgeInsets.symmetric(horizontal: 14.0, vertical: 20.0),
+                crossAxisSpacing: 16.0,
+                mainAxisSpacing: 15.0,
+                scrollDirection: Axis.vertical,
+                crossAxisCount: 2,
+                childAspectRatio: 0.70,
+                children: preventions.map((prevention) {
+                  print(MediaQuery.of(context).size.width);
+                  return Material(
+                    borderRadius: BorderRadius.circular(15.0),
+                    elevation: 5,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(14, 16, 14, 0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          Image(
+                            image: AssetImage(prevention["imgPath"]),
+                            height: 100.0,
                           ),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Expanded(
-                          child: Text(
-                            "${prevention['desc']}",
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            "${prevention["prevention"]}",
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              fontSize: 12,
+                              fontSize: 14,
                               fontFamily: "Montserrat",
-                              color: Colors.grey,
-                              fontWeight: FontWeight.w500,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
-                        ),
-                      ],
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Expanded(
+                            child: Text(
+                              "${prevention['desc']}",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontFamily: "Montserrat",
+                                color: Colors.grey,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              }).toList(),
+                  );
+                }).toList(),
+              ),
             ),
           )
         ],
