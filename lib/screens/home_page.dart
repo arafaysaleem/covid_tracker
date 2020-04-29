@@ -66,6 +66,16 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
+          leading: IconButton(
+            onPressed: (){},
+            icon: Icon(Icons.menu,color: Colors.black,),
+          ),
+          actions: <Widget>[
+            IconButton(
+              onPressed: (){},
+              icon: Icon(Icons.notifications_active,color: Colors.black,),
+            )
+          ],
           centerTitle: true,
           title: Text(
             "Covid-19 Tracker",

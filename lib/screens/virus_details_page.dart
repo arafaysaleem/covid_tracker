@@ -19,16 +19,7 @@ class VirusDetailsScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text(
-          "CoronaVirus",
-          style: TextStyle(
-              fontFamily: "Montserrat",
-              color: Colors.black,
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-          ),
         ),
-      ),
       body: Column(
         children: <Widget>[
           Container(
@@ -43,13 +34,15 @@ class VirusDetailsScreen extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             child: Stack(
               children: <Widget>[
+
+                //Title
                 Positioned.fill(
                   top: 40,
                   left: 20,
                   child: Align(
                     alignment: Alignment.centerLeft,
                         child: Text(
-                        "Symptoms",
+                        "CoronaVirus",
                         style: TextStyle(
                             color: color,
                             fontFamily: "Montserrat",
@@ -59,17 +52,17 @@ class VirusDetailsScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+
+                //Image
                 Positioned.fill(
-                    bottom: -20.0,
+                  right: -30,
+                  bottom: 15,
                     child: Align(
                       alignment: Alignment.bottomRight,
-                      child: Container(
-                      padding: EdgeInsets.only(right:25.0),
-                        child: Hero(
-                          tag: imgPath,
-                          child: Image(image: AssetImage(imgPath),height: 210.0,)
-                          )
-                      ),
+                      child: Hero(
+                        tag: imgPath,
+                        child: Image(image: AssetImage(imgPath),height: 160.0,)
+                        ),
                     ),
                 ),
               ],
