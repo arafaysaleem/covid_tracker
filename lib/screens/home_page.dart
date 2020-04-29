@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
       color: Colors.lightBlue[700],
     ),
     CategoryTab(
-      imgPath: "assets/myths.png",
+      imgPath: "assets/myths/myths.png",
       tabName: "Myths",
       imgBottom: -30.0,
       imgLeft: 20.0,

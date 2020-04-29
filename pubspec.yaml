@@ -45,6 +45,7 @@ flutter:
      - assets/symptoms/
      - assets/
      - assets/prevention/
+     - assets/myths/
   fonts:
      - family: Montserrat
        fonts:
