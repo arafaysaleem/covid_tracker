@@ -1,5 +1,6 @@
 import 'package:covidtracker/widgets/home_category.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -63,6 +64,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomPadding: false,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,

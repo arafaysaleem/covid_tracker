@@ -55,13 +55,13 @@ class VirusDetailsScreen extends StatelessWidget {
 
                 //Image
                 Positioned.fill(
-                  right: -30,
-                  bottom: 15,
+                  right: 10,
+                  bottom: 10,
                     child: Align(
                       alignment: Alignment.bottomRight,
                       child: Hero(
                         tag: imgPath,
-                        child: Image(image: AssetImage(imgPath),height: 160.0,)
+                        child: Image(image: AssetImage(imgPath),height: 170.0,)
                         ),
                     ),
                 ),

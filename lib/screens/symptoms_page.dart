@@ -74,6 +74,7 @@ class SymptomsScreen extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             child: Stack(
               children: <Widget>[
+                //title
                 Positioned.fill(
                   top: 40,
                   left: 20,
@@ -84,11 +85,13 @@ class SymptomsScreen extends StatelessWidget {
                       style: TextStyle(
                           color: color,
                           fontFamily: "Montserrat",
-                          fontSize: 30,
+                          fontSize: 33,
                           fontWeight: FontWeight.w700),
                     ),
                   ),
                 ),
+
+                //image
                 Positioned.fill(
                   bottom: -20.0,
                   child: Align(
@@ -99,7 +102,7 @@ class SymptomsScreen extends StatelessWidget {
                             tag: imgPath,
                             child: Image(
                               image: AssetImage(imgPath),
-                              height: 210.0,
+                              height: 230.0,
                             ))),
                   ),
                 ),
