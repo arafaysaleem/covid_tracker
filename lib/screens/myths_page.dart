@@ -98,7 +98,7 @@ class MythsScreen extends StatelessWidget {
               children: <Widget>[
                 //Title
                 Positioned.fill(
-                  top: 40,
+                  top: 20,
                   left: 20,
                   child: Align(
                     alignment: Alignment.centerLeft,
@@ -107,7 +107,7 @@ class MythsScreen extends StatelessWidget {
                       style: TextStyle(
                           color: color,
                           fontFamily: "Montserrat",
-                          fontSize: 33,
+                          fontSize: 31,
                           fontWeight: FontWeight.w700),
                     ),
                   ),
@@ -119,7 +119,7 @@ class MythsScreen extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.bottomRight,
                     child: Container(
-                        padding: EdgeInsets.only(right: 25.0),
+                        padding: EdgeInsets.only(right: 10.0),
                         child: Hero(
                             tag: imgPath,
                             child: Image(
@@ -220,6 +220,8 @@ class MythsScreen extends StatelessWidget {
               ),
             ),
           ),
+        
+          SizedBox(height: 8,),
         ],
       ),
     );

@@ -39,7 +39,7 @@ class CategoryTab extends StatelessWidget {
                 VirusDetailsScreen(color: color, imgPath: imgPath)));
       case ("Updates"):
         return () => Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => UpdatesScreen()));
+            .push(MaterialPageRoute(builder: (context) => UpdatesScreen(color: color,imgPath: imgPath,)));
       case ("Statistics"):
         return () => Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => WorldStatScreen()));

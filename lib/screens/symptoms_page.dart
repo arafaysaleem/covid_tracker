@@ -76,7 +76,7 @@ class SymptomsScreen extends StatelessWidget {
               children: <Widget>[
                 //title
                 Positioned.fill(
-                  top: 40,
+                  top: 20,
                   left: 20,
                   child: Align(
                     alignment: Alignment.centerLeft,
@@ -85,7 +85,7 @@ class SymptomsScreen extends StatelessWidget {
                       style: TextStyle(
                           color: color,
                           fontFamily: "Montserrat",
-                          fontSize: 33,
+                          fontSize: 31,
                           fontWeight: FontWeight.w700),
                     ),
                   ),
@@ -97,7 +97,7 @@ class SymptomsScreen extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.bottomRight,
                     child: Container(
-                        padding: EdgeInsets.only(right: 25.0),
+                        padding: EdgeInsets.only(right: 20.0),
                         child: Hero(
                             tag: imgPath,
                             child: Image(

@@ -79,7 +79,7 @@ class PrecautionsScreen extends StatelessWidget {
                 children: <Widget>[
                   //Name
                   Positioned.fill(
-                    top: 40,
+                    top: -10,
                     left: 20,
                     child: Align(
                       alignment: Alignment.centerLeft,
@@ -88,7 +88,7 @@ class PrecautionsScreen extends StatelessWidget {
                         style: TextStyle(
                             color: color,
                             fontFamily: "Montserrat",
-                            fontSize: 33,
+                            fontSize: 31,
                             fontWeight: FontWeight.w700),
                       ),
                     ),
@@ -97,6 +97,7 @@ class PrecautionsScreen extends StatelessWidget {
                   //Image
                   Positioned.fill(
                     bottom: -25.0,
+                    right: -6.0,
                     child: Align(
                       alignment: Alignment.bottomRight,
                       child: Hero(
