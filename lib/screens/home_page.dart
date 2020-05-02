@@ -1,6 +1,5 @@
 import 'package:covidtracker/widgets/home_category.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
