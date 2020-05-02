@@ -16,7 +16,6 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[100],
       appBar: AppBar(
         title: Text(
           "Covid-19 Updates",
@@ -53,82 +52,122 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Container(
+            Align(
               alignment: Alignment.center,
-              height: 50,
-              child: DropdownButton<String>(
-                value: dropDownValue,
-                style: TextStyle(
-                  fontFamily: "Monsterrat",
-                  fontSize: 16,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w600,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(20, 120, 20, 0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Container(
+                      color: Colors.black,
+                      height: 2,
+                    ),
+                    SizedBox(height: 15),
+                    Container(
+                      padding: const EdgeInsets.only(left: 15, right: 20),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      height: 60,
+                      child: Center(
+                        child: Theme(
+                          data: ThemeData(
+                            canvasColor: Colors.grey[200],
+                          ),
+                          child: DropdownButton<String>(
+                            itemHeight: 50,
+                            isExpanded: true,
+                            value: dropDownValue,
+                            style: TextStyle(
+                              fontFamily: "Monsterrat",
+                              fontSize: 19,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600,
+                            ),
+                            underline: Container(
+                              height: 0,
+                            ),
+                            elevation: 0,
+                            iconSize: 28,
+                            icon: Icon(
+                              Icons.expand_more,
+                              color: Colors.black,
+                            ),
+                            items: <DropdownMenuItem<String>>[
+                              DropdownMenuItem(
+                                value: "publishedAt",
+                                child: Text(
+                                  "Published Date",
+                                  style: TextStyle(
+                                    fontFamily: "Monsterrat",
+                                    fontSize: 19,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: "Latest",
+                                child: Text(
+                                  "Latest",
+                                  style: TextStyle(
+                                    fontFamily: "Monsterrat",
+                                    fontSize: 19,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: "Last Week",
+                                child: Text(
+                                  "Last Week",
+                                  style: TextStyle(
+                                    fontFamily: "Monsterrat",
+                                    fontSize: 19,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: "Last 15",
+                                child: Text(
+                                  "Last 15 days",
+                                  style: TextStyle(
+                                    fontFamily: "Monsterrat",
+                                    fontSize: 19,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: "Last Month",
+                                child: Text(
+                                  "Last Month",
+                                  style: TextStyle(
+                                    fontFamily: "Monsterrat",
+                                    fontSize: 19,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ],
+                            onChanged: (String newValue) {
+                              setState(() {
+                                dropDownValue = newValue;
+                              });
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                underline: Container(
-                  height: 0,
-                ),
-                elevation: 0,
-                iconSize: 26,
-                icon: Icon(Icons.arrow_drop_down),
-                items: <DropdownMenuItem<String>>[
-                  DropdownMenuItem(
-                    value: "publishedAt",
-                    child: Text("Published Date"),
-                  ),
-                  DropdownMenuItem(
-                    value: "Latest",
-                    child: Text(
-                      "Latest",
-                      style: TextStyle(
-                        fontFamily: "Monsterrat",
-                        fontSize: 16,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  DropdownMenuItem(
-                    value: "Last Week",
-                    child: Text(
-                      "Last Week",
-                      style: TextStyle(
-                        fontFamily: "Monsterrat",
-                        fontSize: 16,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  DropdownMenuItem(
-                    value: "Last 15",
-                    child: Text(
-                      "Last 15 days",
-                      style: TextStyle(
-                        fontFamily: "Monsterrat",
-                        fontSize: 16,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  DropdownMenuItem(
-                    value: "Last Month",
-                    child: Text(
-                      "Last Month",
-                      style: TextStyle(
-                        fontFamily: "Monsterrat",
-                        fontSize: 16,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ],
-                onChanged: (String newValue) {
-                  setState(() {
-                    dropDownValue = newValue;
-                  });
-                },
               ),
             ),
           ],
