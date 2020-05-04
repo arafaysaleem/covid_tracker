@@ -1,3 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:covidtracker/network_requests/api_client.dart';
+import 'package:covidtracker/network_requests/exceptions.dart';
 import 'package:flutter/material.dart';
 
 class UpdatesScreen extends StatefulWidget {
@@ -11,7 +14,112 @@ class UpdatesScreen extends StatefulWidget {
 }
 
 class _UpdatesScreenState extends State<UpdatesScreen> {
-  String dropDownValue = "Latest";
+  String dropDownValue = "publishedAt";
+  ApiClient _client = ApiClient();
+
+  getNews() async {
+    var json;
+    try {
+      json = await _client.getResponse(dropDownValue);
+    } on FetchDataException {
+      return FetchDataException;
+    }
+    var articles = json['articles'];
+    return articles;
+  }
+
+  Widget getNewsTile(Map<String, dynamic> article) {
+    return InkWell(
+      onTap: () {},
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 95,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            //News image
+            article['urlToImage'] != null
+                ? CachedNetworkImage(
+                    imageUrl: article['urlToImage'],
+                    fit: BoxFit.cover,
+                    width: 95,
+                    height: 95,
+                    placeholder: (context, url) => Container(
+                      width: 95,
+                      height: 95,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/news.png"),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    errorWidget: (context, url, dynamic) {
+                      return Container(
+                        width: 95,
+                        height: 95,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage("assets/news.png"),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      );
+                    },
+                  )
+                : Container(
+                    width: 95,
+                    height: 95,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/news.png"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+            //Column of title and description
+
+            SizedBox(width: 8),
+
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  //Title
+                  Text(
+                    "${article["title"]}",
+                    style: TextStyle(
+                      fontFamily: "Monsterrat",
+                      fontSize: 14,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+
+                  SizedBox(height: 5),
+
+                  //Description
+                  Flexible(
+                    child: Text(
+                      article["description"] == null
+                          ? "Read More for Details"
+                          : "${article["description"]}",
+                      style: TextStyle(
+                        fontFamily: "Monsterrat",
+                        fontSize: 12,
+                        color: Colors.grey[600],
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +146,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
         elevation: 0,
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: (){getNews();},
             icon: Icon(
               Icons.refresh,
               color: Colors.black,
@@ -50,7 +158,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 120, 20, 0),
+          padding: const EdgeInsets.fromLTRB(10, 120, 10, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -62,11 +170,11 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
 
               SizedBox(height: 15),
 
-              //Sorting
+              //Sorting + drop down
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
-
+                  //Sort by
                   Text(
                     "Sort By",
                     style: TextStyle(
@@ -77,15 +185,15 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                     ),
                   ),
 
-                  SizedBox(width:10),
+                  SizedBox(width: 10),
 
                   Icon(Icons.filter_list),
 
-                  SizedBox(width:15),
+                  SizedBox(width:10),
 
                   //DropDown
                   Container(
-                    width: 200,
+                    width: 230,
                     padding: const EdgeInsets.only(left: 15, right: 10),
                     decoration: BoxDecoration(
                       color: Colors.black,
@@ -114,7 +222,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                             DropdownMenuItem(
                               value: "publishedAt",
                               child: Text(
-                                "Published Date",
+                                "Latest",
                                 style: TextStyle(
                                   fontFamily: "Monsterrat",
                                   fontSize: 17,
@@ -124,9 +232,9 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                               ),
                             ),
                             DropdownMenuItem(
-                              value: "Latest",
+                              value: "popular",
                               child: Text(
-                                "Latest",
+                                "Popular",
                                 style: TextStyle(
                                   fontFamily: "Monsterrat",
                                   fontSize: 17,
@@ -175,6 +283,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                           onChanged: (String newValue) {
                             setState(() {
                               dropDownValue = newValue;
+                              getNews();
                             });
                           },
                         ),
@@ -183,6 +292,33 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                   ),
                 ],
               ),
+
+              SizedBox(height:20),
+
+              //News tiles
+              Expanded(
+                child: FutureBuilder<dynamic>(
+                  future: getNews(),
+                  builder: (context, snapshot) {
+                    return snapshot.data == null
+                        ? Center(child: CircularProgressIndicator())
+                        : ListView.separated(
+                            itemCount: 10,
+                            separatorBuilder: (context, index) {
+                              return Divider(
+                                height: 40,
+                                color: Colors.black,
+                                thickness: 2,
+                              );
+                            },
+                            itemBuilder: (context, index) {
+                              return getNewsTile(snapshot.data[index]);
+                            });
+                  },
+                ),
+              ),
+            
+              SizedBox(height:15),
             ],
           ),
         ),
