@@ -52,7 +52,7 @@ class CategoryTab extends StatelessWidget {
     return InkWell(
       onTap: getPage(tabName, context),
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
+        margin: EdgeInsets.fromLTRB(20, 0, 20, 15),
         height: 142,
         child: Stack(
           children: <Widget>[
