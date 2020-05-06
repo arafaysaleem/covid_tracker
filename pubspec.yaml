@@ -22,6 +22,7 @@ dependencies:
   smooth_page_indicator: ^0.1.5
   http: ^0.12.1
   cached_network_image: ^2.2.0
+  webview_flutter: ^0.3.21
 
 
   # The following adds the Cupertino Icons font to your application.

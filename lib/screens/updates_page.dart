@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:covidtracker/network_requests/api_client.dart';
 import 'package:covidtracker/network_requests/exceptions.dart';
+import 'package:covidtracker/widgets/my_web_view.dart';
 import 'package:flutter/material.dart';
 
 class UpdatesScreen extends StatefulWidget {
@@ -21,8 +22,8 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
     var json;
     try {
       json = await _client.getResponse(dropDownValue);
-    } on FetchDataException {
-      return FetchDataException;
+    } on FetchDataException catch(fde) {
+      return fde;
     }
     var articles = json['articles'];
     return articles;
@@ -30,7 +31,9 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
 
   Widget getNewsTile(Map<String, dynamic> article) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context)=> MyWebView(selectedUrl: article['url'])));
+      },
       child: Container(
         width: MediaQuery.of(context).size.width,
         height: 95,
@@ -77,10 +80,10 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                       ),
                     ),
                   ),
-            //Column of title and description
-
+            
             SizedBox(width: 8),
 
+            //Column of title and description
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -303,6 +306,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                     return snapshot.data == null
                         ? Center(child: CircularProgressIndicator())
                         : ListView.separated(
+                            physics: BouncingScrollPhysics(),
                             itemCount: 10,
                             separatorBuilder: (context, index) {
                               return Divider(
@@ -312,12 +316,14 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                               );
                             },
                             itemBuilder: (context, index) {
+                              if(snapshot.data is FetchDataException){
+                                return Text("${snapshot.data.toString()}");
+                              }
                               return getNewsTile(snapshot.data[index]);
                             });
                   },
                 ),
               ),
-            
               SizedBox(height:15),
             ],
           ),
