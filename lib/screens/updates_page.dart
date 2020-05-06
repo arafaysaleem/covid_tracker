@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:covidtracker/network_requests/api_client.dart';
 import 'package:covidtracker/network_requests/exceptions.dart';
 import 'package:covidtracker/widgets/my_web_view.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class UpdatesScreen extends StatefulWidget {
@@ -176,21 +177,25 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
               //Sorting + drop down
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
                   //Sort by
-                  Text(
-                    "Sort By",
-                    style: TextStyle(
-                      fontFamily: "Monsterrat",
-                      fontSize: 17,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500,
+                  Padding(
+                    padding: MediaQuery.of(context).size.width>360.0? EdgeInsets.only(left: 20):EdgeInsets.only(left: 0),
+                    child: Text(
+                      "Sort By",
+                      style: TextStyle(
+                        fontFamily: "Monsterrat",
+                        fontSize: 18,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
 
                   SizedBox(width: 10),
 
-                  Icon(Icons.filter_list),
+                  Expanded(child: Icon(Icons.filter_list,size: 26,)),
 
                   SizedBox(width:10),
 
