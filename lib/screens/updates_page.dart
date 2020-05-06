@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:covidtracker/network_requests/api_client.dart';
 import 'package:covidtracker/network_requests/exceptions.dart';
 import 'package:covidtracker/widgets/my_web_view.dart';
@@ -22,7 +23,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
     var json;
     try {
       json = await _client.getResponse(dropDownValue);
-    } on FetchDataException catch(fde) {
+    } on FetchDataException catch (fde) {
       return fde;
     }
     var articles = json['articles'];
@@ -32,7 +33,8 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
   Widget getNewsTile(Map<String, dynamic> article) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context)=> MyWebView(selectedUrl: article['url'])));
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => MyWebView(selectedUrl: article['url'])));
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -80,7 +82,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                       ),
                     ),
                   ),
-            
+
             SizedBox(width: 8),
 
             //Column of title and description
@@ -149,7 +151,9 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
         elevation: 0,
         actions: <Widget>[
           IconButton(
-            onPressed: (){getNews();},
+            onPressed: () {
+              getNews();
+            },
             icon: Icon(
               Icons.refresh,
               color: Colors.black,
@@ -161,17 +165,41 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 120, 10, 0),
+          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              //Divider
-              Container(
-                color: Colors.black,
-                height: 2,
+              //Carousel
+              CarouselSlider(
+                items: ["assets/news1.png","assets/news2.png","assets/news3.png"]
+                    .map((imgPath) => Container(
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            image: DecorationImage(
+                              fit: BoxFit.fitWidth,
+                              image: AssetImage(imgPath),
+                            ),
+                          ),
+                        ))
+                    .toList(),
+                options: CarouselOptions(
+                  initialPage: 0,
+                  autoPlay: true,
+                  pauseAutoPlayOnTouch: true,
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                  viewportFraction: 1.1,
+                  enableInfiniteScroll: true,
+                  enlargeCenterPage: true,
+                  height: 200
+                ),
               ),
 
-              SizedBox(height: 15),
+              //Divider
+             Divider(
+                color: Colors.black,
+                height: 25,
+                thickness: 2,
+              ),
 
               //Sorting + drop down
               Row(
@@ -192,7 +220,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
 
                   Icon(Icons.filter_list),
 
-                  SizedBox(width:10),
+                  SizedBox(width: 10),
 
                   //DropDown
                   Container(
@@ -296,7 +324,12 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                 ],
               ),
 
-              SizedBox(height:20),
+              //Divider
+              Divider(
+                color: Colors.black,
+                height: 25,
+                thickness: 2,
+              ),
 
               //News tiles
               Expanded(
@@ -316,7 +349,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                               );
                             },
                             itemBuilder: (context, index) {
-                              if(snapshot.data is FetchDataException){
+                              if (snapshot.data is FetchDataException) {
                                 return Text("${snapshot.data.toString()}");
                               }
                               return getNewsTile(snapshot.data[index]);
@@ -324,7 +357,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                   },
                 ),
               ),
-              SizedBox(height:15),
+              SizedBox(height: 15),
             ],
           ),
         ),
