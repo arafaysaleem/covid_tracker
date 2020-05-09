@@ -3,7 +3,7 @@ import 'package:covidtracker/screens/precautions_page.dart';
 import 'package:covidtracker/screens/symptoms_page.dart';
 import 'package:covidtracker/screens/updates_page.dart';
 import 'package:covidtracker/screens/virus_details_page.dart';
-import 'package:covidtracker/screens/world_stat.dart';
+import 'package:covidtracker/screens/stats_dashboard_screens/world_stat.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
