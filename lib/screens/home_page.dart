@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
     CategoryTab(
       imgBottom: -4.0,
       imgLeft: 8.0,
-      imgPath: "assets/updates.png",
+      imgPath: "assets/updates/updates.png",
       tabName: "Updates",
       imgHeight: 146.0,
       tabDesc: "View the latest news related to the virus",

@@ -55,7 +55,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                       height: 95,
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage("assets/news.png"),
+                          image: AssetImage("assets/updates/news.png"),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -66,7 +66,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                         height: 95,
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage("assets/news.png"),
+                            image: AssetImage("assets/updates/news.png"),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -78,7 +78,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                     height: 95,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage("assets/news.png"),
+                        image: AssetImage("assets/updates/news.png"),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -153,7 +153,9 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
         actions: <Widget>[
           IconButton(
             onPressed: () {
-              getNews();
+              setState(() {
+                getNews();
+              });
             },
             icon: Icon(
               Icons.refresh,
@@ -172,12 +174,12 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
             children: <Widget>[
               //Carousel
               CarouselSlider(
-                items: ["assets/news1.png","assets/news2.png","assets/news3.png"]
+                items: ["assets/updates/news1.png","assets/updates/news2.png","assets/updates/news4.png","assets/updates/news5.png","assets/updates/news6.png","assets/updates/news7.png"]
                     .map((imgPath) => Container(
                           decoration: BoxDecoration(
-                            color: Colors.red,
+                            color: Colors.white,
                             image: DecorationImage(
-                              fit: BoxFit.fitWidth,
+                              fit: BoxFit.contain,
                               image: AssetImage(imgPath),
                             ),
                           ),
@@ -188,10 +190,9 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                   autoPlay: true,
                   pauseAutoPlayOnTouch: true,
                   autoPlayCurve: Curves.fastOutSlowIn,
-                  viewportFraction: 1.1,
+                  viewportFraction: 1.2,
                   enableInfiniteScroll: true,
-                  enlargeCenterPage: true,
-                  height: 200
+                  height: 180
                 ),
               ),
 
@@ -235,7 +236,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    height: 55,
+                    height: 50,
                     child: Center(
                       child: Theme(
                         data: ThemeData(
