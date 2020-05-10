@@ -56,8 +56,8 @@ class _RadialProgressState extends State<RadialProgress>
         children: <Widget>[
           CustomPaint(
             child: Container(
-              height: 200.0,
-              width: 200.0,
+              height: 150.0,
+              width: 150.0,
               padding: EdgeInsets.all(40.0),
               child: AnimatedOpacity(
                 opacity: double.parse(getPercent()) == 0
