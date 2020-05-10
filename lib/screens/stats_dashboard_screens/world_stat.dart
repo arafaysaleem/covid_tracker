@@ -1,3 +1,4 @@
+import 'package:covidtracker/widgets/radial_progress.dart';
 import 'package:flutter/material.dart';
 
 class WorldStatScreen extends StatefulWidget {
@@ -29,6 +30,20 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                         ),
                       ),
                     ),
+                  ],
+                ),
+              ),
+
+              Container(
+                height: 300,
+                width: MediaQuery.of(context).size.width,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    RadialProgress(progressValue: 0.7,startClr: Colors.greenAccent[100],
+                        endClr: Colors.greenAccent[700],
+                        bgClr:Colors.green[50]),
                   ],
                 ),
               ),
