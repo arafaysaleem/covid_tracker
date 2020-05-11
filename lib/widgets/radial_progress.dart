@@ -38,7 +38,6 @@ class _RadialProgressState extends State<RadialProgress>
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _radialController.dispose();
   }
