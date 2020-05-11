@@ -10,37 +10,38 @@ class WorldStatScreen extends StatefulWidget {
 }
 
 class _WorldStatScreenState extends State<WorldStatScreen> {
-  CaseType _caseType = CaseType.ACTIVE;
+  CaseType _caseType;
+  Color startClr, endClr, bgClr;
+  double progress;
 
-  Widget getRadialDial() {
-    Widget radialDial;
-
+  void updateRadialDial() {
     if (_caseType == CaseType.ACTIVE) {
-      radialDial = RadialProgress(
-        progressValue: 0.8,
-        startClr: Colors.orangeAccent[100],
-        endClr: Colors.orangeAccent[700],
-        bgClr: Colors.orange[50],
-      );
+      startClr = Colors.orangeAccent[100];
+      endClr = Colors.orangeAccent[700];
+      bgClr = Colors.orange[50];
+      progress = 0.7;
     } else if (_caseType == CaseType.DEATHS) {
-      radialDial = RadialProgress(
-        progressValue: 0.3,
-        startClr: Colors.redAccent[100],
-        endClr: Colors.redAccent[700],
-        bgClr: Colors.red[50],
-      );
+      startClr = Colors.redAccent[100];
+      endClr = Colors.redAccent[700];
+      bgClr = Colors.red[50];
+      progress = 0.3;
     } else if (_caseType == CaseType.RECOVERED) {
-      radialDial = RadialProgress(
-        progressValue: 0.5,
-        startClr: Colors.greenAccent[100],
-        endClr: Colors.greenAccent[700],
-        bgClr: Colors.green[50],
-      );
+      startClr = Colors.greenAccent[100];
+      endClr = Colors.greenAccent[700];
+      bgClr = Colors.green[50];
+      progress = 0.5;
     }
-    setState(() {
+  }
 
-    });
-    return radialDial;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _caseType = CaseType.ACTIVE;
+    startClr = Colors.orangeAccent[100];
+    endClr = Colors.orangeAccent[700];
+    bgClr = Colors.orange[50];
+    progress = 0.7;
   }
 
   @override
@@ -62,9 +63,10 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                   children: <Widget>[
                     //Back Arrow And Title
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         SizedBox(
-                          width: 5,
+                          width: 3,
                         ),
 
                         //Back Arrow
@@ -73,11 +75,12 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                           child: Icon(
                             Icons.arrow_back,
                             color: Colors.white,
+                            size: 26,
                           ),
                         ),
 
                         SizedBox(
-                          width: 60,
+                          width: 65,
                         ),
 
                         //Text
@@ -86,14 +89,14 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                           style: TextStyle(
                               color: Colors.white,
                               fontFamily: "Montserrat",
-                              fontSize: 17,
+                              fontSize: 21,
                               fontWeight: FontWeight.w600),
                         ),
                       ],
                     ),
 
                     SizedBox(
-                      height: 15,
+                      height: 17,
                     ),
 
                     //Stats Image
@@ -133,9 +136,11 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                         children: <Widget>[
                           //Active Cases
                           InkWell(
-                            onTap: () {setState(() {
-                              _caseType = CaseType.ACTIVE;
-                            });
+                            onTap: () {
+                              setState(() {
+                                _caseType = CaseType.ACTIVE;
+                                updateRadialDial();
+                              });
                             },
                             child: Container(
                               decoration: BoxDecoration(
@@ -166,6 +171,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                             onTap: () {
                               setState(() {
                                 _caseType = CaseType.DEATHS;
+                                updateRadialDial();
                               });
                             },
                             child: Container(
@@ -195,9 +201,11 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                           //Recoveries
                           Expanded(
                             child: InkWell(
-                              onTap: () {setState(() {
-                                _caseType = CaseType.RECOVERED;
-                              });
+                              onTap: () {
+                                setState(() {
+                                  _caseType = CaseType.RECOVERED;
+                                  updateRadialDial();
+                                });
                               },
                               child: Container(
                                 decoration: BoxDecoration(
@@ -232,7 +240,12 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           //Radial Progress Indicator
-                          getRadialDial(),
+                          RadialProgress(
+                            progressValue: progress,
+                            startClr: startClr,
+                            endClr: endClr,
+                            bgClr: bgClr,
+                          ),
                         ],
                       ),
                     ],

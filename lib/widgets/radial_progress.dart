@@ -15,8 +15,7 @@ class RadialProgress extends StatefulWidget {
   _RadialProgressState createState() => _RadialProgressState();
 }
 
-class _RadialProgressState extends State<RadialProgress>
-    with TickerProviderStateMixin {
+class _RadialProgressState extends State<RadialProgress> with TickerProviderStateMixin {
   AnimationController _radialController;
   Animation<double> _radialAnimation;
   double progressDegrees = 0;
@@ -37,6 +36,15 @@ class _RadialProgressState extends State<RadialProgress>
   }
 
   @override
+  void didUpdateWidget(RadialProgress oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if(oldWidget.startClr!=widget.startClr||oldWidget.endClr!=widget.endClr||oldWidget.bgClr!=widget.bgClr){
+      _radialController.reset();
+      _radialController.forward();
+    }
+  }
+
+  @override
   void dispose() {
     super.dispose();
     _radialController.dispose();
@@ -48,6 +56,7 @@ class _RadialProgressState extends State<RadialProgress>
 
   @override
   Widget build(BuildContext context) {
+
     return AnimatedBuilder(
       animation: _radialAnimation,
       builder: (context, child) => Stack(
@@ -59,9 +68,7 @@ class _RadialProgressState extends State<RadialProgress>
               width: 145.0,
               padding: EdgeInsets.all(40.0),
               child: AnimatedOpacity(
-                opacity: double.parse(getPercent()) == 0
-                    ? 1.0
-                    : double.parse(getPercent()) > 20.0 ? 1.0 : 0.0,
+                opacity: double.parse(getPercent()) > 5.0 ? 1.0 : 0.0,
                 duration: fadeInDuration,
                 child: Center(
                   child: Text(
@@ -82,7 +89,7 @@ class _RadialProgressState extends State<RadialProgress>
               bgClr: widget.bgClr,
             ),
           ),
-          /*Align(
+          Align(
             alignment: Alignment(
                 cos(2*pi*(progressDegrees/360)-pi/2),
                 sin(2*pi*(progressDegrees/360)-pi/2)
@@ -96,13 +103,13 @@ class _RadialProgressState extends State<RadialProgress>
                 width: 17,
                 height: 17,
                 decoration: BoxDecoration(
-                  color: widget.color,
+                  color: widget.endClr,
                   border: Border.all(color: Colors.white, width: 4),
                   shape: BoxShape.circle,
                 ),
               ),
             ),
-          )*/
+          )
         ],
       ),
     );
