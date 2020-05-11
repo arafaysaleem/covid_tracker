@@ -2,12 +2,47 @@ import 'package:covidtracker/widgets/radial_progress.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+enum CaseType { ACTIVE, DEATHS, RECOVERED }
+
 class WorldStatScreen extends StatefulWidget {
   @override
   _WorldStatScreenState createState() => _WorldStatScreenState();
 }
 
 class _WorldStatScreenState extends State<WorldStatScreen> {
+  CaseType _caseType = CaseType.ACTIVE;
+
+  Widget getRadialDial() {
+    Widget radialDial;
+
+    if (_caseType == CaseType.ACTIVE) {
+      radialDial = RadialProgress(
+        progressValue: 0.8,
+        startClr: Colors.orangeAccent[100],
+        endClr: Colors.orangeAccent[700],
+        bgClr: Colors.orange[50],
+      );
+    } else if (_caseType == CaseType.DEATHS) {
+      radialDial = RadialProgress(
+        progressValue: 0.3,
+        startClr: Colors.redAccent[100],
+        endClr: Colors.redAccent[700],
+        bgClr: Colors.red[50],
+      );
+    } else if (_caseType == CaseType.RECOVERED) {
+      radialDial = RadialProgress(
+        progressValue: 0.5,
+        startClr: Colors.greenAccent[100],
+        endClr: Colors.greenAccent[700],
+        bgClr: Colors.green[50],
+      );
+    }
+    setState(() {
+
+    });
+    return radialDial;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,38 +51,57 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
           margin: EdgeInsets.fromLTRB(15, 15, 15, 0),
           child: ListView(
             children: <Widget>[
-
               //Back Icon and Image
               Container(
                 decoration: BoxDecoration(
                     color: Colors.purple[900],
                     borderRadius: BorderRadius.circular(16)),
-                height: 200,
-                child: Stack(
+                height: 220,
+                padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                child: Column(
                   children: <Widget>[
-                    //Back Arrow
-                    Positioned(
-                      top: 20,
-                      left: 10,
-                      child: InkWell(
-                        onTap: () => Navigator.of(context).pop(),
-                        child: Icon(
-                          Icons.arrow_back,
-                          color: Colors.white,
+                    //Back Arrow And Title
+                    Row(
+                      children: <Widget>[
+                        SizedBox(
+                          width: 5,
                         ),
-                      ),
+
+                        //Back Arrow
+                        InkWell(
+                          onTap: () => Navigator.of(context).pop(),
+                          child: Icon(
+                            Icons.arrow_back,
+                            color: Colors.white,
+                          ),
+                        ),
+
+                        SizedBox(
+                          width: 60,
+                        ),
+
+                        //Text
+                        Text(
+                          "Global Statistics",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: "Montserrat",
+                              fontSize: 17,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ],
+                    ),
+
+                    SizedBox(
+                      height: 15,
                     ),
 
                     //Stats Image
-                    Positioned(
-                      left: 10,
-                      top: 60,
-                      child: Container(
-                        child: Image(
-                          height: 100,
-                          fit: BoxFit.cover,
-                          image: AssetImage("assets/stats/global_stats.png"),
-                        ),
+                    Container(
+                      child: Image(
+                        height: 130,
+                        fit: BoxFit.fitWidth,
+                        image: AssetImage("assets/stats/global_stats.png"),
                       ),
                     )
                   ],
@@ -55,7 +109,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
               ),
 
               SizedBox(
-                height: 30,
+                height: 25,
               ),
 
               //Case Types Container
@@ -68,52 +122,108 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                       borderRadius: BorderRadius.circular(16)),
                   height: 260,
                   width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.fromLTRB(20, 15, 20, 20),
+                  padding: EdgeInsets.symmetric(vertical: 16, horizontal: 15),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-
                       //Row of Case Types
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-
                           //Active Cases
-                          Container(
-                            decoration: BoxDecoration(
-                                color: Colors.greenAccent[100],
-                                borderRadius: BorderRadius.circular(10)),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 10),
-                            child: Center(
-                              child: Text("Active"),
+                          InkWell(
+                            onTap: () {setState(() {
+                              _caseType = CaseType.ACTIVE;
+                            });
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.orangeAccent[100],
+                                  borderRadius: BorderRadius.circular(10)),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 13),
+                              child: Center(
+                                child: Text(
+                                  "Active",
+                                  style: TextStyle(
+                                    color: Colors.orangeAccent[700],
+                                    fontFamily: "Montserrat",
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
                             ),
+                          ),
+
+                          SizedBox(
+                            width: 15,
                           ),
 
                           //Deaths
-                          Container(
-                            decoration: BoxDecoration(
-                                color: Colors.greenAccent[100],
-                                borderRadius: BorderRadius.circular(10)),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 10),
-                            child: Center(
-                              child: Text("Active"),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                _caseType = CaseType.DEATHS;
+                              });
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.redAccent[100],
+                                  borderRadius: BorderRadius.circular(10)),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 13),
+                              child: Center(
+                                child: Text(
+                                  "Deaths",
+                                  style: TextStyle(
+                                    color: Colors.redAccent[700],
+                                    fontFamily: "Montserrat",
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
 
+                          SizedBox(
+                            width: 15,
+                          ),
+
                           //Recoveries
-                          Container(
-                            decoration: BoxDecoration(
-                                color: Colors.greenAccent[100],
-                                borderRadius: BorderRadius.circular(10)),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 10),
-                            child: Center(
-                              child: Text("Active"),
+                          Expanded(
+                            child: InkWell(
+                              onTap: () {setState(() {
+                                _caseType = CaseType.RECOVERED;
+                              });
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.greenAccent[100],
+                                    borderRadius: BorderRadius.circular(10)),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 12, vertical: 13),
+                                child: Center(
+                                  child: Text(
+                                    "Recovered",
+                                    style: TextStyle(
+                                      color: Colors.greenAccent[700],
+                                      fontFamily: "Montserrat",
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ],
+                      ),
+
+                      SizedBox(
+                        height: 30,
                       ),
 
                       //Row of Radial Dial and Case Count Column
@@ -121,13 +231,8 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
-
                           //Radial Progress Indicator
-                          RadialProgress(
-                              progressValue: 0.7,
-                              startClr: Colors.greenAccent[100],
-                              endClr: Colors.greenAccent[700],
-                              bgClr: Colors.green[50]),
+                          getRadialDial(),
                         ],
                       ),
                     ],

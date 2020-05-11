@@ -50,14 +50,14 @@ class _RadialProgressState extends State<RadialProgress>
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: _radialController,
+      animation: _radialAnimation,
       builder: (context, child) => Stack(
         alignment: Alignment.center,
         children: <Widget>[
           CustomPaint(
             child: Container(
-              height: 150.0,
-              width: 150.0,
+              height: 145.0,
+              width: 145.0,
               padding: EdgeInsets.all(40.0),
               child: AnimatedOpacity(
                 opacity: double.parse(getPercent()) == 0
