@@ -13,23 +13,25 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
   CaseType _caseType;
   Color startClr, endClr, bgClr;
   double progress;
+  Duration caseTypeDuration=Duration(milliseconds: 400);
+  Curve caseTypeCurve=Curves.ease;
 
   void updateRadialDial() {
     if (_caseType == CaseType.ACTIVE) {
       startClr = Colors.orangeAccent[100];
       endClr = Colors.orangeAccent[700];
       bgClr = Colors.orange[50];
-      progress = 0.7;
+      progress = 0.85;
     } else if (_caseType == CaseType.DEATHS) {
       startClr = Colors.redAccent[100];
       endClr = Colors.redAccent[700];
       bgClr = Colors.red[50];
-      progress = 0.3;
+      progress = 0.43;
     } else if (_caseType == CaseType.RECOVERED) {
       startClr = Colors.greenAccent[100];
       endClr = Colors.greenAccent[700];
       bgClr = Colors.green[50];
-      progress = 0.5;
+      progress = 0.57;
     }
   }
 
@@ -38,10 +40,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
     // TODO: implement initState
     super.initState();
     _caseType = CaseType.ACTIVE;
-    startClr = Colors.orangeAccent[100];
-    endClr = Colors.orangeAccent[700];
-    bgClr = Colors.orange[50];
-    progress = 0.7;
+    updateRadialDial();
   }
 
   @override
@@ -123,115 +122,127 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(16)),
-                  height: 260,
+                  height: 265,
                   width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  padding: EdgeInsets.symmetric(vertical: 16, horizontal: 10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       //Row of Case Types
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          //Active Cases
-                          InkWell(
-                            onTap: () {
-                              setState(() {
-                                _caseType = CaseType.ACTIVE;
-                                updateRadialDial();
-                              });
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.orangeAccent[100],
-                                  borderRadius: BorderRadius.circular(10)),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 13),
-                              child: Center(
-                                child: Text(
-                                  "Active",
-                                  style: TextStyle(
-                                    color: Colors.orangeAccent[700],
-                                    fontFamily: "Montserrat",
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-
-                          SizedBox(
-                            width: 15,
-                          ),
-
-                          //Deaths
-                          InkWell(
-                            onTap: () {
-                              setState(() {
-                                _caseType = CaseType.DEATHS;
-                                updateRadialDial();
-                              });
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.redAccent[100],
-                                  borderRadius: BorderRadius.circular(10)),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 13),
-                              child: Center(
-                                child: Text(
-                                  "Deaths",
-                                  style: TextStyle(
-                                    color: Colors.redAccent[700],
-                                    fontFamily: "Montserrat",
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-
-                          SizedBox(
-                            width: 15,
-                          ),
-
-                          //Recoveries
-                          Expanded(
-                            child: InkWell(
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            //Active Cases
+                            InkWell(
                               onTap: () {
                                 setState(() {
-                                  _caseType = CaseType.RECOVERED;
+                                  _caseType = CaseType.ACTIVE;
                                   updateRadialDial();
                                 });
                               },
-                              child: Container(
+                              child: AnimatedContainer(
+                                duration: caseTypeDuration,
+                                curve: caseTypeCurve,
                                 decoration: BoxDecoration(
-                                    color: Colors.greenAccent[100],
+                                    color: _caseType==CaseType.ACTIVE? Colors.orangeAccent[100]: Colors.white,
                                     borderRadius: BorderRadius.circular(10)),
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: 12, vertical: 13),
+                                    horizontal: 16, vertical: 13),
                                 child: Center(
                                   child: Text(
-                                    "Recovered",
+                                    "Active",
                                     style: TextStyle(
-                                      color: Colors.greenAccent[700],
+                                      color: Colors.orangeAccent[700],
                                       fontFamily: "Montserrat",
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
+                                      fontSize: 16,
+                                      letterSpacing: 0.5,
+                                      fontWeight: FontWeight.w700,
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+
+                            SizedBox(
+                              width: 15,
+                            ),
+
+                            //Deaths
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  _caseType = CaseType.DEATHS;
+                                  updateRadialDial();
+                                });
+                              },
+                              child: AnimatedContainer(
+                                duration: caseTypeDuration,
+                                curve: caseTypeCurve,
+                                decoration: BoxDecoration(
+                                    color: _caseType==CaseType.DEATHS?Color(0xffffc8c4):Colors.white,
+                                    borderRadius: BorderRadius.circular(10)),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 13),
+                                child: Center(
+                                  child: Text(
+                                    "Deaths",
+                                    style: TextStyle(
+                                      color: Colors.redAccent[700],
+                                      fontFamily: "Montserrat",
+                                      fontSize: 16,
+                                      letterSpacing: 0.5,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+
+                            SizedBox(
+                              width: 15,
+                            ),
+
+                            //Recoveries
+                            Expanded(
+                              child: InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    _caseType = CaseType.RECOVERED;
+                                    updateRadialDial();
+                                  });
+                                },
+                                child: AnimatedContainer(
+                                  curve: caseTypeCurve,
+                                  duration: caseTypeDuration,
+                                  decoration: BoxDecoration(
+                                      color: _caseType==CaseType.RECOVERED?Color(0xffdbffe5):Colors.white,
+                                      borderRadius: BorderRadius.circular(10)),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 12, vertical: 13),
+                                  child: Center(
+                                    child: Text(
+                                      "Recovered",
+                                      style: TextStyle(
+                                        color: Colors.greenAccent[700],
+                                        fontFamily: "Montserrat",
+                                        fontSize: 16,
+                                        letterSpacing: 0.5,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
 
                       SizedBox(
-                        height: 30,
+                        height: 25,
                       ),
 
                       //Row of Radial Dial and Case Count Column
