@@ -72,7 +72,8 @@ class _RadialProgressState extends State<RadialProgress> with TickerProviderStat
                 width: 145.0,
                 padding: EdgeInsets.all(40.0),
                 child: AnimatedOpacity(
-                  opacity: double.parse(getPercent()) > 5.0 ? 1.0 : 0.0,
+                  curve: Curves.fastLinearToSlowEaseIn,
+                  opacity: double.parse(getPercent()) > 13.0 ? 1.0 : 0.0,
                   duration: fadeInDuration,
                   child: Center(
                     child: Text(
@@ -93,6 +94,8 @@ class _RadialProgressState extends State<RadialProgress> with TickerProviderStat
                 bgClr: widget.bgClr,
               ),
             ),
+
+            //Slider head
             Positioned.fill(
               child: Align(
                 alignment: Alignment(

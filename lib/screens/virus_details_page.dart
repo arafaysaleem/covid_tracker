@@ -123,6 +123,7 @@ class VirusDetailsScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(25, 20, 25, 0),
                 child: ListView.builder(
+                    physics: BouncingScrollPhysics(),
                     padding: EdgeInsets.all(0),
                     scrollDirection: Axis.vertical,
                     itemCount: details.length,

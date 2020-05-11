@@ -13,8 +13,8 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
   CaseType _caseType;
   Color startClr, endClr, bgClr;
   double progress;
-  Duration caseTypeDuration=Duration(milliseconds: 400);
-  Curve caseTypeCurve=Curves.ease;
+  Duration caseTypeDuration = Duration(milliseconds: 400);
+  Curve caseTypeCurve = Curves.ease;
 
   void updateRadialDial() {
     if (_caseType == CaseType.ACTIVE) {
@@ -56,16 +56,17 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                 decoration: BoxDecoration(
                     color: Colors.purple[900],
                     borderRadius: BorderRadius.circular(16)),
-                height: 220,
-                padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                height: MediaQuery.of(context).size.width>360.0? 210: 200,
+                padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
                 child: Column(
                   children: <Widget>[
                     //Back Arrow And Title
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         SizedBox(
-                          width: 3,
+                          width: 0,
                         ),
 
                         //Back Arrow
@@ -101,7 +102,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                     //Stats Image
                     Container(
                       child: Image(
-                        height: 130,
+                        width: MediaQuery.of(context).size.width>360.0? 310: 300,
                         fit: BoxFit.fitWidth,
                         image: AssetImage("assets/stats/global_stats.png"),
                       ),
@@ -124,7 +125,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                       borderRadius: BorderRadius.circular(16)),
                   height: 265,
                   width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.symmetric(vertical: 16, horizontal: 10),
+                  padding: EdgeInsets.fromLTRB(10, 16, 10, 16),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -147,10 +148,14 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                                 duration: caseTypeDuration,
                                 curve: caseTypeCurve,
                                 decoration: BoxDecoration(
-                                    color: _caseType==CaseType.ACTIVE? Colors.orangeAccent[100]: Colors.white,
+                                    color: _caseType == CaseType.ACTIVE
+                                        ? Colors.orangeAccent[100]
+                                        : Colors.white,
                                     borderRadius: BorderRadius.circular(10)),
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: 16, vertical: 13),
+                                  horizontal: MediaQuery.of(context).size.width>360.0? 16: 14,
+                                  vertical: 12,
+                                ),
                                 child: Center(
                                   child: Text(
                                     "Active",
@@ -167,7 +172,9 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                             ),
 
                             SizedBox(
-                              width: 15,
+                              width: MediaQuery.of(context).size.width > 360.0
+                                  ? 15
+                                  : 6,
                             ),
 
                             //Deaths
@@ -182,10 +189,17 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                                 duration: caseTypeDuration,
                                 curve: caseTypeCurve,
                                 decoration: BoxDecoration(
-                                    color: _caseType==CaseType.DEATHS?Color(0xffffc8c4):Colors.white,
+                                    color: _caseType == CaseType.DEATHS
+                                        ? Color(0xffffc8c4)
+                                        : Colors.white,
                                     borderRadius: BorderRadius.circular(10)),
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: 16, vertical: 13),
+                                  horizontal:
+                                      MediaQuery.of(context).size.width > 360.0
+                                          ? 16
+                                          : 14,
+                                  vertical: 12,
+                                ),
                                 child: Center(
                                   child: Text(
                                     "Deaths",
@@ -202,7 +216,9 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                             ),
 
                             SizedBox(
-                              width: 15,
+                              width: MediaQuery.of(context).size.width > 360.0
+                                  ? 15
+                                  : 6,
                             ),
 
                             //Recoveries
@@ -218,10 +234,13 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                                   curve: caseTypeCurve,
                                   duration: caseTypeDuration,
                                   decoration: BoxDecoration(
-                                      color: _caseType==CaseType.RECOVERED?Color(0xffdbffe5):Colors.white,
+                                      color: _caseType == CaseType.RECOVERED
+                                          ? Color(0xffdbffe5)
+                                          : Colors.white,
                                       borderRadius: BorderRadius.circular(10)),
                                   padding: EdgeInsets.symmetric(
-                                      horizontal: 12, vertical: 13),
+                                    vertical: 12,
+                                  ),
                                   child: Center(
                                     child: Text(
                                       "Recovered",
