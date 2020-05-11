@@ -125,7 +125,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                       borderRadius: BorderRadius.circular(16)),
                   height: 260,
                   width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.symmetric(vertical: 16, horizontal: 15),
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,

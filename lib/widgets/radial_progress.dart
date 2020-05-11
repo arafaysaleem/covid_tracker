@@ -19,8 +19,8 @@ class _RadialProgressState extends State<RadialProgress> with TickerProviderStat
   AnimationController _radialController;
   Animation<double> _radialAnimation;
   double progressDegrees = 0;
-  final Duration fadeInDuration = Duration(milliseconds: 700);
-  final Duration fillDuration = Duration(milliseconds: 1400);
+  final Duration fadeInDuration = Duration(milliseconds: 500);
+  final Duration fillDuration = Duration(milliseconds: 1000);
 
   @override
   void initState() {
@@ -59,58 +59,64 @@ class _RadialProgressState extends State<RadialProgress> with TickerProviderStat
 
     return AnimatedBuilder(
       animation: _radialAnimation,
-      builder: (context, child) => Stack(
-        alignment: Alignment.center,
-        children: <Widget>[
-          CustomPaint(
-            child: Container(
-              height: 145.0,
-              width: 145.0,
-              padding: EdgeInsets.all(40.0),
-              child: AnimatedOpacity(
-                opacity: double.parse(getPercent()) > 5.0 ? 1.0 : 0.0,
-                duration: fadeInDuration,
-                child: Center(
-                  child: Text(
-                    "${getPercent()}%",
-                    style: TextStyle(
-                        fontFamily: "Montserrat",
-                        color: widget.endClr,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w600),
+      builder: (context, child) => Container(
+        width: 162,
+        height: 162,
+        child: Stack(
+          alignment: Alignment.center,
+          fit: StackFit.loose,
+          children: <Widget>[
+            CustomPaint(
+              child: Container(
+                height: 145.0,
+                width: 145.0,
+                padding: EdgeInsets.all(40.0),
+                child: AnimatedOpacity(
+                  opacity: double.parse(getPercent()) > 5.0 ? 1.0 : 0.0,
+                  duration: fadeInDuration,
+                  child: Center(
+                    child: Text(
+                      "${getPercent()}%",
+                      style: TextStyle(
+                          fontFamily: "Montserrat",
+                          color: widget.endClr,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w600),
+                    ),
                   ),
                 ),
               ),
-            ),
-            painter: RadialPainter(
-              degrees: progressDegrees,
-              startClr: widget.startClr,
-              endClr: widget.endClr,
-              bgClr: widget.bgClr,
-            ),
-          ),
-          Align(
-            alignment: Alignment(
-                cos(2*pi*(progressDegrees/360)-pi/2),
-                sin(2*pi*(progressDegrees/360)-pi/2)
-            ),
-            child: Card(
-              elevation: 10,
-              shape: BeveledRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
+              painter: RadialPainter(
+                degrees: progressDegrees,
+                startClr: widget.startClr,
+                endClr: widget.endClr,
+                bgClr: widget.bgClr,
               ),
-              child: Container(
-                width: 17,
-                height: 17,
-                decoration: BoxDecoration(
-                  color: widget.endClr,
-                  border: Border.all(color: Colors.white, width: 4),
-                  shape: BoxShape.circle,
+            ),
+            Positioned.fill(
+              child: Align(
+                alignment: Alignment(
+                  cos((2*pi*progressDegrees/360.0)-(pi/2)),
+                  sin((2*pi*progressDegrees/360.0)-(pi/2))
+                ),
+                child: Material(
+                  animationDuration: fillDuration,
+                  elevation: 10,
+                  borderRadius: BorderRadius.circular(10),
+                  child: Container(
+                    width: 17,
+                    height: 17,
+                    decoration: BoxDecoration(
+                      color: widget.endClr,
+                      border: Border.all(color: Colors.white, width: 4),
+                      shape: BoxShape.circle,
+                    ),
+                  ),
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
