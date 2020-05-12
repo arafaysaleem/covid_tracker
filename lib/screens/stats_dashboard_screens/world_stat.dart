@@ -1,4 +1,5 @@
 import 'package:covidtracker/widgets/radial_progress.dart';
+import 'package:covidtracker/widgets/small_graph_panel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -56,7 +57,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                 decoration: BoxDecoration(
                     color: Colors.purple[900],
                     borderRadius: BorderRadius.circular(16)),
-                height: MediaQuery.of(context).size.width>360.0? 210: 200,
+                height: MediaQuery.of(context).size.width > 360.0 ? 210 : 200,
                 padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
                 child: Column(
                   children: <Widget>[
@@ -102,7 +103,9 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                     //Stats Image
                     Container(
                       child: Image(
-                        width: MediaQuery.of(context).size.width>360.0? 310: 300,
+                        width: MediaQuery.of(context).size.width > 360.0
+                            ? 310
+                            : 300,
                         fit: BoxFit.fitWidth,
                         image: AssetImage("assets/stats/global_stats.png"),
                       ),
@@ -130,6 +133,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+
                       //Row of Case Types
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -153,7 +157,10 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                                         : Colors.white,
                                     borderRadius: BorderRadius.circular(10)),
                                 padding: EdgeInsets.symmetric(
-                                  horizontal: MediaQuery.of(context).size.width>360.0? 16: 14,
+                                  horizontal:
+                                      MediaQuery.of(context).size.width > 360.0
+                                          ? 16
+                                          : 14,
                                   vertical: 12,
                                 ),
                                 child: Center(
@@ -269,12 +276,48 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
+
                           //Radial Progress Indicator
                           RadialProgress(
                             progressValue: progress,
                             startClr: startClr,
                             endClr: endClr,
                             bgClr: bgClr,
+                          ),
+
+                          //Global Case Count Data
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: <Widget>[
+
+                              //Affected Cases Panel
+                              SmallGraphPanel(
+                                label: "Affected",
+                                value: 1341300,
+                                icon: Icons.arrow_drop_up,
+                                fontColor: Color(0xff682429),
+                                iconColor: Color(0xffff000f),
+                                startColor: Color(0xfffbe7e8),
+                                lineColor: Color(0xffff4e5d),
+                                size: Size(40, 20),
+                              ),
+
+                              SizedBox(
+                                height: 20,
+                              ),
+
+                              //Active Cases Panel
+                              SmallGraphPanel(
+                                label: "Active",
+                                value: 991240,
+                                icon: Icons.arrow_drop_up,
+                                fontColor: Color(0xff027c6b),
+                                iconColor: Color(0xff007867),
+                                startColor: Color(0xffe8f3f2),
+                                lineColor: Color(0xff7dcabd),
+                                size: Size(40, 20),
+                              ),
+                            ],
                           ),
                         ],
                       ),
