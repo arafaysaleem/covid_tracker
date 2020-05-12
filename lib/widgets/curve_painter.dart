@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
-class CurvePainter extends StatelessWidget {
+class CurvePainter extends StatefulWidget {
   final Size size;
   final Duration duration;
   final Color color;
@@ -10,33 +10,61 @@ class CurvePainter extends StatelessWidget {
   CurvePainter({this.size, this.duration, this.color, this.isIncreasing});
 
   @override
+  _CurvePainterState createState() => _CurvePainterState();
+}
+
+class _CurvePainterState extends State<CurvePainter>
+    with TickerProviderStateMixin {
+  AnimationController _controller;
+  Animation<double> _widthAnimation;
+  Animation<double> _curveAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(duration: widget.duration, vsync: this);
+    _widthAnimation = Tween<double>(begin: 0, end: widget.size.width).animate(
+        CurvedAnimation(parent: _controller, curve: Curves.fastOutSlowIn));
+    _curveAnimation = Tween<double>(begin: 0, end: 2 * pi).animate(
+        CurvedAnimation(parent: _controller, curve: Curves.fastOutSlowIn));
+    _controller.forward();
+  }
+
+  @override
+  void didUpdateWidget(CurvePainter oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if(oldWidget.color!=widget.color){
+      _controller.reset();
+      _controller.forward();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
-      height: size.height,
-      width: size.width,
+      height: widget.size.height,
+      width: widget.size.width,
       child: Stack(
         children: <Widget>[
           //Container for curve
           Container(
-            width: size.width,
-            height: size.height,
+            width: widget.size.width,
+            height: widget.size.height,
             color: Colors.transparent,
           ),
 
           //Painter for Curve line
           Transform.rotate(
-            angle: isIncreasing ? -pi / 5 : pi / 4,
-            child: TweenAnimationBuilder(
-              duration: duration,
-              tween: Tween<double>(begin: 0, end: size.width),
-              builder: (ct, val, _) {
-                return TweenAnimationBuilder(
-                  duration: duration,
-                  tween: Tween<double>(begin: 0, end: 2 * pi),
-                  builder: (ctx, value, _) {
+            angle: widget.isIncreasing ? -pi / 5 : pi / 4,
+            child: AnimatedBuilder(
+              animation: _widthAnimation,
+              builder: (ct, _) {
+                return AnimatedBuilder(
+                  animation: _curveAnimation,
+                  builder: (ctx, _) {
                     return CustomPaint(
-                      size: Size(val, size.height),
-                      painter: MyPainter(value, color),
+                      size: Size(_widthAnimation.value, widget.size.height),
+                      painter: MyPainter(_curveAnimation.value, widget.color),
                     );
                   },
                 );

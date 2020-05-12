@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'curve_painter.dart';
 
@@ -26,107 +27,79 @@ class SmallGraphPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.bottomCenter,
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      width: 160,
+      height: 65,
+      padding: EdgeInsets.only(left:5,right: 10),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadius.circular(10),
         gradient: LinearGradient(
           colors: <Color>[startColor, Colors.white],
           begin: Alignment.centerRight,
           end: Alignment.centerLeft,
         ),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
+      child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
 
-          //Column of case label and case number
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
+            //Column of case label and case number
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
 
-              //Row of case label and icon
-              Row(
-                children: <Widget>[
+                //Row of case label and icon
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
 
-                  //Case Type Name
-                  Text(
-                    label,
-                    style: TextStyle(
-                      fontSize: 10,
-                      fontFamily: "Montserrat",
-                      color: fontColor,
+                    //Case Type Name
+                    Text(
+                      label,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontFamily: "Montserrat",
+                        color: fontColor,
+                        letterSpacing: 0.3,
+                      ),
                     ),
-                  ),
 
-                  //Arrow Icon
-                  Icon(
-                    icon,
-                    size: 16,
-                    color: iconColor,
-                  )
-                ],
-              ),
-
-              //Cases Number
-              Text(
-                (value/1000).toStringAsPrecision(5),
-                style: TextStyle(
-                  color: fontColor,
-                  fontFamily: "Montserrat",
-                  fontWeight: FontWeight.bold,
+                    //Arrow Icon
+                    Icon(
+                      icon,
+                      size: 21,
+                      color: iconColor,
+                    )
+                  ],
                 ),
-              )
-            ],
-          ),
 
-          SizedBox(
-            width: 5,
-          ),
+                //Cases Number
+                Text(
+                  (value/1000).toStringAsPrecision(5)+"k",
+                  style: TextStyle(
+                    color: fontColor,
+                    fontFamily: "Montserrat",
+                    letterSpacing: 0.3,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
+              ],
+            ),
 
-          //Curve line
-          CurvePainter(
-            duration: Duration(seconds: 1),
-            size: size,
-            color: lineColor,
-            isIncreasing: true,
-          ),
+            //Curve line
+            CurvePainter(
+              duration: Duration(seconds: 1),
+              size: Size(40,20),
+              color: lineColor,
+              isIncreasing: true,
+            ),
 
-          // Stack(
-          //   children: <Widget>[
-          //     ClipPath(
-          //      clipper: GradientClipper(offsets: offsets),
-          //       child: Container(
-          //         height: size.height,
-          //         width: size.width,
-          //         decoration: BoxDecoration(
-          //           gradient: LinearGradient(
-          //             colors: [
-          //               //Color(0xffffb8ba),
-          //               //Color(0xfffbe7e8)
-          //               lineShadowColor,
-          //               startColor
-          //             ],
-          //             begin: Alignment.topCenter,
-          //             end: Alignment.bottomCenter
-          //           ),
-          //           //border: Border(top: BorderSide(color: Colors.red,width: 2))
-          //         ),
-          //       ),
-          //     ),
-          //     CustomPaint(
-          //       painter: LinePainter(
-          //         color: lineColor,
-          //         offsets: offsets,
-          //         lineWidth: 1
-          //       ),
-          //       size: size,
-          //     )
-          //   ],
-          // )
-        ],
+          ],
+        ),
       ),
     );
   }

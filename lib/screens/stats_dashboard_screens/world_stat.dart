@@ -272,54 +272,57 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                       ),
 
                       //Row of Radial Dial and Case Count Column
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
 
-                          //Radial Progress Indicator
-                          RadialProgress(
-                            progressValue: progress,
-                            startClr: startClr,
-                            endClr: endClr,
-                            bgClr: bgClr,
-                          ),
+                            //Radial Progress Indicator
+                            RadialProgress(
+                              progressValue: progress,
+                              startClr: startClr,
+                              endClr: endClr,
+                              bgClr: bgClr,
+                            ),
 
-                          //Global Case Count Data
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: <Widget>[
+                            //Global Case Count Data
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: <Widget>[
 
-                              //Affected Cases Panel
-                              SmallGraphPanel(
-                                label: "Affected",
-                                value: 1341300,
-                                icon: Icons.arrow_drop_up,
-                                fontColor: Color(0xff682429),
-                                iconColor: Color(0xffff000f),
-                                startColor: Color(0xfffbe7e8),
-                                lineColor: Color(0xffff4e5d),
-                                size: Size(40, 20),
-                              ),
+                                //Affected Cases Panel
+                                SmallGraphPanel(
+                                  label: "Affected",
+                                  value: 1341300,
+                                  icon: Icons.arrow_drop_up,
+                                  fontColor: endClr,
+                                  iconColor: endClr,
+                                  startColor: startClr,
+                                  lineColor: endClr,
+                                  size: Size(40, 20),
+                                ),
 
-                              SizedBox(
-                                height: 20,
-                              ),
+                                SizedBox(
+                                  height: 20,
+                                ),
 
-                              //Active Cases Panel
-                              SmallGraphPanel(
-                                label: "Active",
-                                value: 991240,
-                                icon: Icons.arrow_drop_up,
-                                fontColor: Color(0xff027c6b),
-                                iconColor: Color(0xff007867),
-                                startColor: Color(0xffe8f3f2),
-                                lineColor: Color(0xff7dcabd),
-                                size: Size(40, 20),
-                              ),
-                            ],
-                          ),
-                        ],
+                                //Active Cases Panel
+                                SmallGraphPanel(
+                                  label: "Active",
+                                  value: 991240,
+                                  icon: Icons.arrow_drop_up,
+                                  fontColor: endClr,
+                                  iconColor: endClr,
+                                  startColor: startClr,
+                                  lineColor: endClr,
+                                  size: Size(40, 20),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
