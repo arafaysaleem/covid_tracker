@@ -13,7 +13,7 @@ class WorldStatScreen extends StatefulWidget {
 class _WorldStatScreenState extends State<WorldStatScreen> {
   CaseType _caseType;
   Color radialStartClr, radialEndClr, radialBgClr;
-  Color panelStartClr, panelFontClr, panelIconClr,panelLineClr;
+  Color panelStartClr, panelFontClr, panelIconClr, panelLineClr;
   double progress;
   Duration caseTypeDuration = Duration(milliseconds: 400);
   Curve caseTypeCurve = Curves.ease;
@@ -37,22 +37,22 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
     }
   }
 
-  void updateCasesPanel(){
+  void updateCasesPanel() {
     if (_caseType == CaseType.ACTIVE) {
-      panelFontClr=Color(0xff684024);
-      panelStartClr=Color(0xffffe9d4);
-      panelIconClr= Color(0xffff9900);
-      panelLineClr= Color(0xffff8c4e);
+      panelFontClr = Color(0xff684024);
+      panelStartClr = Color(0xffffe9d4);
+      panelIconClr = Color(0xffff9900);
+      panelLineClr = Color(0xffff8c4e);
     } else if (_caseType == CaseType.DEATHS) {
-      panelFontClr=Color(0xff682429);
-      panelStartClr=Color(0xfffbe7e8);
-      panelIconClr= Color(0xffff000f);
-      panelLineClr= Color(0xffff4e5d);
+      panelFontClr = Color(0xff682429);
+      panelStartClr = Color(0xfffbe7e8);
+      panelIconClr = Color(0xffff000f);
+      panelLineClr = Color(0xffff4e5d);
     } else if (_caseType == CaseType.RECOVERED) {
-      panelFontClr=Color(0xff1d5422);
-      panelStartClr=Color(0xffe8f3f2);
-      panelIconClr= Color(0xff00c261);
-      panelLineClr= Color(0xff44db6c);
+      panelFontClr = Color(0xff1d5422);
+      panelStartClr = Color(0xffe8f3f2);
+      panelIconClr = Color(0xff00c261);
+      panelLineClr = Color(0xff44db6c);
     }
   }
 
@@ -73,64 +73,68 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
           child: ListView(
             children: <Widget>[
               //Back Icon and Image
-              Container(
-                decoration: BoxDecoration(
-                    color: Colors.purple[900],
-                    borderRadius: BorderRadius.circular(16)),
-                height: MediaQuery.of(context).size.width > 360.0 ? 215 : 200,
-                padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
-                child: Column(
-                  children: <Widget>[
-                    //Back Arrow And Title
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        SizedBox(
-                          width: 0,
-                        ),
-
-                        //Back Arrow
-                        InkWell(
-                          onTap: () => Navigator.of(context).pop(),
-                          child: Icon(
-                            Icons.arrow_back,
-                            color: Colors.white,
-                            size: 26,
+              Material(
+                elevation: 8,
+                borderRadius: BorderRadius.circular(16),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.purple[900],
+                      borderRadius: BorderRadius.circular(16)),
+                  height: MediaQuery.of(context).size.width > 360.0 ? 215 : 200,
+                  padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
+                  child: Column(
+                    children: <Widget>[
+                      //Back Arrow And Title
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          SizedBox(
+                            width: 0,
                           ),
-                        ),
 
-                        SizedBox(
-                          width: 65,
-                        ),
-
-                        //Text
-                        Text(
-                          "Global Statistics",
-                          style: TextStyle(
+                          //Back Arrow
+                          InkWell(
+                            onTap: () => Navigator.of(context).pop(),
+                            child: Icon(
+                              Icons.arrow_back,
                               color: Colors.white,
-                              fontFamily: "Montserrat",
-                              fontSize: 21,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
+                              size: 26,
+                            ),
+                          ),
 
-                    SizedBox(
-                      height: 17,
-                    ),
+                          SizedBox(
+                            width: 65,
+                          ),
 
-                    //Stats Image
-                    Container(
-                      child: Image(
-                        width: MediaQuery.of(context).size.width > 360.0
-                            ? 350
-                            : 300,
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage("assets/stats/global_stats.png"),
+                          //Text
+                          Text(
+                            "Global Statistics",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: "Montserrat",
+                                fontSize: 21,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ],
                       ),
-                    )
-                  ],
+
+                      SizedBox(
+                        height: 17,
+                      ),
+
+                      //Stats Image
+                      Container(
+                        child: Image(
+                          width: MediaQuery.of(context).size.width > 360.0
+                              ? 350
+                              : 300,
+                          fit: BoxFit.fitWidth,
+                          image: AssetImage("assets/stats/global_stats.png"),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
 
@@ -153,7 +157,6 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-
                       //Row of Case Types
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -301,7 +304,6 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-
                             //Radial Progress Indicator
                             Padding(
                               padding: const EdgeInsets.only(top: 10.0),
@@ -317,7 +319,6 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: <Widget>[
-
                                 //Affected Cases Panel
                                 SmallGraphPanel(
                                   label: "Affected",
