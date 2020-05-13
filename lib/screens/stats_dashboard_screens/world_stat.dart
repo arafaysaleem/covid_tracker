@@ -148,7 +148,6 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(16)),
                   height: 265,
-                  width: MediaQuery.of(context).size.width,
                   padding: EdgeInsets.fromLTRB(10, 16, 10, 16),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -328,7 +327,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                                     iconColor: panelIconClr,
                                     startColor: panelStartClr,
                                     lineColor: panelLineClr,
-                                    size: Size(40, 20),
+                                    isIncreasing: true,
                                   ),
 
                                   SizedBox(
@@ -344,7 +343,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                                     iconColor: panelIconClr,
                                     startColor: panelStartClr,
                                     lineColor: panelLineClr,
-                                    size: Size(40, 20),
+                                    isIncreasing: true,
                                   ),
                                 ],
                               ),
@@ -356,36 +355,11 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                   ),
                 ),
               ),
-              /*
-              Container for global stats
-                -Radial Progress Widget
-                  -animate progress when type changed
-                  -change color when type changed
-                  -show percentage out of total
-                -InkWells for case type
-                  -Total Affected
-                  -Active Cases
-                    -Red Color
-                    -Stack
-                      -Mini Graph
-                      -A dropdown/dropup arrow icon
-                      -Number of stats
-                  -Recovered
-                    -Green Color
-                    -Stack
-                      -Mini Graph
-                      -A dropdown/dropup arrow icon
-                      -Number of stats
-                  -Total Deaths
-                   - Orange Color
-                    -Stack
-                      -Mini Graph
-                      -A dropdown/dropup arrow icon
-                      -Number of stats
 
+              /*
               -Container for World Map Image
                 -Purple/Black Color
-                -Heatmap points
+                -Heat map points
 
               -Container for top countries
                 -GridView
@@ -396,7 +370,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                           -Flag Image
                           -Country Name
                           -Mini Graph
-                          -Dropdowm/up arrow icon
+                          -Dropdown/up arrow icon
                           -Random Vivid Color
                           -Total Cases
               */

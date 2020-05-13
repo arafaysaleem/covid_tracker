@@ -6,21 +6,21 @@ class SmallGraphPanel extends StatelessWidget {
   final String label;
   final IconData icon;
   final double value;
-  final Size size;
   final Color startColor;
   final Color fontColor;
   final Color iconColor;
   final Color lineColor;
+  final bool isIncreasing;
 
   SmallGraphPanel({
     @required this.label,
     @required this.icon,
     @required this.value,
-    @required this.size,
     @required this.startColor,
     @required this.fontColor,
     @required this.iconColor,
     @required this.lineColor,
+    @required this.isIncreasing,
   });
 
   @override
@@ -29,7 +29,7 @@ class SmallGraphPanel extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       width: 180,
       height: 68,
-      padding: EdgeInsets.only(left:5,right: 7),
+      padding: EdgeInsets.only(left: 5, right: 7),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         gradient: LinearGradient(
@@ -43,19 +43,16 @@ class SmallGraphPanel extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-
             //Column of case label and case number
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-
                 //Row of case label and icon
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-
                     //Case Type Name
                     Text(
                       label,
@@ -78,7 +75,7 @@ class SmallGraphPanel extends StatelessWidget {
 
                 //Cases Number
                 Text(
-                  (value/1000).toStringAsPrecision(5)+"k",
+                  (value / 1000).toStringAsPrecision(5) + "k",
                   style: TextStyle(
                     color: fontColor,
                     fontFamily: "Montserrat",
@@ -93,11 +90,10 @@ class SmallGraphPanel extends StatelessWidget {
             //Curve line
             CurvePainter(
               duration: Duration(seconds: 1),
-              size: Size(40,20),
+              size: isIncreasing? Size(40, 20): Size(40, 10),
               color: lineColor,
-              isIncreasing: true,
+              isIncreasing: isIncreasing,
             ),
-
           ],
         ),
       ),
