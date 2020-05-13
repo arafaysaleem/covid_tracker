@@ -152,7 +152,7 @@ class RadialPainter extends CustomPainter {
           .createShader(rect)
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 8.0
+      ..strokeWidth = 7.2
       ..isAntiAlias = true;
 
     canvas.drawArc(
