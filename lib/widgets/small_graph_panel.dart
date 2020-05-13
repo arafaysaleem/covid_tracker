@@ -28,7 +28,7 @@ class SmallGraphPanel extends StatelessWidget {
     return Container(
       alignment: Alignment.bottomCenter,
       width: 180,
-      height: 70,
+      height: 68,
       padding: EdgeInsets.only(left:5,right: 7),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -60,7 +60,7 @@ class SmallGraphPanel extends StatelessWidget {
                     Text(
                       label,
                       style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 13,
                         fontFamily: "Montserrat",
                         color: fontColor,
                         letterSpacing: 0.3,
@@ -83,7 +83,7 @@ class SmallGraphPanel extends StatelessWidget {
                     color: fontColor,
                     fontFamily: "Montserrat",
                     letterSpacing: 0.3,
-                    fontSize: 16,
+                    fontSize: 15,
                     fontWeight: FontWeight.bold,
                   ),
                 )

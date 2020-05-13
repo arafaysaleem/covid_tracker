@@ -89,9 +89,6 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          SizedBox(
-                            width: 0,
-                          ),
 
                           //Back Arrow
                           InkWell(
@@ -104,7 +101,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                           ),
 
                           SizedBox(
-                            width: 65,
+                            width: MediaQuery.of(context).size.width>360.0? 65.0:50.0,
                           ),
 
                           //Text
@@ -222,7 +219,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                                 curve: caseTypeCurve,
                                 decoration: BoxDecoration(
                                     color: _caseType == CaseType.DEATHS
-                                        ? Color(0xffffc8c4)
+                                        ? Color(0xffffcfcc)
                                         : Colors.white,
                                     borderRadius: BorderRadius.circular(10)),
                                 padding: EdgeInsets.symmetric(
@@ -315,38 +312,42 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                               ),
                             ),
 
+                            SizedBox(width:7),
+
                             //Global Case Count Panels
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: <Widget>[
-                                //Affected Cases Panel
-                                SmallGraphPanel(
-                                  label: "Affected",
-                                  value: 1341300,
-                                  icon: Icons.arrow_drop_up,
-                                  fontColor: panelFontClr,
-                                  iconColor: panelIconClr,
-                                  startColor: panelStartClr,
-                                  lineColor: panelLineClr,
-                                  size: Size(40, 20),
-                                ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: <Widget>[
+                                  //Affected Cases Panel
+                                  SmallGraphPanel(
+                                    label: "Affected",
+                                    value: 1341300,
+                                    icon: Icons.arrow_drop_up,
+                                    fontColor: panelFontClr,
+                                    iconColor: panelIconClr,
+                                    startColor: panelStartClr,
+                                    lineColor: panelLineClr,
+                                    size: Size(40, 20),
+                                  ),
 
-                                SizedBox(
-                                  height: 15,
-                                ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
 
-                                //Active Cases Panel
-                                SmallGraphPanel(
-                                  label: "Active",
-                                  value: 991240,
-                                  icon: Icons.arrow_drop_up,
-                                  fontColor: panelFontClr,
-                                  iconColor: panelIconClr,
-                                  startColor: panelStartClr,
-                                  lineColor: panelLineClr,
-                                  size: Size(40, 20),
-                                ),
-                              ],
+                                  //Active Cases Panel
+                                  SmallGraphPanel(
+                                    label: "Active",
+                                    value: 991240,
+                                    icon: Icons.arrow_drop_up,
+                                    fontColor: panelFontClr,
+                                    iconColor: panelIconClr,
+                                    startColor: panelStartClr,
+                                    lineColor: panelLineClr,
+                                    size: Size(40, 20),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
