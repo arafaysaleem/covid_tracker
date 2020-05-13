@@ -12,36 +12,56 @@ class WorldStatScreen extends StatefulWidget {
 
 class _WorldStatScreenState extends State<WorldStatScreen> {
   CaseType _caseType;
-  Color startClr, endClr, bgClr;
+  Color radialStartClr, radialEndClr, radialBgClr;
+  Color panelStartClr, panelFontClr, panelIconClr,panelLineClr;
   double progress;
   Duration caseTypeDuration = Duration(milliseconds: 400);
   Curve caseTypeCurve = Curves.ease;
 
   void updateRadialDial() {
     if (_caseType == CaseType.ACTIVE) {
-      startClr = Colors.orangeAccent[100];
-      endClr = Colors.orangeAccent[700];
-      bgClr = Colors.orange[50];
+      radialStartClr = Colors.orangeAccent[100];
+      radialEndClr = Colors.orangeAccent[700];
+      radialBgClr = Colors.orange[50];
       progress = 0.85;
     } else if (_caseType == CaseType.DEATHS) {
-      startClr = Colors.redAccent[100];
-      endClr = Colors.redAccent[700];
-      bgClr = Colors.red[50];
+      radialStartClr = Colors.redAccent[100];
+      radialEndClr = Colors.redAccent[700];
+      radialBgClr = Colors.red[50];
       progress = 0.43;
     } else if (_caseType == CaseType.RECOVERED) {
-      startClr = Colors.greenAccent[100];
-      endClr = Colors.greenAccent[700];
-      bgClr = Colors.green[50];
+      radialStartClr = Colors.greenAccent[100];
+      radialEndClr = Colors.greenAccent[700];
+      radialBgClr = Colors.green[50];
       progress = 0.57;
+    }
+  }
+
+  void updateCasesPanel(){
+    if (_caseType == CaseType.ACTIVE) {
+      panelFontClr=Color(0xff684024);
+      panelStartClr=Color(0xffffe9d4);
+      panelIconClr= Color(0xffff9900);
+      panelLineClr= Color(0xffff8c4e);
+    } else if (_caseType == CaseType.DEATHS) {
+      panelFontClr=Color(0xff682429);
+      panelStartClr=Color(0xfffbe7e8);
+      panelIconClr= Color(0xffff000f);
+      panelLineClr= Color(0xffff4e5d);
+    } else if (_caseType == CaseType.RECOVERED) {
+      panelFontClr=Color(0xff1d5422);
+      panelStartClr=Color(0xffe8f3f2);
+      panelIconClr= Color(0xff00c261);
+      panelLineClr= Color(0xff44db6c);
     }
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _caseType = CaseType.ACTIVE;
     updateRadialDial();
+    updateCasesPanel();
   }
 
   @override
@@ -57,7 +77,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                 decoration: BoxDecoration(
                     color: Colors.purple[900],
                     borderRadius: BorderRadius.circular(16)),
-                height: MediaQuery.of(context).size.width > 360.0 ? 210 : 200,
+                height: MediaQuery.of(context).size.width > 360.0 ? 215 : 200,
                 padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
                 child: Column(
                   children: <Widget>[
@@ -104,7 +124,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                     Container(
                       child: Image(
                         width: MediaQuery.of(context).size.width > 360.0
-                            ? 310
+                            ? 350
                             : 300,
                         fit: BoxFit.fitWidth,
                         image: AssetImage("assets/stats/global_stats.png"),
@@ -146,6 +166,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                                 setState(() {
                                   _caseType = CaseType.ACTIVE;
                                   updateRadialDial();
+                                  updateCasesPanel();
                                 });
                               },
                               child: AnimatedContainer(
@@ -153,7 +174,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                                 curve: caseTypeCurve,
                                 decoration: BoxDecoration(
                                     color: _caseType == CaseType.ACTIVE
-                                        ? Colors.orangeAccent[100]
+                                        ? Color(0xffffd9b5)
                                         : Colors.white,
                                     borderRadius: BorderRadius.circular(10)),
                                 padding: EdgeInsets.symmetric(
@@ -190,6 +211,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                                 setState(() {
                                   _caseType = CaseType.DEATHS;
                                   updateRadialDial();
+                                  updateCasesPanel();
                                 });
                               },
                               child: AnimatedContainer(
@@ -235,6 +257,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                                   setState(() {
                                     _caseType = CaseType.RECOVERED;
                                     updateRadialDial();
+                                    updateCasesPanel();
                                   });
                                 },
                                 child: AnimatedContainer(
@@ -268,26 +291,29 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                       ),
 
                       SizedBox(
-                        height: 25,
+                        height: 15,
                       ),
 
                       //Row of Radial Dial and Case Count Column
                       Padding(
-                        padding: const EdgeInsets.only(right: 20),
+                        padding: const EdgeInsets.only(right: 10),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
 
                             //Radial Progress Indicator
-                            RadialProgress(
-                              progressValue: progress,
-                              startClr: startClr,
-                              endClr: endClr,
-                              bgClr: bgClr,
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10.0),
+                              child: RadialProgress(
+                                progressValue: progress,
+                                startClr: radialStartClr,
+                                endClr: radialEndClr,
+                                bgClr: radialBgClr,
+                              ),
                             ),
 
-                            //Global Case Count Data
+                            //Global Case Count Panels
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: <Widget>[
@@ -297,15 +323,15 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                                   label: "Affected",
                                   value: 1341300,
                                   icon: Icons.arrow_drop_up,
-                                  fontColor: endClr,
-                                  iconColor: endClr,
-                                  startColor: startClr,
-                                  lineColor: endClr,
+                                  fontColor: panelFontClr,
+                                  iconColor: panelIconClr,
+                                  startColor: panelStartClr,
+                                  lineColor: panelLineClr,
                                   size: Size(40, 20),
                                 ),
 
                                 SizedBox(
-                                  height: 20,
+                                  height: 15,
                                 ),
 
                                 //Active Cases Panel
@@ -313,10 +339,10 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                                   label: "Active",
                                   value: 991240,
                                   icon: Icons.arrow_drop_up,
-                                  fontColor: endClr,
-                                  iconColor: endClr,
-                                  startColor: startClr,
-                                  lineColor: endClr,
+                                  fontColor: panelFontClr,
+                                  iconColor: panelIconClr,
+                                  startColor: panelStartClr,
+                                  lineColor: panelLineClr,
                                   size: Size(40, 20),
                                 ),
                               ],

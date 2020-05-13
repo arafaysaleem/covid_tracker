@@ -27,9 +27,9 @@ class SmallGraphPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.bottomCenter,
-      width: 160,
-      height: 65,
-      padding: EdgeInsets.only(left:5,right: 10),
+      width: 180,
+      height: 70,
+      padding: EdgeInsets.only(left:5,right: 7),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         gradient: LinearGradient(
@@ -40,7 +40,7 @@ class SmallGraphPanel extends StatelessWidget {
       ),
       child: Center(
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
 
