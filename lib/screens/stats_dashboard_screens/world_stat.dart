@@ -20,9 +20,9 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
 
   void updateRadialDial() {
     if (_caseType == CaseType.ACTIVE) {
-      radialStartClr = Colors.orangeAccent[100];
-      radialEndClr = Colors.orangeAccent[700];
-      radialBgClr = Colors.orange[50];
+      radialStartClr = Colors.purpleAccent[100];
+      radialEndClr = Colors.purpleAccent[700];
+      radialBgClr = Color(0xfffde6ff);
       progress = 0.85;
     } else if (_caseType == CaseType.DEATHS) {
       radialStartClr = Colors.redAccent[100];
@@ -39,10 +39,10 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
 
   void updateCasesPanel() {
     if (_caseType == CaseType.ACTIVE) {
-      panelFontClr = Color(0xff684024);
-      panelStartClr = Color(0xffffe9d4);
-      panelIconClr = Color(0xffff9900);
-      panelLineClr = Color(0xffff8c4e);
+      panelFontClr = Color(0xff7f2d91);//Color(0xff684024);
+      panelStartClr = Color(0xfff7deff);//Color(0xffffe9d4);
+      panelIconClr = Color(0xffcc00ff);//Color(0xffff9900);
+      panelLineClr = Color(0xffca4eff);//Color(0xffff8c4e);
     } else if (_caseType == CaseType.DEATHS) {
       panelFontClr = Color(0xff682429);
       panelStartClr = Color(0xfffbe7e8);
@@ -89,7 +89,6 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-
                           //Back Arrow
                           InkWell(
                             onTap: () => Navigator.of(context).pop(),
@@ -101,7 +100,9 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                           ),
 
                           SizedBox(
-                            width: MediaQuery.of(context).size.width>360.0? 65.0:50.0,
+                            width: MediaQuery.of(context).size.width > 360.0
+                                ? 65.0
+                                : 50.0,
                           ),
 
                           //Text
@@ -173,7 +174,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                                 curve: caseTypeCurve,
                                 decoration: BoxDecoration(
                                     color: _caseType == CaseType.ACTIVE
-                                        ? Color(0xffffd9b5)
+                                        ? Color(0xfff3cfff)//Color(0xffffd9b5)
                                         : Colors.white,
                                     borderRadius: BorderRadius.circular(10)),
                                 padding: EdgeInsets.symmetric(
@@ -187,7 +188,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                                   child: Text(
                                     "Active",
                                     style: TextStyle(
-                                      color: Colors.orangeAccent[700],
+                                      color: Colors.purpleAccent[700],
                                       fontFamily: "Montserrat",
                                       fontSize: 16,
                                       letterSpacing: 0.5,
@@ -311,7 +312,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                               ),
                             ),
 
-                            SizedBox(width:7),
+                            SizedBox(width: 7),
 
                             //Global Case Count Panels
                             Expanded(
