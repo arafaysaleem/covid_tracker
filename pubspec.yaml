@@ -54,6 +54,7 @@ flutter:
      - assets/myths/
      - assets/updates/
      - assets/stats/
+     - assets/flags/
   fonts:
      - family: Montserrat
        fonts:

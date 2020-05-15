@@ -74,7 +74,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
             children: <Widget>[
               //Back Icon and Image
               Material(
-                elevation: 8,
+                elevation: 4,
                 borderRadius: BorderRadius.circular(16),
                 child: Container(
                   decoration: BoxDecoration(
@@ -143,13 +143,13 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
               //Case Types Container
               Material(
                 borderRadius: BorderRadius.circular(16),
-                elevation: 8,
+                elevation: 4,
                 child: Container(
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(16)),
                   height: 265,
-                  padding: EdgeInsets.fromLTRB(10, 16, 10, 16),
+                  padding: EdgeInsets.fromLTRB(5, 16, 5, 16),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
