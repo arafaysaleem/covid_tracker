@@ -1,49 +1,52 @@
-import 'package:covidtracker/values/country_flag_codes.dart';
-
 class SummaryEachCountry {
   final String country;
-  final String slug;
   final String code;
   final String flagPath;
-  final int newConfirmed;
-  final int totalConfirmed;
+  final int todayCases;
+  final int totalCases;
   final int newDeaths;
+  final int critical;
+  final int active;
   final int totalDeaths;
   final int newRecovered;
   final int totalRecovered;
   final bool isIncreasing;
+  final int testsConducted;
 
   SummaryEachCountry({
     this.country,
-    this.slug,
     this.code,
     this.flagPath,
-    this.newConfirmed,
-    this.totalConfirmed,
+    this.todayCases,
+    this.totalCases,
+    this.active,
     this.newDeaths,
     this.totalDeaths,
     this.newRecovered,
     this.totalRecovered,
-    this.isIncreasing
+    this.isIncreasing,
+    this.critical,
+    this.testsConducted
   });
 
   SummaryEachCountry formMap(Map<String,dynamic> data){
-    String code = data["CountryCode"];
-    code = code.toLowerCase();
-    String countryName =  flagCodes[code.toUpperCase()];
-
+    String countryName =  data["country"];
+    Map<String,dynamic> countryInfo=data["countryInfo"];
+    String code=countryInfo["iso2"];
     return SummaryEachCountry(
         country: countryName,
-        slug: data['Slug'],
         code : code,
-        flagPath: 'assets/flags/'+code+'.png',
-        newConfirmed: data["NewConfirmed"],
-        totalConfirmed: data['TotalConfirmed'],
-        newDeaths: data['NewDeaths'],
-        totalDeaths: data['TotalDeaths'],
-        newRecovered: data['NewRecovered'],
-        totalRecovered: data['TotalRecovered'],
-        isIncreasing: data["NewConfirmed"]>0? true : false
+        flagPath: 'assets/flags/'+code.toLowerCase()+'.png',
+        todayCases: data["todayCases"],
+        totalCases: data['cases'],
+        active: data["active"],
+        newDeaths: data['todayDeaths'],
+        totalDeaths: data['deaths'],
+        newRecovered: data['todayRecovered'],
+        totalRecovered: data['recovered'],
+        critical: data["critical"],
+        testsConducted: data["tests"],
+        isIncreasing: data["todayCases"]>0? true : false
     );
   }
 }

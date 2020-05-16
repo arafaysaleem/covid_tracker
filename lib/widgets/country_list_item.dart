@@ -1,14 +1,7 @@
+import '../models/item_color_data.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:intl/intl.dart';
-
-class ItemColorData{
-  final Color backgroundColor;
-  final Color lineColor;
-  final Color gradientColor;
-
-  ItemColorData({this.backgroundColor, this.lineColor, this.gradientColor});
-}
 
 class CountryListItem extends StatelessWidget {
   final formatter = new NumberFormat("#,###");
@@ -16,22 +9,18 @@ class CountryListItem extends StatelessWidget {
   final ItemColorData itemColorData;
   final bool isIncreasing;
   final String countryName;
-  final String countrySlug;
   final String countryCode;
   final String flagPath;
   final int value;
-  final List<int> last7DayCases;
 
   CountryListItem({
     this.height,
     this.countryName,
-    this.countrySlug,
     this.countryCode,
     this.itemColorData,
     this.flagPath,
     this.isIncreasing=false,
     this.value,
-    this.last7DayCases
   });
 
 
@@ -44,7 +33,6 @@ class CountryListItem extends StatelessWidget {
         Navigator.of(context).pushNamed(
             DetailsScreen.routeName,
             arguments: {
-              'slug' : countrySlug,
               'country' : countryName,
               'code' : countryCode
             }
@@ -106,6 +94,7 @@ class CountryListItem extends StatelessWidget {
                     children: <Widget>[
                       Text(formatter.format(value),style: TextStyle(color: Colors.white,fontSize: 22,fontWeight: FontWeight.w500),),
                       SizedBox(width: 3,),
+                      //TODO: Remove transform
                       Transform.rotate(angle: isIncreasing? pi/4 : (pi/4)*3,child: Icon(Icons.arrow_upward,color: Colors.white,size: 15,))
                     ],
                   )

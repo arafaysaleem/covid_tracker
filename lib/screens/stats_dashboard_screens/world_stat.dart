@@ -1,6 +1,10 @@
-import 'package:covidtracker/widgets/radial_progress.dart';
-import 'package:covidtracker/widgets/small_graph_panel.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:covidtracker/widgets/top_country_list.dart';
+
+import '../../models/summary_each_country.dart';
+import '../../network_requests/api_client.dart';
+import '../../network_requests/exceptions.dart';
+import '../../widgets/radial_progress.dart';
+import '../../widgets/small_graph_panel.dart';
 import 'package:flutter/material.dart';
 
 enum CaseType { ACTIVE, DEATHS, RECOVERED }
@@ -17,6 +21,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
   double progress;
   Duration caseTypeDuration = Duration(milliseconds: 400);
   Curve caseTypeCurve = Curves.ease;
+  ApiClient _client = ApiClient();
 
   void updateRadialDial() {
     if (_caseType == CaseType.ACTIVE) {
@@ -39,10 +44,10 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
 
   void updateCasesPanel() {
     if (_caseType == CaseType.ACTIVE) {
-      panelFontClr = Color(0xff7f2d91);//Color(0xff684024);
-      panelStartClr = Color(0xfff7deff);//Color(0xffffe9d4);
-      panelIconClr = Color(0xffcc00ff);//Color(0xffff9900);
-      panelLineClr = Color(0xffca4eff);//Color(0xffff8c4e);
+      panelFontClr = Color(0xff7f2d91); //Color(0xff684024);
+      panelStartClr = Color(0xfff7deff); //Color(0xffffe9d4);
+      panelIconClr = Color(0xffcc00ff); //Color(0xffff9900);
+      panelLineClr = Color(0xffca4eff); //Color(0xffff8c4e);
     } else if (_caseType == CaseType.DEATHS) {
       panelFontClr = Color(0xff682429);
       panelStartClr = Color(0xfffbe7e8);
@@ -54,6 +59,24 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
       panelIconClr = Color(0xff00c261);
       panelLineClr = Color(0xff44db6c);
     }
+  }
+
+  getTopSix() async {
+    List<SummaryEachCountry> listTopSix;
+    List<Map<String, dynamic>> json;
+    try {
+      //TODO: add cases functionality to api client
+      //json = await _client.getResponse(dropDownValue);
+    } on FetchDataException catch (fde) {
+      return fde;
+    }
+
+    json.forEach((country) {
+      SummaryEachCountry summary = SummaryEachCountry().formMap(country);
+      listTopSix.add(summary);
+    });
+
+    return listTopSix;
   }
 
   @override
@@ -174,7 +197,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                                 curve: caseTypeCurve,
                                 decoration: BoxDecoration(
                                     color: _caseType == CaseType.ACTIVE
-                                        ? Color(0xfff3cfff)//Color(0xffffd9b5)
+                                        ? Color(0xfff3cfff) //Color(0xffffd9b5)
                                         : Colors.white,
                                     borderRadius: BorderRadius.circular(10)),
                                 padding: EdgeInsets.symmetric(
@@ -361,6 +384,26 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
               -Container for World Map Image
                 -Purple/Black Color
                 -Heat map points
+
+              */
+              FutureBuilder<List<SummaryEachCountry>>(
+                future: getTopSix(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return Center(
+                      child: Text(snapshot.error),
+                    );
+                  }
+                  return snapshot.hasData
+                      ? TopCountryList(
+                          topSixList: snapshot.data,
+                        )
+                      : Center(
+                          child: CircularProgressIndicator(),
+                        );
+                },
+              ),
+              /*
 
               -Container for top countries
                 -GridView
