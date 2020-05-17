@@ -23,7 +23,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
   getNews() async {
     var json;
     try {
-      json = await _client.getResponse(dropDownValue);
+      json = await _client.getNewsResponse(dropDownValue);
     } on FetchDataException catch (fde) {
       return fde;
     }
@@ -356,6 +356,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                             },
                             itemBuilder: (context, index) {
                               if (snapshot.data is FetchDataException) {
+                                //TODO: Stylise the error message
                                 return Text("${snapshot.data.toString()}");
                               }
                               return getNewsTile(snapshot.data[index]);

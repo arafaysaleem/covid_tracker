@@ -1,5 +1,4 @@
-import 'package:covidtracker/widgets/top_country_list.dart';
-
+import '../../widgets/top_country_list.dart';
 import '../../models/summary_each_country.dart';
 import '../../network_requests/api_client.dart';
 import '../../network_requests/exceptions.dart';
@@ -65,9 +64,17 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
     List<SummaryEachCountry> listTopSix;
     List<Map<String, dynamic>> json;
     try {
-      //TODO: add cases functionality to api client
-      //json = await _client.getResponse(dropDownValue);
+      //TODO: test cases api response
+      json = await _client.getStatsResponse(StateLocation.TOP_FIVE);
     } on FetchDataException catch (fde) {
+      return fde;
+    }
+    //Initially i fetched top 5 and added pakistan details following that
+    //Because i wanted to show pakistan details in top 6 stats :)
+    try{
+      var pakStats= await _client.getStatsResponse(StateLocation.SPECIFIC,code: "PK");
+      json.add(pakStats);
+    } on FetchDataException catch (fde){
       return fde;
     }
 
@@ -381,6 +388,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
               ),
 
               /*
+              //TODO: Add heat map for world cases
               -Container for World Map Image
                 -Purple/Black Color
                 -Heat map points
@@ -390,6 +398,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                 future: getTopSix(),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
+                    //TODO: Stylise the error message
                     return Center(
                       child: Text(snapshot.error),
                     );
