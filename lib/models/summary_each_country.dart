@@ -8,7 +8,6 @@ class SummaryEachCountry {
   final int critical;
   final int active;
   final int totalDeaths;
-  final int newRecovered;
   final int totalRecovered;
   final bool isIncreasing;
   final int testsConducted;
@@ -22,7 +21,6 @@ class SummaryEachCountry {
     this.active,
     this.newDeaths,
     this.totalDeaths,
-    this.newRecovered,
     this.totalRecovered,
     this.isIncreasing,
     this.critical,
@@ -42,7 +40,6 @@ class SummaryEachCountry {
         active: data["active"],
         newDeaths: data['todayDeaths'],
         totalDeaths: data['deaths'],
-        newRecovered: data['todayRecovered'],
         totalRecovered: data['recovered'],
         critical: data["critical"],
         testsConducted: data["tests"],

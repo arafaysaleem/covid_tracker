@@ -24,21 +24,22 @@ final List<ItemColorData> colordata = <ItemColorData>[
 
 class TopCountryList extends StatelessWidget {
   final List<SummaryEachCountry> topSixList;
-  final double height = 180;
+  final double height = 185;
 
   const TopCountryList({Key key, this.topSixList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      child: ListView.builder(
-        padding: EdgeInsets.only(left: 20, right: 20),
-        primary: true,
-        scrollDirection: Axis.horizontal,
-        itemCount: topSixList.length,
-        itemBuilder: (BuildContext ctx, int i) {
-          return CountryListItem(
+    return ListView.separated(
+      physics: BouncingScrollPhysics(),
+      primary: true,
+      scrollDirection: Axis.horizontal,
+      itemCount: topSixList.length,
+      separatorBuilder: (context,i)=>SizedBox(width: 20),
+      itemBuilder: (BuildContext ctx, int i) {
+        return Padding(
+          padding: EdgeInsets.only(left: i==0? 20:0),
+          child: CountryListItem(
             height: height,
             countryName: topSixList[i].country,
             countryCode: topSixList[i].code,
@@ -46,9 +47,9 @@ class TopCountryList extends StatelessWidget {
             flagPath: topSixList[i].flagPath,
             isIncreasing: topSixList[i].isIncreasing,
             itemColorData: colordata[i % colordata.length],
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

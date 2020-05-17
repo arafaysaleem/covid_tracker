@@ -33,53 +33,21 @@ class ApiClient {
 
   getStatsResponse(StateLocation stateLocation,{String code=""}) async {
     String todayEndpoint=_getStatsEndpoint(location: stateLocation,code: code);
-    String yestEndpoint=_getStatsEndpoint(code: code, location: stateLocation,yesterday: true);
     String todayUrl=_apiService.statsUrl+todayEndpoint;
-    String yestUrl=_apiService.statsUrl+yestEndpoint;
-    var todayResponse = await http.get(todayUrl);
-    if(todayResponse.statusCode==200){
-      var todayJSON=json.decode(todayResponse.body);
-      var yestResponse=await http.get(yestUrl);
-      if(yestResponse.statusCode==200){
-        var yestJSON=json.decode(yestResponse.body);
+    try{
+      var todayResponse = await http.get(todayUrl);
+      if(todayResponse.statusCode==200){
+        var todayJSON=json.decode(todayResponse.body);
         if(stateLocation==StateLocation.TOP_FIVE){
-          for(int i=0;i<5;i++){
-            int newRecovered=todayJSON[i]["recovered"]-yestJSON[i]["recovered"];
-            todayJSON[i]["newRecovered"]=newRecovered;
-          }
-        }
-        else if(stateLocation==StateLocation.SPECIFIC || stateLocation==StateLocation.GLOBAL){
-          int newRecovered=todayJSON["recovered"]-yestJSON["recovered"];
-          todayJSON["newRecovered"]=newRecovered;
-        }
-        else{
-          todayJSON.asMap().forEach((index,countryMap){
-            int newRecovered=countryMap["recovered"]-yestJSON[index]["recovered"];
-            todayJSON[index]["newRecovered"]=newRecovered;
-          });
+          return todayJSON.sublist(0,6);
         }
         return todayJSON;
       }
       else{
-        //If yesterday data not fetched, set newRecovered to unavailable;
-        if(stateLocation==StateLocation.TOP_FIVE){
-          for(int i=0;i<5;i++){
-            todayJSON[i]["newRecovered"]="Unavailable";
-          }
-        }
-        else if(stateLocation==StateLocation.SPECIFIC || stateLocation==StateLocation.GLOBAL){
-          todayJSON["newRecovered"]="Unavailable";
-        }
-        else{
-          todayJSON.asMap().forEach((index,countryMap){
-            todayJSON[index]["newRecovered"]="Unavailable";
-          });
-        }
-        return todayJSON;
+        throw FetchDataException("Failed to load stats");
       }
-    }
-    else{
-      throw FetchDataException("Failed to load stats");
+    } on SocketException {
+      throw FetchDataException("No internet connection");
     }
   }
 

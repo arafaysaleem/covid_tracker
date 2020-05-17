@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 import '../../widgets/top_country_list.dart';
 import '../../models/summary_each_country.dart';
 import '../../network_requests/api_client.dart';
@@ -60,23 +62,15 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
     }
   }
 
-  getTopSix() async {
-    List<SummaryEachCountry> listTopSix;
-    List<Map<String, dynamic>> json;
-    try {
-      //TODO: test cases api response
-      json = await _client.getStatsResponse(StateLocation.TOP_FIVE);
-    } on FetchDataException catch (fde) {
-      return fde;
-    }
+  Future<List<SummaryEachCountry>> getTopSix() async {
+    List<SummaryEachCountry> listTopSix = [];
+    List<dynamic> json;
+    json = await _client.getStatsResponse(StateLocation.TOP_FIVE);
     //Initially i fetched top 5 and added pakistan details following that
     //Because i wanted to show pakistan details in top 6 stats :)
-    try{
-      var pakStats= await _client.getStatsResponse(StateLocation.SPECIFIC,code: "PK");
-      json.add(pakStats);
-    } on FetchDataException catch (fde){
-      return fde;
-    }
+    var pakStats =
+        await _client.getStatsResponse(StateLocation.SPECIFIC, code: "PK");
+    json.insert(0, pakStats);
 
     json.forEach((country) {
       SummaryEachCountry summary = SummaryEachCountry().formMap(country);
@@ -98,13 +92,16 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Container(
-          margin: EdgeInsets.fromLTRB(15, 15, 15, 0),
-          child: ListView(
-            children: <Widget>[
-              //Back Icon and Image
-              Material(
-                elevation: 4,
+        //TODO: Implement http call for global cases
+        child: ListView(
+          shrinkWrap: true,
+          physics: BouncingScrollPhysics(),
+          children: <Widget>[
+            //Image Container
+            Padding(
+              padding: EdgeInsets.fromLTRB(15, 15, 15, 0),
+              child: Material(
+                elevation: 6,
                 borderRadius: BorderRadius.circular(16),
                 child: Container(
                   decoration: BoxDecoration(
@@ -165,13 +162,16 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                   ),
                 ),
               ),
+            ),
 
-              SizedBox(
-                height: 25,
-              ),
+            SizedBox(
+              height: 25,
+            ),
 
-              //Case Types Container
-              Material(
+            //Case Types Container
+            Padding(
+              padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+              child: Material(
                 borderRadius: BorderRadius.circular(16),
                 elevation: 4,
                 child: Container(
@@ -386,49 +386,119 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                   ),
                 ),
               ),
+            ),
 
-              /*
-              //TODO: Add heat map for world cases
-              -Container for World Map Image
-                -Purple/Black Color
-                -Heat map points
+            /*
+            //TODO: Add heat map for world cases
+            -Container for World Map Image
+              -Purple/Black Color
+              -Heat map points
 
-              */
-              FutureBuilder<List<SummaryEachCountry>>(
-                future: getTopSix(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasError) {
-                    //TODO: Stylise the error message
-                    return Center(
-                      child: Text(snapshot.error),
-                    );
-                  }
-                  return snapshot.hasData
-                      ? TopCountryList(
-                          topSixList: snapshot.data,
-                        )
-                      : Center(
-                          child: CircularProgressIndicator(),
-                        );
-                },
+            */
+
+            SizedBox(height: 30),
+
+            //Top Countries List
+            Container(
+              height: 250,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  //Title
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        //Top Country
+                        Text(
+                          "Top Countries",
+                          style: TextStyle(
+                              fontFamily: "Montserrat",
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.purple),
+                        ),
+
+                        //View all
+                        InkWell(
+                          onTap: () {},
+                          child: Text(
+                            "View all",
+                            style: TextStyle(
+                                fontFamily: "Montserrat",
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.purple),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: 15,
+                  ),
+
+                  //Country Cards List
+                  Expanded(
+                    child: FutureBuilder<List<SummaryEachCountry>>(
+                      future: getTopSix(),
+                      builder: (context,
+                          AsyncSnapshot<List<SummaryEachCountry>> snapshot) {
+                        if (snapshot.hasError) {
+                          return Container(
+                            margin: EdgeInsets.symmetric(horizontal: 15.0),
+                            decoration: BoxDecoration(
+                              color: Color(0xfff3cfff),
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            child: Center(
+                              child: Text(
+                                snapshot.error.toString(),
+                                style: TextStyle(
+                                  fontFamily: "Montserrat",
+                                  fontSize: 21,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.red,
+                                ),
+                              ),
+                            ),
+                          );
+                        }
+                        return snapshot.hasData
+                            ? snapshot.data is FetchDataException
+                                ? Container(
+                                    decoration: BoxDecoration(
+                                      color: Color(0xfff3cfff),
+                                      borderRadius: BorderRadius.circular(16),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        snapshot.data.toString(),
+                                        style: TextStyle(
+                                          fontFamily: "Montserrat",
+                                          fontSize: 21,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.red,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                : TopCountryList(
+                                    topSixList: snapshot.data,
+                                  )
+                            : Center(
+                                //TODO: Make a custom shimmer loader
+                                child: CircularProgressIndicator(),
+                              );
+                      },
+                    ),
+                  ),
+                ],
               ),
-              /*
-
-              -Container for top countries
-                -GridView
-                  -Top 4 countries
-                    -US, UK, ITALY, PAKISTAN
-                      -InkWell
-                        -ListTile
-                          -Flag Image
-                          -Country Name
-                          -Mini Graph
-                          -Dropdown/up arrow icon
-                          -Random Vivid Color
-                          -Total Cases
-              */
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
