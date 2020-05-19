@@ -60,8 +60,8 @@ class _RadialProgressState extends State<RadialProgress> with TickerProviderStat
     return AnimatedBuilder(
       animation: _radialAnimation,
       builder: (context, child) => Container(
-        width: 162,
-        height: 162,
+        width: 161,
+        height: 161,
         child: Stack(
           alignment: Alignment.center,
           fit: StackFit.loose,
@@ -104,7 +104,7 @@ class _RadialProgressState extends State<RadialProgress> with TickerProviderStat
                 ),
                 child: Material(
                   animationDuration: fillDuration,
-                  elevation: 10,
+                  elevation: 4,
                   borderRadius: BorderRadius.circular(10),
                   child: Container(
                     width: 17,

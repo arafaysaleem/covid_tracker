@@ -38,7 +38,7 @@ class TopCountryList extends StatelessWidget {
       separatorBuilder: (context,i)=>SizedBox(width: 20),
       itemBuilder: (BuildContext ctx, int i) {
         return Padding(
-          padding: EdgeInsets.only(left: i==0? 20:0),
+          padding: EdgeInsets.only(left: i==0? 20:0,right:i==topSixList.length-1?20.0:0),
           child: CountryListItem(
             height: height,
             countryName: topSixList[i].country,
