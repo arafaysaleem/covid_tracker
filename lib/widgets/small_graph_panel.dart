@@ -27,8 +27,8 @@ class SmallGraphPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.bottomCenter,
-      width: 180,
-      height: 68,
+      width: 185,
+      height: 62,
       padding: EdgeInsets.only(left: 5, right: 7),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -86,6 +86,8 @@ class SmallGraphPanel extends StatelessWidget {
                 )
               ],
             ),
+
+            SizedBox(width: 5,),
 
             //Curve line
             CurvePainter(

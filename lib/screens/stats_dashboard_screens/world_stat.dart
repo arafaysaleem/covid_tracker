@@ -241,7 +241,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                                 decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(16)),
-                                height: 265,
+                                height: 301,
                                 padding: EdgeInsets.fromLTRB(5, 16, 5, 16),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -418,7 +418,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
 
                                     //Row of Radial Dial and Case Count Column
                                     Padding(
-                                      padding: const EdgeInsets.only(right: 10),
+                                      padding: const EdgeInsets.only(right: 7,left: 4),
                                       child: Row(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
@@ -436,8 +436,6 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                                               bgClr: radialBgClr,
                                             ),
                                           ),
-
-                                          SizedBox(width: 7),
 
                                           //Global Case Count Panels
                                           Expanded(
@@ -458,10 +456,10 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                                                 ),
 
                                                 SizedBox(
-                                                  height: 15,
+                                                  height: 12,
                                                 ),
 
-                                                //Active Cases Panel
+                                                //Total Type Cases Panel
                                                 SmallGraphPanel(
                                                   label: _caseType ==
                                                           CaseType.ACTIVE
@@ -477,6 +475,28 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                                                       CaseType.DEATHS
                                                       ? globalData["deaths"]+0.0
                                                       : globalData["recovered"]+0.0,
+                                                  icon: Icons.arrow_drop_up,
+                                                  fontColor: panelFontClr,
+                                                  iconColor: panelIconClr,
+                                                  startColor: panelStartClr,
+                                                  lineColor: panelLineClr,
+                                                  isIncreasing: true,
+                                                ),
+
+                                                SizedBox(
+                                                  height: 12,
+                                                ),
+
+                                                //New Cases Panel
+                                                SmallGraphPanel(
+                                                  label: _caseType==CaseType.RECOVERED?"Per Million":"Today",
+                                                  value: _caseType ==
+                                                      CaseType.ACTIVE
+                                                      ? globalData["todayCases"]+0.0
+                                                      : _caseType ==
+                                                      CaseType.DEATHS
+                                                      ? globalData["todayDeaths"]+0.0
+                                                      : globalData["recoveredPerOneMillion"]+0.0,
                                                   icon: Icons.arrow_drop_up,
                                                   fontColor: panelFontClr,
                                                   iconColor: panelIconClr,
@@ -526,7 +546,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                                             fontFamily: "Montserrat",
                                             fontSize: 20,
                                             fontWeight: FontWeight.w700,
-                                            color: Colors.purple),
+                                            color: Colors.black),
                                       ),
 
                                       //View all
@@ -538,7 +558,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                                               fontFamily: "Montserrat",
                                               fontSize: 18,
                                               fontWeight: FontWeight.w600,
-                                              color: Colors.purple),
+                                              color: Colors.black),
                                         ),
                                       ),
                                     ],

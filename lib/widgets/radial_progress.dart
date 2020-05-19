@@ -60,20 +60,20 @@ class _RadialProgressState extends State<RadialProgress> with TickerProviderStat
     return AnimatedBuilder(
       animation: _radialAnimation,
       builder: (context, child) => Container(
-        width: 161,
-        height: 161,
+        width: 181,
+        height: 181,
         child: Stack(
           alignment: Alignment.center,
           fit: StackFit.loose,
           children: <Widget>[
             CustomPaint(
               child: Container(
-                height: 145.0,
-                width: 145.0,
+                height: 165.0,
+                width: 165.0,
                 padding: EdgeInsets.all(40.0),
                 child: AnimatedOpacity(
                   curve: Curves.fastLinearToSlowEaseIn,
-                  opacity: double.parse(getPercent()) > 13.0 ? 1.0 : 0.0,
+                  opacity: double.parse(getPercent()) > 0.3 ? 1.0 : 0.0,
                   duration: fadeInDuration,
                   child: Center(
                     child: Text(
