@@ -29,7 +29,7 @@ class SmallGraphPanel extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       width: 185,
       height: 62,
-      padding: EdgeInsets.only(left: 5, right: 7),
+      padding: EdgeInsets.only(left: 5, right: 6),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         gradient: LinearGradient(
@@ -86,8 +86,6 @@ class SmallGraphPanel extends StatelessWidget {
                 )
               ],
             ),
-
-            SizedBox(width: 5,),
 
             //Curve line
             CurvePainter(

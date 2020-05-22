@@ -220,7 +220,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                     ),
 
                     SizedBox(
-                      height: 25,
+                      height: 20,
                     ),
 
                     //Radial & Global Cases Container
@@ -233,7 +233,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(16)),
-                          height: 301,
+                          height: 298,
                           padding: EdgeInsets.fromLTRB(5, 16, 5, 16),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -389,13 +389,12 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                               ),
 
                               SizedBox(
-                                height: 15,
+                                height: 12,
                               ),
 
                               //Row of Radial Dial and Case Count Column
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(right: 7, left: 4),
+                                padding: const EdgeInsets.only(right: 7),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment:
@@ -494,28 +493,10 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                     ),
 
                     SizedBox(
-                      height: 25,
+                      height: 20,
                     ),
 
-                    //Affected Areas Text
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                      child: Text(
-                        "Affected Areas",
-                        style: TextStyle(
-                            fontFamily: "Montserrat",
-                            fontSize: 20,
-                            letterSpacing: 0.5,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black),
-                      ),
-                    ),
-
-                    SizedBox(
-                      height: 15,
-                    ),
-
-                    //World Map Image
+                    //World Map Container
                     Padding(
                       padding: const EdgeInsets.only(left: 20, right: 15),
                       child: Material(
@@ -526,16 +507,56 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                             borderRadius: BorderRadius.circular(16.0),
                             color: Colors.white,
                           ),
-                          padding: EdgeInsets.fromLTRB(8, 25, 8, 20),
-                          child: Image(
-                            image: AssetImage("assets/stats/map.png"),
-                            fit: BoxFit.contain,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(10, 5, 3, 0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    //Affected Areas Text
+                                    Text(
+                                      "Affected Areas",
+                                      style: TextStyle(
+                                          fontFamily: "Montserrat",
+                                          fontSize: 18,
+                                          letterSpacing: 0.5,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.black),
+                                    ),
+
+                                    //More horiz icon
+                                    IconButton(
+                                      icon: Icon(
+                                        Icons.more_horiz,
+                                        color: Colors.purple[700],
+                                        size: 26,
+                                      ),
+                                      onPressed: () {},
+                                    )
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 2,
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(20, 0, 17, 15),
+                                child: Image(
+                                  image: AssetImage("assets/stats/map.png"),
+                                  fit: BoxFit.contain,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
                     ),
 
-                    SizedBox(height: 25),
+                    SizedBox(height: 20),
 
                     //Top Countries List
                     Container(
