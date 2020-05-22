@@ -52,6 +52,7 @@ class CountryListItem extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20)),
             child: Stack(
               children: <Widget>[
+
                 //Gradient
                 Align(
                   alignment: Alignment(0, 1),
@@ -60,15 +61,16 @@ class CountryListItem extends StatelessWidget {
                     child: Container(
                       height: size.height,
                       decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.vertical(bottom: Radius.circular(20)),
-                          gradient: LinearGradient(
-                              colors: <Color>[
-                                itemColorData.gradientColor,
-                                itemColorData.backgroundColor,
-                              ],
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter)),
+                        borderRadius:
+                            BorderRadius.vertical(bottom: Radius.circular(20)),
+                        gradient: LinearGradient(
+                            colors: <Color>[
+                              itemColorData.gradientColor,
+                              itemColorData.backgroundColor,
+                            ],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter),
+                      ),
                     ),
                   ),
                 ),
@@ -89,13 +91,18 @@ class CountryListItem extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
+
+                      //Flag
                       Image.asset(
                         flagPath,
                         width: 40,
                       ),
+
                       SizedBox(
                         height: 10,
                       ),
+
+                      //Country Name
                       Text(
                         countryName,
                         style: TextStyle(
@@ -106,24 +113,33 @@ class CountryListItem extends StatelessWidget {
                         ),
                         textAlign: TextAlign.center,
                       ),
+
                       SizedBox(
-                        height:4,
+                        height: 4,
                       ),
+
+                      //Number of Cases
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
+                          SizedBox(width:6),
+
+                          //Number
                           Text(
                             formatter.format(value),
                             style: TextStyle(
                                 fontFamily: "Montserrat",
                                 color: Colors.white,
-                                fontSize: 21,
+                                fontSize: 19,
                                 letterSpacing: 1,
                                 fontWeight: FontWeight.w700),
                           ),
+
                           SizedBox(
                             width: 3,
                           ),
+
+                          //Arrow
                           Transform.rotate(
                               angle: isIncreasing ? pi / 4 : (pi / 4) * 3,
                               child: Icon(

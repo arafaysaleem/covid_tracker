@@ -24,7 +24,7 @@ final List<ItemColorData> colordata = <ItemColorData>[
 
 class TopCountryList extends StatelessWidget {
   final List<SummaryEachCountry> topSixList;
-  final double height = 185;
+  final double height = 180;
 
   const TopCountryList({Key key, this.topSixList}) : super(key: key);
 
@@ -35,7 +35,7 @@ class TopCountryList extends StatelessWidget {
       primary: true,
       scrollDirection: Axis.horizontal,
       itemCount: topSixList.length,
-      separatorBuilder: (context,i)=>SizedBox(width: 20),
+      separatorBuilder: (context,i)=>SizedBox(width: 18),
       itemBuilder: (BuildContext ctx, int i) {
         return Padding(
           padding: EdgeInsets.only(left: i==0? 20:0,right:i==topSixList.length-1?20.0:0),

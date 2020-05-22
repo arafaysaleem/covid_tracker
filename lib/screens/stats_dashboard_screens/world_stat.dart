@@ -94,12 +94,14 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       backgroundColor: Colors.grey[100],
       body: SafeArea(
         child: FutureBuilder<Map<String, dynamic>>(
           future: getGlobalData(),
           builder: (context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
             if (snapshot.hasError) {
+
               //error container
               return Container(
                 margin: EdgeInsets.all(15.0),
@@ -141,15 +143,61 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                   ),
                 );
               } else {
+
                 globalData = snapshot.data;
                 updateRadialDial();
+
+                //Actual Body
                 return ListView(
                   shrinkWrap: true,
                   physics: BouncingScrollPhysics(),
                   children: <Widget>[
+
+                    //Back Arrow And Title
+                    Padding(
+                      padding: const EdgeInsets.only(top:15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          //Back Arrow
+                          InkWell(
+                            onTap: () => Navigator.of(context).pop(),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 15,right: 15,bottom: 5),
+                              child: Icon(
+                                Icons.arrow_back,
+                                color: Colors.purple[900],
+                                size: 26,
+                              ),
+                            ),
+                          ),
+
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width >
+                                360.0
+                                ? 55.0
+                                : 40.0,
+                          ),
+
+                          //Text
+                          Text(
+                            "Global Statistics",
+                            style: TextStyle(
+                                color: Colors.purple[900],
+                                fontFamily: "Montserrat",
+                                fontSize: 21,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    SizedBox(height:10),
+
                     //Image Container
                     Padding(
-                      padding: EdgeInsets.fromLTRB(15, 15, 15, 0),
+                      padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
                       child: Material(
                         elevation: 6,
                         borderRadius: BorderRadius.circular(16),
@@ -157,63 +205,17 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                           decoration: BoxDecoration(
                               color: Colors.purple[900],
                               borderRadius: BorderRadius.circular(16)),
-                          height: MediaQuery.of(context).size.width > 360.0
-                              ? 215
-                              : 200,
-                          padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
-                          child: Column(
-                            children: <Widget>[
-                              //Back Arrow And Title
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  //Back Arrow
-                                  InkWell(
-                                    onTap: () => Navigator.of(context).pop(),
-                                    child: Icon(
-                                      Icons.arrow_back,
-                                      color: Colors.white,
-                                      size: 26,
-                                    ),
-                                  ),
-
-                                  SizedBox(
-                                    width: MediaQuery.of(context).size.width >
-                                            360.0
-                                        ? 65.0
-                                        : 50.0,
-                                  ),
-
-                                  //Text
-                                  Text(
-                                    "Global Statistics",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: "Montserrat",
-                                        fontSize: 21,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                ],
-                              ),
-
-                              SizedBox(
-                                height: 17,
-                              ),
-
-                              //Stats Image
-                              Container(
-                                child: Image(
-                                  width:
-                                      MediaQuery.of(context).size.width > 360.0
-                                          ? 350
-                                          : 300,
-                                  fit: BoxFit.fitWidth,
-                                  image: AssetImage(
-                                      "assets/stats/global_stats.png"),
-                                ),
-                              )
-                            ],
+                          padding: EdgeInsets.fromLTRB(12, 20, 12, 20),
+                          child: Container(
+                            child: Image(
+                              width:
+                                  MediaQuery.of(context).size.width > 360.0
+                                      ? 350
+                                      : 300,
+                              fit: BoxFit.fitWidth,
+                              image: AssetImage(
+                                  "assets/stats/global_stats.png"),
+                            ),
                           ),
                         ),
                       ),
@@ -498,7 +500,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
 
                     //World Map Container
                     Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 15),
+                      padding: const EdgeInsets.only(left: 15, right: 15),
                       child: Material(
                         elevation: 5,
                         borderRadius: BorderRadius.circular(16.0),
@@ -511,7 +513,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Padding(
-                                padding: const EdgeInsets.fromLTRB(10, 5, 3, 0),
+                                padding: const EdgeInsets.fromLTRB(15, 0, 3, 0),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -521,7 +523,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                                       "Affected Areas",
                                       style: TextStyle(
                                           fontFamily: "Montserrat",
-                                          fontSize: 18,
+                                          fontSize: 17,
                                           letterSpacing: 0.5,
                                           fontWeight: FontWeight.w600,
                                           color: Colors.black),
@@ -532,19 +534,17 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                                       icon: Icon(
                                         Icons.more_horiz,
                                         color: Colors.purple[700],
-                                        size: 26,
+                                        size: 28,
                                       ),
                                       onPressed: () {},
                                     )
                                   ],
                                 ),
                               ),
-                              SizedBox(
-                                height: 2,
-                              ),
+
                               Padding(
                                 padding:
-                                    const EdgeInsets.fromLTRB(20, 0, 17, 15),
+                                    const EdgeInsets.fromLTRB(20, 0, 17, 14),
                                 child: Image(
                                   image: AssetImage("assets/stats/map.png"),
                                   fit: BoxFit.contain,
@@ -564,9 +564,9 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          //Title
+                          //Title and View All
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 15),
+                            padding: EdgeInsets.fromLTRB(15, 0, 6, 0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
@@ -575,21 +575,24 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                                   "Top Countries",
                                   style: TextStyle(
                                       fontFamily: "Montserrat",
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w700,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
                                       color: Colors.black),
                                 ),
 
                                 //View all
                                 InkWell(
                                   onTap: () {},
-                                  child: Text(
-                                    "View all",
-                                    style: TextStyle(
-                                        fontFamily: "Montserrat",
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.purple[800]),
+                                  child: Padding(
+                                    padding: const EdgeInsets.fromLTRB(10, 4, 10, 4),
+                                    child: Text(
+                                      "View all",
+                                      style: TextStyle(
+                                          fontFamily: "Montserrat",
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.purple[800]),
+                                    ),
                                   ),
                                 ),
                               ],
@@ -597,7 +600,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                           ),
 
                           SizedBox(
-                            height: 15,
+                            height: 10,
                           ),
 
                           //Country Cards List
