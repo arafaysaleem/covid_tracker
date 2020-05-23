@@ -1,3 +1,6 @@
+import 'package:covidtracker/widgets/skeletons/top_country_list_skeleton.dart';
+import 'package:covidtracker/widgets/skeletons/world_stat_skeleton.dart';
+
 import '../../widgets/top_country_list.dart';
 import '../../models/summary_each_country.dart';
 import '../../network_requests/api_client.dart';
@@ -654,10 +657,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                                         : TopCountryList(
                                             topSixList: snapshot.data,
                                           )
-                                    : Center(
-                                        //TODO: Make a custom shimmer loader
-                                        child: CircularProgressIndicator(),
-                                      );
+                                    : TopCountryLoader();
                               },
                             ),
                           ),
@@ -667,11 +667,9 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                   ],
                 );
               }
-            } else {
-              return Center(
-                //TODO: Make a custom shimmer loader
-                child: CircularProgressIndicator(),
-              );
+            }
+            else {
+              return WorldStatLoader();
             }
           },
         ),
