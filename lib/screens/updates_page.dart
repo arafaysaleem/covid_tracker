@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:covidtracker/network_requests/api_client.dart';
 import 'package:covidtracker/network_requests/exceptions.dart';
 import 'package:covidtracker/widgets/my_web_view.dart';
+import 'package:covidtracker/widgets/skeletons/news_list_skeleton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -343,7 +344,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                   future: getNews(),
                   builder: (context, snapshot) {
                     return snapshot.data == null
-                        ? Center(child: CircularProgressIndicator())
+                        ? NewsListLoader()
                         : ListView.separated(
                             physics: BouncingScrollPhysics(),
                             itemCount: 10,
@@ -364,7 +365,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                   },
                 ),
               ),
-              SizedBox(height: 15),
+              SizedBox(height: 10),
             ],
           ),
         ),
