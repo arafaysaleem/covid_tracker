@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 
 //ignore: must_be_immutable
-class SymptomsScreen extends StatelessWidget {
+class SymptomsScreen extends StatefulWidget {
   final imgPath;
   final Color color;
+
+  SymptomsScreen({this.color, this.imgPath});
+
+  @override
+  _SymptomsScreenState createState() => _SymptomsScreenState();
+}
+
+class _SymptomsScreenState extends State<SymptomsScreen> {
+  int selectedIndex=0;
+
   List<Map<String, String>> symptoms = [
     {
       "symptom": "Fever",
@@ -41,8 +51,6 @@ class SymptomsScreen extends StatelessWidget {
     },
   ];
 
-  SymptomsScreen({this.color, this.imgPath});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +61,7 @@ class SymptomsScreen extends StatelessWidget {
             onPressed: () => Navigator.of(context).pop(),
             icon: Icon(
               Icons.arrow_back,
-              color: color,
+              color: widget.color,
               size: 28,
             )),
         centerTitle: true,
@@ -70,7 +78,7 @@ class SymptomsScreen extends StatelessWidget {
                   bottomLeft: Radius.circular(25.0),
                   bottomRight: Radius.circular(25.0),
                 ),
-                color: color.withOpacity(0.2)),
+                color: widget.color.withOpacity(0.2)),
             width: MediaQuery.of(context).size.width,
             child: Stack(
               children: <Widget>[
@@ -83,7 +91,7 @@ class SymptomsScreen extends StatelessWidget {
                     child: Text(
                       "Symptoms",
                       style: TextStyle(
-                          color: color,
+                          color: widget.color,
                           fontFamily: "Montserrat",
                           fontSize: 31,
                           fontWeight: FontWeight.w700),
@@ -99,9 +107,9 @@ class SymptomsScreen extends StatelessWidget {
                     child: Container(
                         padding: EdgeInsets.only(right: 20.0),
                         child: Hero(
-                            tag: imgPath,
+                            tag: widget.imgPath,
                             child: Image(
-                              image: AssetImage(imgPath),
+                              image: AssetImage(widget.imgPath),
                               height: 230.0,
                             ))),
                   ),
@@ -124,48 +132,62 @@ class SymptomsScreen extends StatelessWidget {
                 scrollDirection: Axis.vertical,
                 crossAxisCount: 2,
                 childAspectRatio: 0.70,
-                children: symptoms.map((symptom) {
-                  return Material(
-                    borderRadius: BorderRadius.circular(15.0),
-                    elevation: 5,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(14, 20, 14, 0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: <Widget>[
-                          Image(
-                            image: AssetImage(symptom["imgPath"]),
-                            height: 95.0,
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            "${symptom["symptom"]}",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontFamily: "Montserrat",
-                              color: Colors.black,
-                              fontWeight: FontWeight.w600,
+                children: symptoms.asMap().entries.map((MapEntry entry) {
+                  int index=entry.key;
+                  return GestureDetector(
+                    onTap: (){
+                      setState(() {
+                        selectedIndex=index;
+                      });
+                    },
+                    child: Material(
+                      borderRadius: BorderRadius.circular(15.0),
+                      elevation: 5,
+                      child: AnimatedContainer(
+                        curve: Curves.fastOutSlowIn,
+                        duration: Duration(milliseconds: 650),
+                        decoration: BoxDecoration(
+                          color: selectedIndex==index? Colors.teal[50]:Colors.white,
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        padding: const EdgeInsets.fromLTRB(14, 20, 14, 0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: <Widget>[
+                            Image(
+                              image: AssetImage(entry.value["imgPath"]),
+                              height: 95.0,
                             ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Expanded(
-                            child: Text(
-                              "${symptom['desc']}",
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Text(
+                              "${entry.value["symptom"]}",
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                fontSize: 12,
+                                fontSize: 14,
                                 fontFamily: "Montserrat",
-                                color: Colors.grey,
-                                fontWeight: FontWeight.w500,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
-                          ),
-                        ],
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Expanded(
+                              child: Text(
+                                "${entry.value['desc']}",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontFamily: "Montserrat",
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );
@@ -178,3 +200,4 @@ class SymptomsScreen extends StatelessWidget {
     );
   }
 }
+

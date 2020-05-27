@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class PrecautionsScreen extends StatelessWidget {
+class PrecautionsScreen extends StatefulWidget {
   final imgPath;
   final Color color;
 
+
+  PrecautionsScreen({this.imgPath, this.color});
+
+  @override
+  _PrecautionsScreenState createState() => _PrecautionsScreenState();
+}
+
+class _PrecautionsScreenState extends State<PrecautionsScreen> {
+  int selectedIndex=0;
   List<Map<String, String>> preventions = [
     {
       "prevention": "Protective Mask",
@@ -40,8 +49,6 @@ class PrecautionsScreen extends StatelessWidget {
     },
   ];
 
-  PrecautionsScreen({this.imgPath, this.color});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +59,7 @@ class PrecautionsScreen extends StatelessWidget {
             onPressed: () => Navigator.of(context).pop(),
             icon: Icon(
               Icons.arrow_back,
-              color: color,
+              color: widget.color,
               size: 28,
             )),
         centerTitle: true,
@@ -73,7 +80,7 @@ class PrecautionsScreen extends StatelessWidget {
                     bottomLeft: Radius.circular(25.0),
                     bottomRight: Radius.circular(25.0),
                   ),
-                  color: color.withOpacity(0.2)),
+                  color: widget.color.withOpacity(0.2)),
               width: MediaQuery.of(context).size.width,
               child: Stack(
                 children: <Widget>[
@@ -86,7 +93,7 @@ class PrecautionsScreen extends StatelessWidget {
                       child: Text(
                         "Precautions",
                         style: TextStyle(
-                            color: color,
+                            color: widget.color,
                             fontFamily: "Montserrat",
                             fontSize: 31,
                             fontWeight: FontWeight.w700),
@@ -101,9 +108,9 @@ class PrecautionsScreen extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.bottomRight,
                       child: Hero(
-                          tag: imgPath,
+                          tag: widget.imgPath,
                           child: Image(
-                            image: AssetImage(imgPath),
+                            image: AssetImage(widget.imgPath),
                             height: 230.0,
                           )),
                     ),
@@ -127,49 +134,62 @@ class PrecautionsScreen extends StatelessWidget {
                 scrollDirection: Axis.vertical,
                 crossAxisCount: 2,
                 childAspectRatio: 0.70,
-                children: preventions.map((prevention) {
-                  print(MediaQuery.of(context).size.width);
-                  return Material(
-                    borderRadius: BorderRadius.circular(15.0),
-                    elevation: 5,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(14, 16, 14, 0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: <Widget>[
-                          Image(
-                            image: AssetImage(prevention["imgPath"]),
-                            height: 100.0,
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            "${prevention["prevention"]}",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontFamily: "Montserrat",
-                              color: Colors.black,
-                              fontWeight: FontWeight.w600,
+                children: preventions.asMap().entries.map((MapEntry entry) {
+                  int index=entry.key;
+                  return GestureDetector(
+                    onTap: (){
+                      setState(() {
+                        selectedIndex=index;
+                      });
+                    },
+                    child: Material(
+                      borderRadius: BorderRadius.circular(15.0),
+                      elevation: 5,
+                      child: AnimatedContainer(
+                        curve: Curves.fastOutSlowIn,
+                        duration: Duration(milliseconds: 650),
+                        decoration: BoxDecoration(
+                          color: selectedIndex==index? Colors.blue[50]:Colors.white,
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        padding: const EdgeInsets.fromLTRB(14, 16, 14, 0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: <Widget>[
+                            Image(
+                              image: AssetImage(entry.value["imgPath"]),
+                              height: 100.0,
                             ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Expanded(
-                            child: Text(
-                              "${prevention['desc']}",
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Text(
+                              "${entry.value["prevention"]}",
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                fontSize: 12,
+                                fontSize: 14,
                                 fontFamily: "Montserrat",
-                                color: Colors.grey,
-                                fontWeight: FontWeight.w500,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
-                          ),
-                        ],
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Expanded(
+                              child: Text(
+                                "${entry.value['desc']}",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontFamily: "Montserrat",
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );
