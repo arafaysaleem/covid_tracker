@@ -89,7 +89,7 @@ class CountryListItem extends StatelessWidget {
 
                 //Country Details Column
                 Align(
-                  alignment: Alignment(0, -0.6),
+                  alignment: Alignment(0, -0.65),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
@@ -101,7 +101,7 @@ class CountryListItem extends StatelessWidget {
                       ),
 
                       SizedBox(
-                        height: 10,
+                        height: 8,
                       ),
 
                       //Country Name

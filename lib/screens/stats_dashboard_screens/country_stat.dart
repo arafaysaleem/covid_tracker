@@ -56,27 +56,27 @@ class _CountryStatScreenState extends State<CountryStatScreen> {
                                     width: 1.8,
                                   )),
                               margin: EdgeInsets.only(left: 20),
-                              padding: EdgeInsets.all(9),
+                              padding: EdgeInsets.all(7),
                               child: Icon(
                                 Icons.arrow_back_ios,
                                 color: Colors.white60,
-                                size: 23,
+                                size: 21,
                               ),
                             ),
                           ),
 
                           //Name and flag
                           Padding(
-                            padding: const EdgeInsets.only(top:8,left: 2),
+                            padding: const EdgeInsets.only(top:6,left: 4),
                             child: Row(
                               children: <Widget>[
                                 //Flag
                                 Image.asset(
                                   widget.flagPath,
-                                  width: 37,
+                                  width: 32,
                                 ),
 
-                                SizedBox(width: 17),
+                                SizedBox(width: 10),
 
                                 //Country Name
                                 Text(
@@ -84,7 +84,7 @@ class _CountryStatScreenState extends State<CountryStatScreen> {
                                   style: TextStyle(
                                     fontFamily: "Montserrat",
                                     color: Colors.white,
-                                    fontSize: 25,
+                                    fontSize: 22,
                                     fontWeight: FontWeight.w600,
                                   ),
                                   textAlign: TextAlign.center,
@@ -100,7 +100,7 @@ class _CountryStatScreenState extends State<CountryStatScreen> {
                               child: Icon(
                                 Icons.tune,
                                 color: Colors.white60,
-                                size: 34,
+                                size: 30,
                               ),
                               onTap: () {},
                             ),
@@ -109,7 +109,7 @@ class _CountryStatScreenState extends State<CountryStatScreen> {
                       ),
 
                       SizedBox(
-                        height: 18,
+                        height: 30,
                       ),
 
                       //Number of Cases
@@ -124,9 +124,9 @@ class _CountryStatScreenState extends State<CountryStatScreen> {
                               style: TextStyle(
                                   fontFamily: "Montserrat",
                                   color: Colors.white,
-                                  fontSize: 40,
+                                  fontSize: 37,
                                   letterSpacing: 1.1,
-                                  fontWeight: FontWeight.w700),
+                                  fontWeight: FontWeight.w600),
                             ),
 
                             SizedBox(
@@ -149,6 +149,8 @@ class _CountryStatScreenState extends State<CountryStatScreen> {
                 ),
               ),
 
+
+              //White Details Card
               Positioned(
                 top: 170,
                 child: Container(
@@ -157,8 +159,199 @@ class _CountryStatScreenState extends State<CountryStatScreen> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(40),
-                      topRight: Radius.circular(40),
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Column(
+                      children: <Widget>[
+                        
+                        //Today / Yesterday Title
+                        Text(
+                          "Last 24 Hours",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontFamily: "Montserrat",
+                            fontWeight: FontWeight.w700,
+                            color: widget.color,
+                          ),
+                        ),
+
+                        SizedBox(height: 7),
+
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 5),
+                          color: widget.color,
+                          height: 2,
+                          width: double.infinity,
+                        ),
+
+                        SizedBox(height: 15),
+
+                        //Row of affected and deaths
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+
+                            //New Affected
+                            Container(
+                              width:175,
+                              height: 95,
+                              decoration: BoxDecoration(
+                                color: widget.color,
+                                borderRadius: BorderRadius.circular(13),
+                              ),
+                              padding: EdgeInsets.fromLTRB(15, 12, 0, 10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Text(
+                                    "Affected",
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontFamily: "Montserrat",
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  Text(
+                                    "30000",
+                                    style: TextStyle(
+                                      fontSize: 23,
+                                      fontFamily: "Montserrat",
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            SizedBox(width: 10),
+
+                            //New Deaths
+                            Expanded(
+                              child: Container(
+                                height: 95,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[200],
+                                  borderRadius: BorderRadius.circular(13),
+                                ),
+                                padding: EdgeInsets.fromLTRB(15, 12, 0, 10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text(
+                                      "Deaths",
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                      fontFamily: "Montserrat",
+                                      fontWeight: FontWeight.w600,
+                                        color: widget.color,
+                                      ),
+                                    ),
+                                    Text(
+                                      "30000",
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                      fontFamily: "Montserrat",
+                                      fontWeight: FontWeight.w700,
+                                        color: widget.color,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        SizedBox(height: 10),
+
+                        //Row of Tested and recovered
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+
+                            //New tested
+                            Expanded(
+                              child: Container(
+                                height: 95,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[200],
+                                  borderRadius: BorderRadius.circular(13),
+                                ),
+                                padding: EdgeInsets.fromLTRB(15, 12, 0, 10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text(
+                                      "Tested",
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                      fontFamily: "Montserrat",
+                                      fontWeight: FontWeight.w600,
+                                        color: widget.color,
+                                      ),
+                                    ),
+                                    Text(
+                                      "30000",
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                      fontFamily: "Montserrat",
+                                      fontWeight: FontWeight.w700,
+                                        color: widget.color,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+
+                            SizedBox(width: 10),
+
+                            //New Recovered
+                            Container(
+                              width:175,
+                              height: 95,
+                              decoration: BoxDecoration(
+                                color: widget.color,
+                                borderRadius: BorderRadius.circular(13),
+                              ),
+                              padding: EdgeInsets.fromLTRB(15, 12, 0, 10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Text(
+                                    "Recovered",
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontFamily: "Montserrat",
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  Text(
+                                    "30000",
+                                    style: TextStyle(
+                                      fontSize: 23,
+                                      fontFamily: "Montserrat",
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ),
