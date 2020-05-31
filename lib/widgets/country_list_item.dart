@@ -1,3 +1,5 @@
+import 'package:covidtracker/screens/stats_dashboard_screens/country_stat.dart';
+
 import '../models/item_color_data.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
@@ -29,15 +31,15 @@ class CountryListItem extends StatelessWidget {
     Size size = Size(width, height / 2);
     return GestureDetector(
       onTap: () {
-        /*
-        Navigator.of(context).pushNamed(
-            DetailsScreen.routeName,
-            arguments: {
-              'country' : countryName,
-              'code' : countryCode
-            }
-        );
-      */
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) =>CountryStatScreen(
+            color: itemColorData.backgroundColor,
+            countryName: countryName,
+            totalCases: value,
+            isIncreasing: isIncreasing,
+            flagPath: flagPath,
+          ),
+        ));
       },
       child: UnconstrainedBox(
         alignment: Alignment.topCenter,
