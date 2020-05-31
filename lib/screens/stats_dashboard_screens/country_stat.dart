@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
+import 'package:covidtracker/widgets/cases_progress_bars.dart';
+import 'package:covidtracker/widgets/new_case_boxes.dart';
 import 'package:flutter/material.dart';
-import 'dart:math';
 import 'package:intl/intl.dart';
 
 class CountryStatScreen extends StatefulWidget {
@@ -19,8 +19,32 @@ class CountryStatScreen extends StatefulWidget {
   _CountryStatScreenState createState() => _CountryStatScreenState();
 }
 
-class _CountryStatScreenState extends State<CountryStatScreen> {
+class _CountryStatScreenState extends State<CountryStatScreen>
+    with TickerProviderStateMixin {
+  AnimationController _controller1, _controller2;
+  Duration textScaleDuration;
+
   final formatter = new NumberFormat("#,###");
+  int selectedIndex;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    selectedIndex = 0;
+    textScaleDuration = Duration(milliseconds: 200);
+    _controller1 = AnimationController(
+        vsync: this,
+        duration: textScaleDuration,
+        lowerBound: 0.7,
+        upperBound: 1);
+    _controller2 = AnimationController(
+        vsync: this,
+        duration: textScaleDuration,
+        lowerBound: 0.7,
+        upperBound: 1);
+    _controller1.forward();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +61,10 @@ class _CountryStatScreenState extends State<CountryStatScreen> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      //Flag and Name
+                      //Flag and Name and More
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           //Back Button
                           InkWell(
@@ -67,7 +91,7 @@ class _CountryStatScreenState extends State<CountryStatScreen> {
 
                           //Name and flag
                           Padding(
-                            padding: const EdgeInsets.only(top:6,left: 4),
+                            padding: const EdgeInsets.only(top: 6, left: 4),
                             child: Row(
                               children: <Widget>[
                                 //Flag
@@ -93,12 +117,12 @@ class _CountryStatScreenState extends State<CountryStatScreen> {
                             ),
                           ),
 
-                          //Filter Icon
+                          //More Icon
                           Padding(
-                            padding: const EdgeInsets.only(right: 13,top: 3),
+                            padding: const EdgeInsets.only(right: 13, top: 3),
                             child: InkWell(
                               child: Icon(
-                                Icons.tune,
+                                Icons.more_horiz,
                                 color: Colors.white60,
                                 size: 30,
                               ),
@@ -149,10 +173,9 @@ class _CountryStatScreenState extends State<CountryStatScreen> {
                 ),
               ),
 
-
               //White Details Card
               Positioned(
-                top: 170,
+                top: 160,
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height - 160,
@@ -164,193 +187,98 @@ class _CountryStatScreenState extends State<CountryStatScreen> {
                     ),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(15.0),
+                    padding: const EdgeInsets.fromLTRB(15, 20, 15, 10),
                     child: Column(
+                      mainAxisSize: MainAxisSize.max,
                       children: <Widget>[
-                        
                         //Today / Yesterday Title
-                        Text(
-                          "Last 24 Hours",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontFamily: "Montserrat",
-                            fontWeight: FontWeight.w700,
-                            color: widget.color,
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            ScaleTransition(
+                              scale: _controller1,
+                              child: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    selectedIndex = 0;
+                                    _controller2.reverse();
+                                    _controller1.forward();
+                                  });
+                                },
+                                child: Text(
+                                  "Today",
+                                  style: TextStyle(
+                                      fontFamily: "Montserrat",
+                                      fontWeight: selectedIndex == 0
+                                          ? FontWeight.w700
+                                          : FontWeight.w600,
+                                      color: Colors.grey[800],
+                                      fontSize: 22.0),
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 5),
+                            ScaleTransition(
+                              scale: _controller2,
+                              child: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    selectedIndex = 1;
+                                    _controller1.reverse();
+                                    _controller2.forward();
+                                  });
+                                },
+                                child: Text(
+                                  "Yesterday",
+                                  style: TextStyle(
+                                      fontFamily: "Montserrat",
+                                      fontWeight: selectedIndex == 0
+                                          ? FontWeight.w600
+                                          : FontWeight.w700,
+                                      color: Colors.grey[800],
+                                      fontSize: 22.0),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
 
-                        SizedBox(height: 7),
+                        SizedBox(height: 20),
 
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 5),
+                        NewCaseBoxes(
                           color: widget.color,
-                          height: 2,
-                          width: double.infinity,
                         ),
 
-                        SizedBox(height: 15),
+                        SizedBox(height: 35),
 
-                        //Row of affected and deaths
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
+                        CaseBars(
+                          color: widget.color,
+                        ),
 
-                            //New Affected
-                            Container(
-                              width:175,
-                              height: 95,
-                              decoration: BoxDecoration(
+                        SizedBox(height: 35),
+
+                        InkWell(
+                          onTap:(){},
+                          child: Container(
+                            width: double.infinity,
+                            height: 50,
+                            decoration: BoxDecoration(
                                 color: widget.color,
                                 borderRadius: BorderRadius.circular(13),
-                              ),
-                              padding: EdgeInsets.fromLTRB(15, 12, 0, 10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Text(
-                                    "Affected",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: "Montserrat",
+                            ),
+                            child: Center(
+                              child: Text(
+                                  "Set as default",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: "Monstserrat",
                                       fontWeight: FontWeight.w600,
                                       color: Colors.white,
-                                    ),
                                   ),
-                                  Text(
-                                    "30000",
-                                    style: TextStyle(
-                                      fontSize: 23,
-                                      fontFamily: "Montserrat",
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
                               ),
                             ),
-
-                            SizedBox(width: 10),
-
-                            //New Deaths
-                            Expanded(
-                              child: Container(
-                                height: 95,
-                                decoration: BoxDecoration(
-                                  color: Colors.grey[200],
-                                  borderRadius: BorderRadius.circular(13),
-                                ),
-                                padding: EdgeInsets.fromLTRB(15, 12, 0, 10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    Text(
-                                      "Deaths",
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                      fontFamily: "Montserrat",
-                                      fontWeight: FontWeight.w600,
-                                        color: widget.color,
-                                      ),
-                                    ),
-                                    Text(
-                                      "30000",
-                                      style: TextStyle(
-                                        fontSize: 23,
-                                      fontFamily: "Montserrat",
-                                      fontWeight: FontWeight.w700,
-                                        color: widget.color,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        SizedBox(height: 10),
-
-                        //Row of Tested and recovered
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-
-                            //New tested
-                            Expanded(
-                              child: Container(
-                                height: 95,
-                                decoration: BoxDecoration(
-                                  color: Colors.grey[200],
-                                  borderRadius: BorderRadius.circular(13),
-                                ),
-                                padding: EdgeInsets.fromLTRB(15, 12, 0, 10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    Text(
-                                      "Tested",
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                      fontFamily: "Montserrat",
-                                      fontWeight: FontWeight.w600,
-                                        color: widget.color,
-                                      ),
-                                    ),
-                                    Text(
-                                      "30000",
-                                      style: TextStyle(
-                                        fontSize: 23,
-                                      fontFamily: "Montserrat",
-                                      fontWeight: FontWeight.w700,
-                                        color: widget.color,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-
-                            SizedBox(width: 10),
-
-                            //New Recovered
-                            Container(
-                              width:175,
-                              height: 95,
-                              decoration: BoxDecoration(
-                                color: widget.color,
-                                borderRadius: BorderRadius.circular(13),
-                              ),
-                              padding: EdgeInsets.fromLTRB(15, 12, 0, 10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Text(
-                                    "Recovered",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: "Montserrat",
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  Text(
-                                    "30000",
-                                    style: TextStyle(
-                                      fontSize: 23,
-                                      fontFamily: "Montserrat",
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        )
                       ],
                     ),
                   ),

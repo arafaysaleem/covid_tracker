@@ -16,7 +16,7 @@ final List<ItemColorData> colordata = <ItemColorData>[
   ),
   ItemColorData(
     backgroundColor: Color(0xffffcb0f),
-    gradientColor: Color(0xffffd747),
+    gradientColor: Color(0xffffd642),
     lineColor: Color(0xfffff199),
   ),
   ItemColorData(

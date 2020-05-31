@@ -221,7 +221,7 @@ class _WorldStatLoaderState extends State<WorldStatLoader> with SingleTickerProv
                     ),
 
                     SizedBox(
-                      height: 25,
+                      height: 20,
                     ),
 
                     //Row of Radial Dial and Case Count Column
@@ -234,14 +234,16 @@ class _WorldStatLoaderState extends State<WorldStatLoader> with SingleTickerProv
                           Padding(
                             padding: const EdgeInsets.only(top: 10.0, left: 10),
                             child: Container(
-                              height: 190,
-                              width: 190,
+                              height: 165,
+                              width: 165,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.grey,
                               ),
                             ),
                           ),
+
+                          SizedBox(width: 10),
 
                           //Global Case Count Panels
                           Expanded(
