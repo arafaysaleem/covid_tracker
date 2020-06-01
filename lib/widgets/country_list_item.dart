@@ -35,6 +35,7 @@ class CountryListItem extends StatelessWidget {
           builder: (context) =>CountryStatScreen(
             color: itemColorData.backgroundColor,
             countryName: countryName,
+            countryCode: countryCode,
             totalCases: value,
             isIncreasing: isIncreasing,
             flagPath: flagPath,

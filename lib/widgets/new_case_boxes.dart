@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
+// ignore: must_be_immutable
 class NewCaseBoxes extends StatelessWidget {
   final color;
+  int affected,deaths,tested,recovered,totalCases;
+  bool today;
+  final formatter = new NumberFormat("#,###");
 
-  const NewCaseBoxes({Key key, this.color}) : super(key: key);
+  NewCaseBoxes({Key key, this.color,this.affected,this.deaths,this.recovered,this.tested,this.today,this.totalCases}) : super(key: key);
   
   @override
   Widget build(BuildContext context) {
@@ -22,13 +27,13 @@ class NewCaseBoxes extends StatelessWidget {
                 color: color,
                 borderRadius: BorderRadius.circular(13),
               ),
-              padding: EdgeInsets.fromLTRB(15, 12, 0, 10),
+              padding: EdgeInsets.fromLTRB(12, 12, 12, 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    "Affected",
+                    "New Affected",
                     style: TextStyle(
                       fontSize: 15,
                       fontFamily: "Montserrat",
@@ -37,10 +42,11 @@ class NewCaseBoxes extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "30000",
+                    formatter.format(affected),
                     style: TextStyle(
-                      fontSize: 23,
+                      fontSize: 21,
                       fontFamily: "Montserrat",
+                      letterSpacing: 1,
                       fontWeight: FontWeight.w700,
                       color: Colors.white,
                     ),
@@ -59,13 +65,13 @@ class NewCaseBoxes extends StatelessWidget {
                   color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(13),
                 ),
-                padding: EdgeInsets.fromLTRB(15, 12, 0, 10),
+                padding: EdgeInsets.fromLTRB(12, 12, 12, 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      "Deaths",
+                      "New Deaths",
                       style: TextStyle(
                         fontSize: 15,
                         fontFamily: "Montserrat",
@@ -74,11 +80,12 @@ class NewCaseBoxes extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "30000",
+                      formatter.format(deaths),
                       style: TextStyle(
-                        fontSize: 23,
+                        fontSize: 21,
                         fontFamily: "Montserrat",
                         fontWeight: FontWeight.w700,
+                        letterSpacing: 1,
                         color: color,
                       ),
                     ),
@@ -104,13 +111,13 @@ class NewCaseBoxes extends StatelessWidget {
                   color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(13),
                 ),
-                padding: EdgeInsets.fromLTRB(15, 12, 0, 10),
+                padding: EdgeInsets.fromLTRB(12, 12, 12, 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      "Tested",
+                      "Total Tested",
                       style: TextStyle(
                         fontSize: 15,
                         fontFamily: "Montserrat",
@@ -119,10 +126,11 @@ class NewCaseBoxes extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "30000",
+                      formatter.format(tested),
                       style: TextStyle(
-                        fontSize: 23,
+                        fontSize: 21,
                         fontFamily: "Montserrat",
+                        letterSpacing: 1,
                         fontWeight: FontWeight.w700,
                         color: color,
                       ),
@@ -134,7 +142,7 @@ class NewCaseBoxes extends StatelessWidget {
 
             SizedBox(width: 13),
 
-            //New Recovered
+            //New Recovered || Probability
             Container(
               width:175,
               height: 95,
@@ -142,13 +150,13 @@ class NewCaseBoxes extends StatelessWidget {
                 color: color,
                 borderRadius: BorderRadius.circular(13),
               ),
-              padding: EdgeInsets.fromLTRB(15, 12, 0, 10),
+              padding: EdgeInsets.fromLTRB(12, 12, 12, 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    "Recovered",
+                    today? "Recovered": "Infection Probability",
                     style: TextStyle(
                       fontSize: 15,
                       fontFamily: "Montserrat",
@@ -157,9 +165,10 @@ class NewCaseBoxes extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "30000",
+                    today?formatter.format(recovered):"${(totalCases/tested*100).toStringAsFixed(1)}%",
                     style: TextStyle(
-                      fontSize: 23,
+                      fontSize: 21,
+                      letterSpacing: 1,
                       fontFamily: "Montserrat",
                       fontWeight: FontWeight.w700,
                       color: Colors.white,

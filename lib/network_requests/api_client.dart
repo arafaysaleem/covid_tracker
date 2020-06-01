@@ -31,17 +31,18 @@ class ApiClient {
     }
   }
 
-  getStatsResponse(StateLocation stateLocation,{String code=""}) async {
-    String todayEndpoint=_getStatsEndpoint(location: stateLocation,code: code);
-    String todayUrl=_apiService.statsUrl+todayEndpoint;
+  getStatsResponse(StateLocation stateLocation,{String code="",bool yesterday=false}) async {
+    String endpoint=_getStatsEndpoint(location: stateLocation,code: code,yesterday: yesterday);
+    String url=_apiService.statsUrl+endpoint;
     try{
-      var todayResponse = await http.get(todayUrl);
-      if(todayResponse.statusCode==200){
-        var todayJSON=json.decode(todayResponse.body);
+      var response = await http.get(url);
+      if(response.statusCode==200){
+        // ignore: non_constant_identifier_names
+        var Json=json.decode(response.body);
         if(stateLocation==StateLocation.TOP_FIVE){
-          return todayJSON.sublist(0,6);
+          return Json.sublist(0,6);
         }
-        return todayJSON;
+        return Json;
       }
       else{
         throw FetchDataException("Failed to load stats");
@@ -51,7 +52,7 @@ class ApiClient {
     }
   }
 
-  _getStatsEndpoint({@required String code,bool yesterday = false,@required StateLocation location}) {
+  _getStatsEndpoint({@required String code,bool yesterday,@required StateLocation location}) {
     if (location == StateLocation.GLOBAL) return "all?yesterday=$yesterday";
     String endpoint = "countries";
 

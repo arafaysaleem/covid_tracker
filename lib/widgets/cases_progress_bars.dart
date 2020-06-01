@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
+// ignore: must_be_immutable
 class CaseBars extends StatefulWidget {
   final color;
+  int totalActive,totalDeaths,totalRecovered,totalCases;
 
-  const CaseBars({Key key, this.color}) : super(key: key);
+  CaseBars({Key key, this.color,this.totalActive,this.totalDeaths,this.totalRecovered,this.totalCases}) : super(key: key);
 
   @override
   _CaseBarsState createState() => _CaseBarsState();
@@ -11,6 +14,7 @@ class CaseBars extends StatefulWidget {
 
 class _CaseBarsState extends State<CaseBars> {
   Duration _progressDuration=Duration(milliseconds: 300);
+  final formatter = new NumberFormat("#,###");
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +26,7 @@ class _CaseBarsState extends State<CaseBars> {
           style: TextStyle(
             fontSize: 22,
             fontFamily: "Montserrat",
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w700,
             color: Colors.grey[800],
           ),
         ),
@@ -59,7 +63,7 @@ class _CaseBarsState extends State<CaseBars> {
               ),
 
               Text(
-                "30,076",
+                "${formatter.format(widget.totalActive)}",
                 style: TextStyle(
                   fontSize: 14,
                   fontFamily: "Montserrat",
@@ -95,7 +99,7 @@ class _CaseBarsState extends State<CaseBars> {
                   color: widget.color,
                   borderRadius: BorderRadius.circular(5),
                 ),
-                width: 250,
+                width: widget.totalActive/widget.totalCases*MediaQuery.of(context).size.width,
                 height: 5,
               ),
             ],
@@ -134,7 +138,7 @@ class _CaseBarsState extends State<CaseBars> {
               ),
 
               Text(
-                "10,114",
+                "${formatter.format(widget.totalRecovered)}",
                 style: TextStyle(
                   fontSize: 14,
                   fontFamily: "Montserrat",
@@ -170,7 +174,7 @@ class _CaseBarsState extends State<CaseBars> {
                   color: widget.color,
                   borderRadius: BorderRadius.circular(5),
                 ),
-                width: 136,
+                width: widget.totalRecovered/widget.totalCases*MediaQuery.of(context).size.width,
                 height: 5,
               ),
             ],
@@ -209,7 +213,7 @@ class _CaseBarsState extends State<CaseBars> {
               ),
 
               Text(
-                "2,004",
+                "${formatter.format(widget.totalDeaths)}",
                 style: TextStyle(
                   fontSize: 14,
                   fontFamily: "Montserrat",
@@ -218,7 +222,6 @@ class _CaseBarsState extends State<CaseBars> {
                   color: Colors.grey[800],
                 ),
               ),
-
             ],
           ),
         ),
@@ -245,7 +248,7 @@ class _CaseBarsState extends State<CaseBars> {
                   color: widget.color,
                   borderRadius: BorderRadius.circular(5),
                 ),
-                width:70,
+                width:widget.totalDeaths/widget.totalCases*MediaQuery.of(context).size.width+30,
                 height: 5,
               ),
             ],
