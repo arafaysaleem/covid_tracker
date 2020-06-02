@@ -164,7 +164,7 @@ class _CountryStatScreenState extends State<CountryStatScreen>
                 totalRecovered: yestJson["recovered"],
               ),
 
-        SizedBox(height: 35),
+        Expanded(child: SizedBox(height: 35)),
 
         //Set as default button
         InkWell(
@@ -334,7 +334,7 @@ class _CountryStatScreenState extends State<CountryStatScreen>
                     topRight: Radius.circular(30),
                   ),
                 ),
-                padding: const EdgeInsets.fromLTRB(15, 20, 15, 10),
+                padding: const EdgeInsets.fromLTRB(15, 20, 15, 20),
                 child: FutureBuilder<bool>(
                   future: getCountryData(),
                   builder: (context, snapshot) {

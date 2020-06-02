@@ -250,24 +250,24 @@ class _CountryStatLoaderState extends State<CountryStatLoader> with TickerProvid
         SizedBox(height: 25),
 
         //Case Progress Bars
-        FadeTransition(
-          opacity: _controller,
-          child: Column(
-            children: <Widget>[
+        Column(
+          children: <Widget>[
 
-              Text(
-                "Overall Statistics",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontFamily: "Montserrat",
-                  fontWeight: FontWeight.w700,
-                  color: Colors.grey[800],
-                ),
+            Text(
+              "Overall Statistics",
+              style: TextStyle(
+                fontSize: 22,
+                fontFamily: "Montserrat",
+                fontWeight: FontWeight.w700,
+                color: Colors.grey[800],
               ),
+            ),
 
-              SizedBox(height: 10),
+            SizedBox(height: 10),
 
-              Container(
+            FadeTransition(
+              opacity: _controller,
+              child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 10,vertical: 16),
                 decoration: BoxDecoration(
                     color: Colors.grey[300],
@@ -412,11 +412,11 @@ class _CountryStatLoaderState extends State<CountryStatLoader> with TickerProvid
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
 
-        SizedBox(height: 20),
+        Expanded(child: SizedBox(height: 20)),
 
         //Set as default button
         Container(
