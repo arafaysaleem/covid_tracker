@@ -14,9 +14,8 @@ class _TopCountryLoaderState extends State<TopCountryLoader>
     // TODO: implement initState
     super.initState();
     _controller = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 700),
-    )..addStatusListener((status) {
+        vsync: this, duration: Duration(milliseconds: 700), lowerBound: 0.5)
+      ..addStatusListener((status) {
         if (status == AnimationStatus.completed)
           _controller.reverse();
         else if (status == AnimationStatus.dismissed) _controller.forward();

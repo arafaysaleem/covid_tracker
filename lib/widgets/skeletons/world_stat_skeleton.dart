@@ -10,9 +10,8 @@ class _WorldStatLoaderState extends State<WorldStatLoader> with SingleTickerProv
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    _controller=AnimationController(vsync: this,duration: Duration(milliseconds: 700),)
+    _controller=AnimationController(vsync: this,duration: Duration(milliseconds: 700),lowerBound: 0.5)
     ..addStatusListener((status) {
       if(status==AnimationStatus.completed) _controller.reverse();
       else if(status==AnimationStatus.dismissed) _controller.forward();
@@ -22,7 +21,6 @@ class _WorldStatLoaderState extends State<WorldStatLoader> with SingleTickerProv
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _controller.dispose();
     super.dispose();
   }

@@ -20,38 +20,40 @@ class NewCaseBoxes extends StatelessWidget {
           children: <Widget>[
 
             //New Affected
-            Container(
-              width:175,
-              height: 95,
-              decoration: BoxDecoration(
-                color: color,
-                borderRadius: BorderRadius.circular(13),
-              ),
-              padding: EdgeInsets.fromLTRB(12, 12, 12, 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    "New Affected",
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontFamily: "Montserrat",
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
+            Expanded(
+              flex: 3,
+              child: Container(
+                height: 95,
+                decoration: BoxDecoration(
+                  color: color,
+                  borderRadius: BorderRadius.circular(13),
+                ),
+                padding: EdgeInsets.fromLTRB(12, 12, 12, 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      "New Affected",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontFamily: "Montserrat",
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  Text(
-                    formatter.format(affected),
-                    style: TextStyle(
-                      fontSize: 21,
-                      fontFamily: "Montserrat",
-                      letterSpacing: 1,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
+                    Text(
+                      formatter.format(affected),
+                      style: TextStyle(
+                        fontSize: 21,
+                        fontFamily: "Montserrat",
+                        letterSpacing: 1,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
 
@@ -59,6 +61,7 @@ class NewCaseBoxes extends StatelessWidget {
 
             //New Deaths
             Expanded(
+              flex: 2,
               child: Container(
                 height: 95,
                 decoration: BoxDecoration(
@@ -105,6 +108,7 @@ class NewCaseBoxes extends StatelessWidget {
 
             //New tested
             Expanded(
+              flex: 2,
               child: Container(
                 height: 95,
                 decoration: BoxDecoration(
@@ -143,38 +147,40 @@ class NewCaseBoxes extends StatelessWidget {
             SizedBox(width: 13),
 
             //New Recovered || Probability
-            Container(
-              width:175,
-              height: 95,
-              decoration: BoxDecoration(
-                color: color,
-                borderRadius: BorderRadius.circular(13),
-              ),
-              padding: EdgeInsets.fromLTRB(12, 12, 12, 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    today? "Recovered": "Infection Probability",
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontFamily: "Montserrat",
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
+            Expanded(
+              flex: 3,
+              child: Container(
+                height: 95,
+                decoration: BoxDecoration(
+                  color: color,
+                  borderRadius: BorderRadius.circular(13),
+                ),
+                padding: EdgeInsets.fromLTRB(12, 12, 12, 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      today? "Recovered": "Infection Probability",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontFamily: "Montserrat",
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  Text(
-                    today?formatter.format(recovered):"${(totalCases/tested*100).toStringAsFixed(1)}%",
-                    style: TextStyle(
-                      fontSize: 21,
-                      letterSpacing: 1,
-                      fontFamily: "Montserrat",
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
+                    Text(
+                      today?formatter.format(recovered):"${(totalCases/tested*100).toStringAsFixed(1)}%",
+                      style: TextStyle(
+                        fontSize: 21,
+                        letterSpacing: 1,
+                        fontFamily: "Montserrat",
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],

@@ -67,6 +67,132 @@ class _CountryStatScreenState extends State<CountryStatScreen>
     return true;
   }
 
+  Widget makeCardDetails() {
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      children: <Widget>[
+        //Today / Yesterday Title
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ScaleTransition(
+              scale: _controller1,
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedIndex = 0;
+                    _controller2.reverse();
+                    _controller1.forward();
+                  });
+                },
+                child: Text(
+                  "Today",
+                  style: TextStyle(
+                      fontFamily: "Montserrat",
+                      fontWeight: selectedIndex == 0
+                          ? FontWeight.w700
+                          : FontWeight.w600,
+                      color: Colors.grey[800],
+                      fontSize: 22.0),
+                ),
+              ),
+            ),
+            SizedBox(width: 5),
+            ScaleTransition(
+              scale: _controller2,
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedIndex = 1;
+                    _controller1.reverse();
+                    _controller2.forward();
+                  });
+                },
+                child: Text(
+                  "Yesterday",
+                  style: TextStyle(
+                      fontFamily: "Montserrat",
+                      fontWeight: selectedIndex == 0
+                          ? FontWeight.w600
+                          : FontWeight.w700,
+                      color: Colors.grey[800],
+                      fontSize: 22.0),
+                ),
+              ),
+            ),
+          ],
+        ),
+
+        SizedBox(height: 20),
+
+        //New case boxes
+        selectedIndex == 0
+            ? NewCaseBoxes(
+                color: widget.color,
+                affected: todayJson["todayCases"],
+                deaths: todayJson["todayDeaths"],
+                recovered: todayJson["recovered"] - yestJson["recovered"],
+                tested: todayJson["tests"],
+                totalCases: todayJson["cases"],
+                today: true,
+              )
+            : NewCaseBoxes(
+                color: widget.color,
+                affected: yestJson["todayCases"],
+                deaths: yestJson["todayDeaths"],
+                tested: yestJson["tests"],
+                totalCases: widget.totalCases,
+                today: false,
+              ),
+
+        SizedBox(height: 25),
+
+        //Total Case Bars
+        selectedIndex == 0
+            ? CaseBars(
+                color: widget.color,
+                totalActive: todayJson["active"],
+                totalDeaths: todayJson["deaths"],
+                totalCases: todayJson["cases"],
+                totalRecovered: todayJson["recovered"],
+              )
+            : CaseBars(
+                color: widget.color,
+                totalActive: yestJson["active"],
+                totalDeaths: yestJson["deaths"],
+                totalCases: yestJson["cases"],
+                totalRecovered: yestJson["recovered"],
+              ),
+
+        SizedBox(height: 35),
+
+        //Set as default button
+        InkWell(
+          onTap: () {},
+          child: Container(
+            width: double.infinity,
+            height: 50,
+            decoration: BoxDecoration(
+              color: widget.color,
+              borderRadius: BorderRadius.circular(13),
+            ),
+            child: Center(
+              child: Text(
+                "Set as default",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontFamily: "Montserrat",
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -155,7 +281,7 @@ class _CountryStatScreenState extends State<CountryStatScreen>
                     ),
 
                     SizedBox(
-                      height: 30,
+                      height: 25,
                     ),
 
                     //Number of Cases
@@ -197,10 +323,10 @@ class _CountryStatScreenState extends State<CountryStatScreen>
 
             //White Details Card
             Positioned(
-              top: 160,
+              top: 150,
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height - 160,
+                height: MediaQuery.of(context).size.height - 150,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -259,136 +385,11 @@ class _CountryStatScreenState extends State<CountryStatScreen>
                       else {
 
                         //Main Body
-//                        return Column(
-//                          mainAxisSize: MainAxisSize.max,
-//                          children: <Widget>[
-//                            //Today / Yesterday Title
-//                            Row(
-//                              mainAxisAlignment: MainAxisAlignment.center,
-//                              children: <Widget>[
-//                                ScaleTransition(
-//                                  scale: _controller1,
-//                                  child: GestureDetector(
-//                                    onTap: () {
-//                                      setState(() {
-//                                        selectedIndex = 0;
-//                                        _controller2.reverse();
-//                                        _controller1.forward();
-//                                      });
-//                                    },
-//                                    child: Text(
-//                                      "Today",
-//                                      style: TextStyle(
-//                                          fontFamily: "Montserrat",
-//                                          fontWeight: selectedIndex == 0
-//                                              ? FontWeight.w700
-//                                              : FontWeight.w600,
-//                                          color: Colors.grey[800],
-//                                          fontSize: 22.0),
-//                                    ),
-//                                  ),
-//                                ),
-//                                SizedBox(width: 5),
-//                                ScaleTransition(
-//                                  scale: _controller2,
-//                                  child: GestureDetector(
-//                                    onTap: () {
-//                                      setState(() {
-//                                        selectedIndex = 1;
-//                                        _controller1.reverse();
-//                                        _controller2.forward();
-//                                      });
-//                                    },
-//                                    child: Text(
-//                                      "Yesterday",
-//                                      style: TextStyle(
-//                                          fontFamily: "Montserrat",
-//                                          fontWeight: selectedIndex == 0
-//                                              ? FontWeight.w600
-//                                              : FontWeight.w700,
-//                                          color: Colors.grey[800],
-//                                          fontSize: 22.0),
-//                                    ),
-//                                  ),
-//                                ),
-//                              ],
-//                            ),
-//
-//                            SizedBox(height: 20),
-//
-//                            //New case boxes
-//                            selectedIndex == 0
-//                                ? NewCaseBoxes(
-//                                    color: widget.color,
-//                                    affected: todayJson["todayCases"],
-//                                    deaths: todayJson["todayDeaths"],
-//                                    recovered: todayJson["recovered"] -
-//                                        yestJson["recovered"],
-//                                    tested: todayJson["tests"],
-//                                    totalCases: todayJson["cases"],
-//                                    today: true,
-//                                  )
-//                                : NewCaseBoxes(
-//                                    color: widget.color,
-//                                    affected: yestJson["todayCases"],
-//                                    deaths: yestJson["todayDeaths"],
-//                                    tested: yestJson["tests"],
-//                                    totalCases: widget.totalCases,
-//                                    today: false,
-//                                  ),
-//
-//                            SizedBox(height: 35),
-//
-//                            //Total Case Bars
-//                            selectedIndex == 0
-//                                ? CaseBars(
-//                                    color: widget.color,
-//                                    totalActive: todayJson["active"],
-//                                    totalDeaths: todayJson["deaths"],
-//                                    totalCases: todayJson["cases"],
-//                                    totalRecovered: todayJson["recovered"],
-//                                  )
-//                                : CaseBars(
-//                                    color: widget.color,
-//                                    totalActive: yestJson["active"],
-//                                    totalDeaths: yestJson["deaths"],
-//                                    totalCases: yestJson["cases"],
-//                                    totalRecovered: yestJson["recovered"],
-//                                  ),
-//
-//                            SizedBox(height: 35),
-//
-//                            //Set as default button
-//                            InkWell(
-//                              onTap: () {},
-//                              child: Container(
-//                                width: double.infinity,
-//                                height: 50,
-//                                decoration: BoxDecoration(
-//                                  color: widget.color,
-//                                  borderRadius: BorderRadius.circular(13),
-//                                ),
-//                                child: Center(
-//                                  child: Text(
-//                                    "Set as default",
-//                                    style: TextStyle(
-//                                      fontSize: 20,
-//                                      fontFamily: "Montserrat",
-//                                      fontWeight: FontWeight.w600,
-//                                      color: Colors.white,
-//                                    ),
-//                                  ),
-//                                ),
-//                              ),
-//                            )
-//                          ],
-//                        );
-
-                        return CountryStatLoader();
+                        return makeCardDetails();
                       }
                     } else {
                       //TODO: Make skeleton loader
-                      return CountryStatLoader();
+                      return CountryStatLoader(color: widget.color,);
                     }
                   },
                 ),
