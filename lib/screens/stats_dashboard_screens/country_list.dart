@@ -71,7 +71,6 @@ class _CountriesScreenState extends State<CountriesScreen> {
   void initState() {
     super.initState();
     countries = [];
-    //TODO: Fix Color to purple
     themeColor = Color(0xff52b9aa);
     searchValue = "";
     _future=getCountriesList();
@@ -80,7 +79,6 @@ class _CountriesScreenState extends State<CountriesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //TODO: Add a back button
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
@@ -88,13 +86,13 @@ class _CountriesScreenState extends State<CountriesScreen> {
           onTap: ()=> Navigator.of(context).pop(),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Icon(Icons.arrow_back,color: Colors.black,),
+            child: Icon(Icons.arrow_back,color: Colors.black,size: 26,),
           ),
         ),
         title: Text(
-            "Search Countries",
+            "Search Any Country",
             style: TextStyle(
-                fontSize: 18,
+                fontSize: 20,
                 fontFamily: "Montserrat",
                 fontWeight: FontWeight.w600,
                 color: Colors.black,
@@ -152,9 +150,19 @@ class _CountriesScreenState extends State<CountriesScreen> {
               return Column(
                 children: <Widget>[
                   //Search Bar
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15, vertical: 20),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey[200],
+                            offset: Offset(0,0.8),
+                            spreadRadius: 0.0,
+                            blurRadius: 0
+                          )
+                        ],
+                    ),
+                    padding: const EdgeInsets.fromLTRB(15,10,15,15),
                     child: TextFormField(
                       cursorColor: themeColor,
                       style: TextStyle(
@@ -201,7 +209,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
                         List<SummaryEachCountry> list = getFilteredCountries();
                         return GridView.builder(
                           physics: BouncingScrollPhysics(),
-                          padding: EdgeInsets.symmetric(horizontal: 15),
+                          padding: EdgeInsets.symmetric(horizontal: 15,vertical: 15),
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
