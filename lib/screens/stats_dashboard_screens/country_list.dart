@@ -71,6 +71,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
   void initState() {
     super.initState();
     countries = [];
+    //TODO: Fix Color to purple
     themeColor = Color(0xff52b9aa);
     searchValue = "";
     _future=getCountriesList();
