@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'my_web_view.dart';
 
+// ignore: must_be_immutable
 class NewsTile extends StatelessWidget {
   Map<String, dynamic> article;
 

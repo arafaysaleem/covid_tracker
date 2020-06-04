@@ -5,7 +5,7 @@ import 'dart:math';
 import 'package:intl/intl.dart';
 
 class CountryListItem extends StatelessWidget {
-  final formatter = new NumberFormat("#,###");
+  static final formatter = NumberFormat("#,###");
   final double height;
   final ItemColorData itemColorData;
   final bool isIncreasing;
@@ -14,7 +14,7 @@ class CountryListItem extends StatelessWidget {
   final String flagPath;
   final int value;
 
-  CountryListItem({
+  const CountryListItem({
     this.height,
     this.countryName,
     this.countryCode,
@@ -94,6 +94,7 @@ class CountryListItem extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
 
+                      //TODO: Optimize rebuilding of images
                       //Flag
                       Image.asset(
                         flagPath,
