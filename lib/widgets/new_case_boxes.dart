@@ -21,7 +21,6 @@ class NewCaseBoxes extends StatelessWidget {
 
             //New Affected
             Expanded(
-              flex: 3,
               child: Container(
                 height: 95,
                 decoration: BoxDecoration(
@@ -60,40 +59,38 @@ class NewCaseBoxes extends StatelessWidget {
             SizedBox(width: 13),
 
             //New Deaths
-            Expanded(
-              flex: 2,
-              child: Container(
-                height: 95,
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(13),
-                ),
-                padding: EdgeInsets.fromLTRB(12, 12, 12, 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(
-                      "New Deaths",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontFamily: "Montserrat",
-                        fontWeight: FontWeight.w600,
-                        color: color,
-                      ),
+            Container(
+              width: 145,
+              height: 95,
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(13),
+              ),
+              padding: EdgeInsets.fromLTRB(12, 12, 12, 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    "New Deaths",
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontFamily: "Montserrat",
+                      fontWeight: FontWeight.w600,
+                      color: color,
                     ),
-                    Text(
-                      formatter.format(deaths),
-                      style: TextStyle(
-                        fontSize: 21,
-                        fontFamily: "Montserrat",
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 1,
-                        color: color,
-                      ),
+                  ),
+                  Text(
+                    formatter.format(deaths),
+                    style: TextStyle(
+                      fontSize: 21,
+                      fontFamily: "Montserrat",
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 1,
+                      color: color,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ],
@@ -107,40 +104,38 @@ class NewCaseBoxes extends StatelessWidget {
           children: <Widget>[
 
             //New tested
-            Expanded(
-              flex: 2,
-              child: Container(
-                height: 95,
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(13),
-                ),
-                padding: EdgeInsets.fromLTRB(12, 12, 12, 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(
-                      "Total Tested",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontFamily: "Montserrat",
-                        fontWeight: FontWeight.w600,
-                        color: color,
-                      ),
+            Container(
+              width: 145,
+              height: 95,
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(13),
+              ),
+              padding: EdgeInsets.fromLTRB(12, 12, 12, 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    "Total Tested",
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontFamily: "Montserrat",
+                      fontWeight: FontWeight.w600,
+                      color: color,
                     ),
-                    Text(
-                      formatter.format(tested),
-                      style: TextStyle(
-                        fontSize: 21,
-                        fontFamily: "Montserrat",
-                        letterSpacing: 1,
-                        fontWeight: FontWeight.w700,
-                        color: color,
-                      ),
+                  ),
+                  Text(
+                    formatter.format(tested),
+                    style: TextStyle(
+                      fontSize: 21,
+                      fontFamily: "Montserrat",
+                      letterSpacing: 1,
+                      fontWeight: FontWeight.w700,
+                      color: color,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
 
@@ -148,7 +143,6 @@ class NewCaseBoxes extends StatelessWidget {
 
             //New Recovered || Probability
             Expanded(
-              flex: 3,
               child: Container(
                 height: 95,
                 decoration: BoxDecoration(

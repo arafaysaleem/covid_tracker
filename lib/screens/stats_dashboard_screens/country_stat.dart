@@ -29,8 +29,8 @@ class _CountryStatScreenState extends State<CountryStatScreen>
   Duration textScaleDuration;
   final formatter = new NumberFormat("#,###");
   int selectedIndex;
-  ApiClient _apiClient = ApiClient();
   Map<String, dynamic> todayJson, yestJson;
+  Future<bool> _countryFuture;
 
   @override
   void initState() {
@@ -49,6 +49,7 @@ class _CountryStatScreenState extends State<CountryStatScreen>
         lowerBound: 0.7,
         upperBound: 1);
     _controller1.forward();
+    _countryFuture=getCountryData();
   }
 
   @override
@@ -60,6 +61,8 @@ class _CountryStatScreenState extends State<CountryStatScreen>
   }
 
   Future<bool> getCountryData() async {
+    ApiClient _apiClient = ApiClient();
+
     todayJson = await _apiClient.getStatsResponse(StateLocation.SPECIFIC,
         code: widget.countryCode);
     yestJson = await _apiClient.getStatsResponse(StateLocation.SPECIFIC,
@@ -168,7 +171,9 @@ class _CountryStatScreenState extends State<CountryStatScreen>
 
         //Set as default button
         InkWell(
-          onTap: () {},
+          onTap: () {
+            //TODO: Implement Default country functionality
+          },
           child: Container(
             width: double.infinity,
             height: 50,
@@ -336,7 +341,7 @@ class _CountryStatScreenState extends State<CountryStatScreen>
                 ),
                 padding: const EdgeInsets.fromLTRB(15, 20, 15, 20),
                 child: FutureBuilder<bool>(
-                  future: getCountryData(),
+                  future: _countryFuture,
                   builder: (context, snapshot) {
                     //If error
                     if (snapshot.hasError) {

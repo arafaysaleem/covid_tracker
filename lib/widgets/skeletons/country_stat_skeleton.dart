@@ -77,7 +77,6 @@ class _CountryStatLoaderState extends State<CountryStatLoader> with TickerProvid
 
                   //New Affected
                   Expanded(
-                    flex: 3,
                     child: Container(
                       height: 95,
                       decoration: BoxDecoration(
@@ -117,40 +116,38 @@ class _CountryStatLoaderState extends State<CountryStatLoader> with TickerProvid
                   SizedBox(width: 13),
 
                   //New Deaths
-                  Expanded(
-                    flex: 2,
-                    child: Container(
-                      height: 95,
-                      decoration: BoxDecoration(
-                        color: Colors.grey[300],
-                        borderRadius: BorderRadius.circular(13),
-                      ),
-                      padding: EdgeInsets.fromLTRB(12, 12, 12, 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          //Title
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.grey,
-                              borderRadius: BorderRadius.circular(7),
-                            ),
-                            width: 80,
-                            height: 15,
+                  Container(
+                    width: 145,
+                    height: 95,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.circular(13),
+                    ),
+                    padding: EdgeInsets.fromLTRB(12, 12, 12, 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        //Title
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(7),
                           ),
+                          width: 80,
+                          height: 15,
+                        ),
 
-                          //Number
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.grey,
-                              borderRadius: BorderRadius.circular(7),
-                            ),
-                            width: 45,
-                            height: 21,
+                        //Number
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(7),
                           ),
-                        ],
-                      ),
+                          width: 45,
+                          height: 21,
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -164,40 +161,38 @@ class _CountryStatLoaderState extends State<CountryStatLoader> with TickerProvid
                 children: <Widget>[
 
                   //New tested
-                  Expanded(
-                    flex: 2,
-                    child: Container(
-                      height: 95,
-                      decoration: BoxDecoration(
-                        color: Colors.grey[300],
-                        borderRadius: BorderRadius.circular(13),
-                      ),
-                      padding: EdgeInsets.fromLTRB(12, 12, 12, 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          //Title
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.grey,
-                              borderRadius: BorderRadius.circular(7),
-                            ),
-                            width: 100,
-                            height: 15,
+                  Container(
+                    width: 145,
+                    height: 95,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.circular(13),
+                    ),
+                    padding: EdgeInsets.fromLTRB(12, 12, 12, 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        //Title
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(7),
                           ),
+                          width: 100,
+                          height: 15,
+                        ),
 
-                          //Number
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.grey,
-                              borderRadius: BorderRadius.circular(7),
-                            ),
-                            width: 100,
-                            height: 21,
+                        //Number
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(7),
                           ),
-                        ],
-                      ),
+                          width: 100,
+                          height: 21,
+                        ),
+                      ],
                     ),
                   ),
 
@@ -205,7 +200,6 @@ class _CountryStatLoaderState extends State<CountryStatLoader> with TickerProvid
 
                   //New Recovered || Probability
                   Expanded(
-                    flex: 3,
                     child: Container(
                       width:175,
                       height: 95,

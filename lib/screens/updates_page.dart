@@ -20,6 +20,7 @@ class UpdatesScreen extends StatefulWidget {
 class _UpdatesScreenState extends State<UpdatesScreen> {
   String dropDownValue = "publishedAt";
   ApiClient _client = ApiClient();
+  Future<dynamic> _newsFuture;
 
   getNews() async {
     var json;
@@ -126,6 +127,12 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _newsFuture=getNews();
   }
 
   @override
@@ -341,7 +348,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
               //News tiles
               Expanded(
                 child: FutureBuilder<dynamic>(
-                  future: getNews(),
+                  future: _newsFuture,
                   builder: (context, snapshot) {
                     return snapshot.data == null
                         ? NewsListLoader()

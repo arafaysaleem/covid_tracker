@@ -1,3 +1,4 @@
+import 'package:covidtracker/screens/stats_dashboard_screens/country_list.dart';
 import 'package:covidtracker/widgets/skeletons/top_country_list_skeleton.dart';
 import 'package:covidtracker/widgets/skeletons/world_stat_skeleton.dart';
 
@@ -25,6 +26,8 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
   Curve caseTypeCurve = Curves.ease;
   ApiClient _client = ApiClient();
   Map<String, dynamic> globalData;
+  Future<Map<String,dynamic>> _globalFuture;
+  Future<List<SummaryEachCountry>> _topSixFuture;
 
   void updateRadialDial() {
     if (_caseType == CaseType.ACTIVE) {
@@ -92,16 +95,19 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
     super.initState();
     _caseType = CaseType.ACTIVE;
     updateCasesPanel();
+    _globalFuture=getGlobalData();
+    _topSixFuture=getTopSix();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //TODO: Add a bottom navigation bar with Home,CountryList,DefaultCountry,Info tabs
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.grey[100],
       body: SafeArea(
         child: FutureBuilder<Map<String, dynamic>>(
-          future: getGlobalData(),
+          future: _globalFuture,
           builder: (context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
             if (snapshot.hasError) {
 
@@ -585,7 +591,11 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
 
                                 //View all
                                 InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => CountriesScreen()
+                                    ));
+                                  },
                                   child: Padding(
                                     padding: const EdgeInsets.fromLTRB(10, 4, 10, 4),
                                     child: Text(
@@ -609,7 +619,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                           //Country Cards List
                           Expanded(
                             child: FutureBuilder<List<SummaryEachCountry>>(
-                              future: getTopSix(),
+                              future: _topSixFuture,
                               builder: (context,
                                   AsyncSnapshot<List<SummaryEachCountry>>
                                       snapshot) {
