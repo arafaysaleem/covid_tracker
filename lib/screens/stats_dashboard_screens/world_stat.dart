@@ -18,8 +18,7 @@ class WorldStatScreen extends StatefulWidget {
 
 class _WorldStatScreenState extends State<WorldStatScreen> {
   CaseType _caseType;
-  Color radialStartClr, radialEndClr, radialBgClr;
-  Color panelStartClr, panelFontClr, panelIconClr, panelLineClr;
+  Color radialStartClr, radialEndClr, radialBgClr,panelStartClr, panelFontClr, panelIconClr, panelLineClr;
   double progress;
   Duration caseTypeDuration = Duration(milliseconds: 400);
   Curve caseTypeCurve = Curves.ease;
