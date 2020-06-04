@@ -45,8 +45,8 @@ class _RadialProgressState extends State<RadialProgress> with TickerProviderStat
 
   @override
   void dispose() {
-    super.dispose();
     _radialController.dispose();
+    super.dispose();
   }
 
   String getPercent() {

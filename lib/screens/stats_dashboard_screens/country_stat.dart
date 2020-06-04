@@ -1,7 +1,6 @@
+import '../../widgets/country_card_details.dart';
 import '../../network_requests/api_client.dart';
 import '../../network_requests/exceptions.dart';
-import '../../widgets/cases_progress_bars.dart';
-import '../../widgets/new_case_boxes.dart';
 import '../../widgets/skeletons/country_stat_skeleton.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -66,134 +65,6 @@ class _CountryStatScreenState extends State<CountryStatScreen>
     yestJson = await _apiClient.getStatsResponse(StateLocation.SPECIFIC,
         code: widget.countryCode, yesterday: true);
     return true;
-  }
-
-  Widget makeCardDetails() {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      children: <Widget>[
-        //Today / Yesterday Title
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ScaleTransition(
-              scale: _controller1,
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    selectedIndex = 0;
-                    _controller2.reverse();
-                    _controller1.forward();
-                  });
-                },
-                child: Text(
-                  "Today",
-                  style: TextStyle(
-                      fontFamily: "Montserrat",
-                      fontWeight: selectedIndex == 0
-                          ? FontWeight.w700
-                          : FontWeight.w600,
-                      color: Colors.grey[800],
-                      fontSize: 22.0),
-                ),
-              ),
-            ),
-            SizedBox(width: 5),
-            ScaleTransition(
-              scale: _controller2,
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    selectedIndex = 1;
-                    _controller1.reverse();
-                    _controller2.forward();
-                  });
-                },
-                child: Text(
-                  "Yesterday",
-                  style: TextStyle(
-                      fontFamily: "Montserrat",
-                      fontWeight: selectedIndex == 0
-                          ? FontWeight.w600
-                          : FontWeight.w700,
-                      color: Colors.grey[800],
-                      fontSize: 22.0),
-                ),
-              ),
-            ),
-          ],
-        ),
-
-        SizedBox(height: 20),
-
-        //New case boxes
-        selectedIndex == 0
-            ? NewCaseBoxes(
-                color: widget.color,
-                affected: todayJson["todayCases"],
-                deaths: todayJson["todayDeaths"],
-                recovered: todayJson["recovered"] - yestJson["recovered"],
-                tested: todayJson["tests"],
-                totalCases: todayJson["cases"],
-                today: true,
-              )
-            : NewCaseBoxes(
-                color: widget.color,
-                affected: yestJson["todayCases"],
-                deaths: yestJson["todayDeaths"],
-                tested: yestJson["tests"],
-                totalCases: widget.totalCases,
-                today: false,
-              ),
-
-        SizedBox(height: 25),
-
-        //Total Case Bars
-        selectedIndex == 0
-            ? CaseBars(
-                color: widget.color,
-                totalActive: todayJson["active"],
-                totalDeaths: todayJson["deaths"],
-                totalCases: todayJson["cases"],
-                totalRecovered: todayJson["recovered"],
-              )
-            : CaseBars(
-                color: widget.color,
-                totalActive: yestJson["active"],
-                totalDeaths: yestJson["deaths"],
-                totalCases: yestJson["cases"],
-                totalRecovered: yestJson["recovered"],
-              ),
-
-        Expanded(child: SizedBox(height: 35)),
-
-        //Set as default button
-        InkWell(
-          onTap: () {
-            //TODO: Implement Default country functionality
-          },
-          child: Container(
-            width: double.infinity,
-            height: 50,
-            decoration: BoxDecoration(
-              color: widget.color,
-              borderRadius: BorderRadius.circular(13),
-            ),
-            child: Center(
-              child: Text(
-                "Set as default",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontFamily: "Montserrat",
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
-        )
-      ],
-    );
   }
 
   @override
@@ -388,7 +259,12 @@ class _CountryStatScreenState extends State<CountryStatScreen>
                       else {
 
                         //Main Body
-                        return makeCardDetails();
+                        return CountryCardDetails(
+                          color: widget.color,
+                          totalCases: widget.totalCases,
+                          todayJson: todayJson,
+                          yestJson: yestJson,
+                        );
                       }
                     } else {
                       return CountryStatLoader(color: widget.color,);

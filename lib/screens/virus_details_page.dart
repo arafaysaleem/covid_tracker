@@ -123,45 +123,46 @@ class VirusDetailsScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(25, 20, 25, 0),
                 child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
-                    padding: EdgeInsets.all(0),
-                    scrollDirection: Axis.vertical,
-                    itemCount: details.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 20),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            Text(
-                              "${details[index]["detail"]}",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontSize: 28,
-                                fontFamily: "Montserrat",
-                                color: color,
-                                fontWeight: FontWeight.w700,
-                              ),
+                  physics: BouncingScrollPhysics(),
+                  padding: EdgeInsets.all(0),
+                  scrollDirection: Axis.vertical,
+                  itemCount: details.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 20),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          Text(
+                            "${details[index]["detail"]}",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontSize: 28,
+                              fontFamily: "Montserrat",
+                              color: color,
+                              fontWeight: FontWeight.w700,
                             ),
-                            SizedBox(
-                              height: 10,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            "${details[index]['desc']}",
+                            textAlign: TextAlign.justify,
+                            style: TextStyle(
+                              fontSize: 18,
+                              height: 1.5,
+                              fontFamily: "Montserrat",
+                              color: Colors.grey[850],
+                              fontWeight: FontWeight.w500,
                             ),
-                            Text(
-                              "${details[index]['desc']}",
-                              textAlign: TextAlign.justify,
-                              style: TextStyle(
-                                fontSize: 18,
-                                height: 1.5,
-                                fontFamily: "Montserrat",
-                                color: Colors.grey[850],
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    }),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ),
             )
           ],

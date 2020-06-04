@@ -1,3 +1,4 @@
+import 'package:covidtracker/widgets/symptom_card_grid.dart';
 import 'package:flutter/material.dart';
 
 //ignore: must_be_immutable
@@ -12,44 +13,6 @@ class SymptomsScreen extends StatefulWidget {
 }
 
 class _SymptomsScreenState extends State<SymptomsScreen> {
-  int selectedIndex=0;
-
-  List<Map<String, String>> symptoms = [
-    {
-      "symptom": "Fever",
-      "desc":
-          "A temperature that's higher than normal.\nTypically around 98.6°F (37°C)",
-      "imgPath": "assets/symptoms/high_fever.png",
-    },
-    {
-      "symptom": "Sore Throat",
-      "desc":
-          "A sore throat is a painful, dry, or scratchy feeling in the throat.",
-      "imgPath": "assets/symptoms/sore_throat.png",
-    },
-    {
-      "symptom": "Dry Cough",
-      "desc": "A cough that doesn't bring up mucus.",
-      "imgPath": "assets/symptoms/cough.png",
-    },
-    {
-      "symptom": "Fatigue",
-      "desc":
-          "You have no energy, no motivation and overall feeling of tiredeness.",
-      "imgPath": "assets/symptoms/headache.png",
-    },
-    {
-      "symptom": "Runny Nose",
-      "desc": "Mucus draining or dripping from the nostril.",
-      "imgPath": "assets/symptoms/high_fever.png",
-    },
-    {
-      "symptom": "Tough Breathing",
-      "desc":
-          "You feel shortness of breath and a tight sensation in your chest",
-      "imgPath": "assets/symptoms/sore_throat.png",
-    },
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -121,79 +84,7 @@ class _SymptomsScreenState extends State<SymptomsScreen> {
           //Symptom Card
           Flexible(
             fit: FlexFit.loose,
-            child: Container(
-              width: 360.0,
-              child: GridView.count(
-                physics: BouncingScrollPhysics(),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 14.0, vertical: 20.0),
-                crossAxisSpacing: 16.0,
-                mainAxisSpacing: 15.0,
-                scrollDirection: Axis.vertical,
-                crossAxisCount: 2,
-                childAspectRatio: 0.70,
-                children: symptoms.asMap().entries.map((MapEntry entry) {
-                  int index=entry.key;
-                  return GestureDetector(
-                    onTap: (){
-                      setState(() {
-                        selectedIndex=index;
-                      });
-                    },
-                    child: Material(
-                      borderRadius: BorderRadius.circular(15.0),
-                      elevation: 5,
-                      child: AnimatedContainer(
-                        curve: Curves.fastOutSlowIn,
-                        duration: Duration(milliseconds: 650),
-                        decoration: BoxDecoration(
-                          color: selectedIndex==index? Colors.teal[50]:Colors.white,
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        padding: const EdgeInsets.fromLTRB(14, 20, 14, 0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            Image(
-                              image: AssetImage(entry.value["imgPath"]),
-                              height: 95.0,
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Text(
-                              "${entry.value["symptom"]}",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontFamily: "Montserrat",
-                                color: Colors.black,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Expanded(
-                              child: Text(
-                                "${entry.value['desc']}",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontFamily: "Montserrat",
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                }).toList(),
-              ),
-            ),
+            child: SymptomCardGrid(),
           )
         ],
       ),

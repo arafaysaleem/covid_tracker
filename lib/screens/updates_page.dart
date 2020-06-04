@@ -1,8 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import '../widgets/news_tile.dart';
+import '../widgets/updates_page_carousel.dart';
 import '../network_requests/api_client.dart';
 import '../network_requests/exceptions.dart';
-import '../widgets/my_web_view.dart';
 import '../widgets/skeletons/news_list_skeleton.dart';
 import 'package:flutter/material.dart';
 
@@ -38,105 +37,6 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
         _newsFuture=getNews();
       });
     });
-  }
-
-  Widget getNewsTile(Map<String, dynamic> article) {
-    return InkWell(
-      onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => MyWebView(selectedUrl: article['url'])));
-      },
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 95,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            //News image
-            article['urlToImage'] != null
-                ? CachedNetworkImage(
-                    imageUrl: article['urlToImage'],
-                    fit: BoxFit.cover,
-                    width: 95,
-                    height: 95,
-                    placeholder: (context, url) => Container(
-                      width: 95,
-                      height: 95,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage("assets/updates/news.png"),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    errorWidget: (context, url, dynamic) {
-                      return Container(
-                        width: 95,
-                        height: 95,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage("assets/updates/news.png"),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      );
-                    },
-                  )
-                : Container(
-                    width: 95,
-                    height: 95,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/updates/news.png"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-
-            SizedBox(width: 8),
-
-            //Column of title and description
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  //Title
-                  Text(
-                    "${article["title"]}",
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontFamily: "Montserrat",
-                      fontSize: 13,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-
-                  SizedBox(height: 5),
-
-                  //Description
-                  Flexible(
-                    child: Text(
-                      article["description"] == null
-                          ? "Read More for Details"
-                          : "${article["description"]}",
-                      maxLines: 4,
-                      style: TextStyle(
-                        fontFamily: "Montserrat",
-                        fontSize: 11.8,
-                        color: Colors.grey[600],
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 
   @override
@@ -192,28 +92,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               //Carousel
-              CarouselSlider(
-                items: ["assets/updates/news1.png","assets/updates/news2.png","assets/updates/news4.png","assets/updates/news5.png","assets/updates/news6.png","assets/updates/news7.png"]
-                    .map((imgPath) => Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            image: DecorationImage(
-                              fit: BoxFit.contain,
-                              image: AssetImage(imgPath),
-                            ),
-                          ),
-                        ))
-                    .toList(),
-                options: CarouselOptions(
-                  initialPage: 0,
-                  autoPlay: true,
-                  pauseAutoPlayOnTouch: true,
-                  autoPlayCurve: Curves.fastOutSlowIn,
-                  viewportFraction: 1.2,
-                  enableInfiniteScroll: true,
-                  height: 180
-                ),
-              ),
+              ImageCarousel(),
 
               //Divider
              Divider(
@@ -394,7 +273,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                                   ),
                                 );
                               }
-                              return getNewsTile(snapshot.data[index]);
+                              return NewsTile(article:snapshot.data[index]);
                             },
                     );
                   },
