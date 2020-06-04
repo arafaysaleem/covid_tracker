@@ -95,9 +95,11 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                   //Title
                   Text(
                     "${article["title"]}",
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      fontFamily: "Monsterrat",
-                      fontSize: 14,
+                      fontFamily: "Montserrat",
+                      fontSize: 13,
                       color: Colors.black,
                       fontWeight: FontWeight.w600,
                     ),
@@ -111,9 +113,10 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                       article["description"] == null
                           ? "Read More for Details"
                           : "${article["description"]}",
+                      maxLines: 4,
                       style: TextStyle(
-                        fontFamily: "Monsterrat",
-                        fontSize: 12,
+                        fontFamily: "Montserrat",
+                        fontSize: 11.8,
                         color: Colors.grey[600],
                         fontWeight: FontWeight.w500,
                       ),
@@ -356,18 +359,35 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                             itemCount: 10,
                             separatorBuilder: (context, index) {
                               return Divider(
-                                height: 40,
+                                height: (snapshot.data is FetchDataException)?20:40,
                                 color: Colors.black,
                                 thickness: 2,
                               );
                             },
                             itemBuilder: (context, index) {
                               if (snapshot.data is FetchDataException) {
-                                //TODO: Stylise the error message
-                                return Text("${snapshot.data.toString()}");
+                                return Container(
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey[300],
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      snapshot.data.toString(),
+                                      style: TextStyle(
+                                        fontFamily: "Montserrat",
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ),
+                                );
                               }
                               return getNewsTile(snapshot.data[index]);
-                            });
+                            },
+                    );
                   },
                 ),
               ),
