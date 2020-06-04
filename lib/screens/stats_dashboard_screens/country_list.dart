@@ -81,24 +81,64 @@ class _CountriesScreenState extends State<CountriesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       //TODO: Add a back button
-      extendBodyBehindAppBar: true,
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: FutureBuilder<bool>(
-          future: _future,
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              //error container
+      appBar: AppBar(
+        elevation: 0,
+        leading: GestureDetector(
+          onTap: ()=> Navigator.of(context).pop(),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Icon(Icons.arrow_back,color: Colors.black,),
+          ),
+        ),
+        title: Text(
+            "Search Countries",
+            style: TextStyle(
+                fontSize: 18,
+                fontFamily: "Montserrat",
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+            ),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+      ),
+      body: FutureBuilder<bool>(
+        future: _future,
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            //error container
+            return Container(
+              margin: EdgeInsets.all(15.0),
+              decoration: BoxDecoration(
+                color: Color(0xfff3cfff),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Center(
+                child: Text(
+                  snapshot.error.toString(),
+                  style: TextStyle(
+                    fontFamily: "Montserrat",
+                    fontSize: 21,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.red,
+                  ),
+                ),
+              ),
+            );
+          }
+
+          if (snapshot.hasData) {
+            if (snapshot.data is FetchDataException) {
               return Container(
-                margin: EdgeInsets.all(15.0),
                 decoration: BoxDecoration(
                   color: Color(0xfff3cfff),
                   borderRadius: BorderRadius.circular(16),
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 10),
                 child: Center(
                   child: Text(
-                    snapshot.error.toString(),
+                    snapshot.data.toString(),
                     style: TextStyle(
                       fontFamily: "Montserrat",
                       fontSize: 21,
@@ -108,112 +148,90 @@ class _CountriesScreenState extends State<CountriesScreen> {
                   ),
                 ),
               );
-            }
-
-            if (snapshot.hasData) {
-              if (snapshot.data is FetchDataException) {
-                return Container(
-                  decoration: BoxDecoration(
-                    color: Color(0xfff3cfff),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Center(
-                    child: Text(
-                      snapshot.data.toString(),
-                      style: TextStyle(
-                        fontFamily: "Montserrat",
-                        fontSize: 21,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.red,
-                      ),
-                    ),
-                  ),
-                );
-              } else {
-                return Column(
-                  children: <Widget>[
-                    //Search Bar
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 20),
-                      child: TextFormField(
-                        cursorColor: themeColor,
-                        style: TextStyle(
-                          color: themeColor,
-                          fontFamily: "Montserrat",
-                          fontWeight: FontWeight.normal,
-                          fontSize: 18,
-                        ),
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(vertical: 15),
-                          hintText: "Country Name",
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: BorderSide(
-                                color: themeColor,
-                                width: 1.4,
-                                style: BorderStyle.solid),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: BorderSide(
-                                color: themeColor,
-                                width: 1.4,
-                                style: BorderStyle.solid),
-                          ),
-                          prefixIcon: Icon(
-                            Icons.search,
-                            color: themeColor,
-                            size: 21,
-                          ),
-                        ),
-                        onChanged: (String val) {
-                          setState(() {
-                            searchValue = val;
-                          });
-                        },
-                      ),
-                    ),
-
-                    //Countries Grid
-                    Expanded(
-                      child: Builder(
-                        builder: (context) {
-                          List<SummaryEachCountry> list = getFilteredCountries();
-                          return GridView.builder(
-                            physics: BouncingScrollPhysics(),
-                            padding: EdgeInsets.symmetric(horizontal: 15),
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 30,
-                              childAspectRatio: 2 / 2.9,
-                            ),
-                            itemCount: list.length,
-                            itemBuilder: (ctx, i) {
-                              return CountryListItem(
-                                height: 180,
-                                countryName: list[i].country,
-                                countryCode: list[i].code,
-                                value: list[i].totalCases,
-                                flagPath: list[i].flagPath,
-                                isIncreasing: list[i].isIncreasing,
-                                itemColorData: colordata[i % colordata.length],
-                              );
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                );
-              }
             } else {
-              //TODO: Add a skeleton loader
-              return Center(child: CircularProgressIndicator());
+              return Column(
+                children: <Widget>[
+                  //Search Bar
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 15, vertical: 20),
+                    child: TextFormField(
+                      cursorColor: themeColor,
+                      style: TextStyle(
+                        color: themeColor,
+                        fontFamily: "Montserrat",
+                        fontWeight: FontWeight.normal,
+                        fontSize: 18,
+                      ),
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(vertical: 15),
+                        hintText: "Country Name",
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(
+                              color: themeColor,
+                              width: 1.4,
+                              style: BorderStyle.solid),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(
+                              color: themeColor,
+                              width: 1.4,
+                              style: BorderStyle.solid),
+                        ),
+                        prefixIcon: Icon(
+                          Icons.search,
+                          color: themeColor,
+                          size: 21,
+                        ),
+                      ),
+                      onChanged: (String val) {
+                        setState(() {
+                          searchValue = val;
+                        });
+                      },
+                    ),
+                  ),
+
+                  //Countries Grid
+                  Expanded(
+                    child: Builder(
+                      builder: (context) {
+                        List<SummaryEachCountry> list = getFilteredCountries();
+                        return GridView.builder(
+                          physics: BouncingScrollPhysics(),
+                          padding: EdgeInsets.symmetric(horizontal: 15),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 30,
+                            childAspectRatio: 2 / 2.9,
+                          ),
+                          itemCount: list.length,
+                          itemBuilder: (ctx, i) {
+                            return CountryListItem(
+                              height: 180,
+                              countryName: list[i].country,
+                              countryCode: list[i].code,
+                              value: list[i].totalCases,
+                              flagPath: list[i].flagPath,
+                              isIncreasing: list[i].isIncreasing,
+                              itemColorData: colordata[i % colordata.length],
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              );
             }
-          },
-        ),
+          } else {
+            //TODO: Add a skeleton loader
+            return Center(child: CircularProgressIndicator());
+          }
+        },
       ),
     );
   }
