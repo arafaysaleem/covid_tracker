@@ -32,6 +32,14 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
     return articles;
   }
 
+  refresh() async{
+    await Future.delayed(Duration(milliseconds: 800),() {
+      setState(() {
+        _newsFuture=getNews();
+      });
+    });
+  }
+
   Widget getNewsTile(Map<String, dynamic> article) {
     return InkWell(
       onTap: () {
@@ -164,7 +172,8 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
           IconButton(
             onPressed: () {
               setState(() {
-                getNews();
+                _newsFuture=null;
+                refresh();
               });
             },
             icon: Icon(
@@ -224,10 +233,10 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                     child: Text(
                       "Sort By",
                       style: TextStyle(
-                        fontFamily: "Monsterrat",
+                        fontFamily: "Montserrat",
                         fontSize: 18,
                         color: Colors.black,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
@@ -271,7 +280,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                               child: Text(
                                 "Latest",
                                 style: TextStyle(
-                                  fontFamily: "Monsterrat",
+                                  fontFamily: "Montserrat",
                                   fontSize: 17,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w500,
@@ -283,7 +292,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                               child: Text(
                                 "Popular",
                                 style: TextStyle(
-                                  fontFamily: "Monsterrat",
+                                  fontFamily: "Montserrat",
                                   fontSize: 17,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w500,
@@ -295,7 +304,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                               child: Text(
                                 "Last Week",
                                 style: TextStyle(
-                                  fontFamily: "Monsterrat",
+                                  fontFamily: "Montserrat",
                                   fontSize: 17,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w500,
@@ -307,7 +316,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                               child: Text(
                                 "Last 15 days",
                                 style: TextStyle(
-                                  fontFamily: "Monsterrat",
+                                  fontFamily: "Montserrat",
                                   fontSize: 17,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w500,
@@ -319,7 +328,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                               child: Text(
                                 "Last Month",
                                 style: TextStyle(
-                                  fontFamily: "Monsterrat",
+                                  fontFamily: "Montserrat",
                                   fontSize: 17,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w500,
@@ -330,7 +339,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                           onChanged: (String newValue) {
                             setState(() {
                               dropDownValue = newValue;
-                              getNews();
+                              _newsFuture=getNews();
                             });
                           },
                         ),
@@ -352,7 +361,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                 child: FutureBuilder<dynamic>(
                   future: _newsFuture,
                   builder: (context, snapshot) {
-                    return snapshot.data == null
+                    return (snapshot.data == null || snapshot.connectionState!=ConnectionState.done)
                         ? NewsListLoader()
                         : ListView.separated(
                             physics: BouncingScrollPhysics(),
