@@ -11,7 +11,6 @@ class _NewsListLoaderState extends State<NewsListLoader>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _controller = AnimationController(
         vsync: this, duration: Duration(milliseconds: 700), lowerBound: 0.5)
@@ -25,7 +24,6 @@ class _NewsListLoaderState extends State<NewsListLoader>
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _controller.dispose();
     super.dispose();
   }

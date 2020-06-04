@@ -34,7 +34,6 @@ class _CountryStatScreenState extends State<CountryStatScreen>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     selectedIndex = 0;
     textScaleDuration = Duration(milliseconds: 200);
@@ -54,7 +53,6 @@ class _CountryStatScreenState extends State<CountryStatScreen>
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _controller1.dispose();
     _controller2.dispose();
     super.dispose();
@@ -393,7 +391,6 @@ class _CountryStatScreenState extends State<CountryStatScreen>
                         return makeCardDetails();
                       }
                     } else {
-                      //TODO: Make skeleton loader
                       return CountryStatLoader(color: widget.color,);
                     }
                   },
