@@ -1,4 +1,4 @@
-import 'package:covidtracker/widgets/home_category.dart';
+import '../widgets/home_category.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {

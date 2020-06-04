@@ -1,8 +1,8 @@
-import 'package:covidtracker/network_requests/api_client.dart';
-import 'package:covidtracker/network_requests/exceptions.dart';
-import 'package:covidtracker/widgets/cases_progress_bars.dart';
-import 'package:covidtracker/widgets/new_case_boxes.dart';
-import 'package:covidtracker/widgets/skeletons/country_stat_skeleton.dart';
+import '../../network_requests/api_client.dart';
+import '../../network_requests/exceptions.dart';
+import '../../widgets/cases_progress_bars.dart';
+import '../../widgets/new_case_boxes.dart';
+import '../../widgets/skeletons/country_stat_skeleton.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

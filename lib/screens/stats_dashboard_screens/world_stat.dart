@@ -1,7 +1,6 @@
-import 'package:covidtracker/screens/stats_dashboard_screens/country_list.dart';
-import 'package:covidtracker/widgets/skeletons/top_country_list_skeleton.dart';
-import 'package:covidtracker/widgets/skeletons/world_stat_skeleton.dart';
-
+import '../../screens/stats_dashboard_screens/country_list.dart';
+import '../../widgets/skeletons/top_country_list_skeleton.dart';
+import '../../widgets/skeletons/world_stat_skeleton.dart';
 import '../../widgets/top_country_list.dart';
 import '../../models/summary_each_country.dart';
 import '../../network_requests/api_client.dart';

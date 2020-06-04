@@ -1,10 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:covidtracker/network_requests/api_client.dart';
-import 'package:covidtracker/network_requests/exceptions.dart';
-import 'package:covidtracker/widgets/my_web_view.dart';
-import 'package:covidtracker/widgets/skeletons/news_list_skeleton.dart';
-import 'package:flutter/cupertino.dart';
+import '../network_requests/api_client.dart';
+import '../network_requests/exceptions.dart';
+import '../widgets/my_web_view.dart';
+import '../widgets/skeletons/news_list_skeleton.dart';
 import 'package:flutter/material.dart';
 
 class UpdatesScreen extends StatefulWidget {

@@ -82,12 +82,9 @@ class _CountriesScreenState extends State<CountriesScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
-        leading: GestureDetector(
-          onTap: ()=> Navigator.of(context).pop(),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Icon(Icons.arrow_back,color: Colors.black,size: 26,),
-          ),
+        leading: IconButton(
+          onPressed: ()=> Navigator.of(context).pop(),
+          icon: Icon(Icons.arrow_back,color: Colors.grey[800],size: 25,),
         ),
         title: Text(
             "Search Any Country",
@@ -95,7 +92,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
                 fontSize: 20,
                 fontFamily: "Montserrat",
                 fontWeight: FontWeight.w600,
-                color: Colors.black,
+                color: Colors.grey[800],
             ),
         ),
         centerTitle: true,
@@ -157,12 +154,10 @@ class _CountriesScreenState extends State<CountriesScreen> {
                           BoxShadow(
                             color: Colors.grey[200],
                             offset: Offset(0,0.8),
-                            spreadRadius: 0.0,
-                            blurRadius: 0
                           )
                         ],
                     ),
-                    padding: const EdgeInsets.fromLTRB(15,10,15,15),
+                    padding: const EdgeInsets.fromLTRB(15,0,15,15),
                     child: TextFormField(
                       cursorColor: themeColor,
                       style: TextStyle(
@@ -172,7 +167,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
                         fontSize: 18,
                       ),
                       decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(vertical: 15),
+                        contentPadding: EdgeInsets.symmetric(vertical: 17),
                         hintText: "Country Name",
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
