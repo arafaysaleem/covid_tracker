@@ -1,9 +1,9 @@
-import '../screens/myths_page.dart';
-import '../screens/precautions_page.dart';
-import '../screens/symptoms_page.dart';
-import '../screens/updates_page.dart';
-import '../screens/virus_details_page.dart';
-import '../screens/stats_dashboard_screens/world_stat.dart';
+import '../../screens/myths_page.dart';
+import '../../screens/precautions_page.dart';
+import '../../screens/symptoms_page.dart';
+import '../../screens/updates_page.dart';
+import '../../screens/virus_details_page.dart';
+import '../../screens/stats_dashboard_screens/world_stat.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable

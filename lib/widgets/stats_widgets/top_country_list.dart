@@ -1,7 +1,7 @@
-import '../values/country_color_data.dart';
+import '../../values/country_color_data.dart';
 import 'package:flutter/material.dart';
-import '../models/summary_each_country.dart';
-import '../widgets/country_list_item.dart';
+import '../../models/summary_each_country.dart';
+import 'country_list_item.dart';
 
 class TopCountryList extends StatelessWidget {
   final List<SummaryEachCountry> topSixList;

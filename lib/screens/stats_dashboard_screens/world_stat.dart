@@ -1,10 +1,10 @@
-import '../../widgets/affected_map_container.dart';
-import '../../widgets/global_case_container.dart';
-import '../../widgets/world_stats_image.dart';
+import '../../widgets/stats_widgets/affected_map_container.dart';
+import '../../widgets/stats_widgets/global_case_container.dart';
+import '../../widgets/stats_widgets/world_stats_image.dart';
 import '../../screens/stats_dashboard_screens/country_list.dart';
 import '../../widgets/skeletons/top_country_list_skeleton.dart';
 import '../../widgets/skeletons/world_stat_skeleton.dart';
-import '../../widgets/top_country_list.dart';
+import '../../widgets/stats_widgets/top_country_list.dart';
 import '../../models/summary_each_country.dart';
 import '../../network_requests/api_client.dart';
 import '../../network_requests/exceptions.dart';

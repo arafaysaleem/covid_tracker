@@ -1,4 +1,4 @@
-import '../../widgets/countries_grid.dart';
+import '../../widgets/stats_widgets/countries_grid.dart';
 import '../../widgets/skeletons/country_list_skeleton.dart';
 import '../../models/summary_each_country.dart';
 import '../../network_requests/api_client.dart';

@@ -1,5 +1,5 @@
-import '../widgets/news_tile.dart';
-import '../widgets/updates_page_carousel.dart';
+import '../widgets/news_widgets/news_tile.dart';
+import '../widgets/news_widgets/updates_page_carousel.dart';
 import '../network_requests/api_client.dart';
 import '../network_requests/exceptions.dart';
 import '../widgets/skeletons/news_list_skeleton.dart';

@@ -1,4 +1,4 @@
-import 'package:covidtracker/widgets/symptom_card_grid.dart';
+import 'package:covidtracker/widgets/home_page_widgets/symptom_card_grid.dart';
 import 'package:flutter/material.dart';
 
 //ignore: must_be_immutable

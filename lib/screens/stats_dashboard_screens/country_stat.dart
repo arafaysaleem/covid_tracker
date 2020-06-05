@@ -1,4 +1,4 @@
-import '../../widgets/country_card_details.dart';
+import '../../widgets/stats_widgets/country_card_details.dart';
 import '../../network_requests/api_client.dart';
 import '../../network_requests/exceptions.dart';
 import '../../widgets/skeletons/country_stat_skeleton.dart';

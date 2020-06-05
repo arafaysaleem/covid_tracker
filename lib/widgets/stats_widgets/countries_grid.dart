@@ -1,5 +1,5 @@
-import '../values/country_color_data.dart';
-import '../models/summary_each_country.dart';
+import '../../values/country_color_data.dart';
+import '../../models/summary_each_country.dart';
 import 'package:flutter/material.dart';
 import 'country_list_item.dart';
 
