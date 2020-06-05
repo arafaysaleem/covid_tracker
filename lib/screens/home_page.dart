@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             onPressed: () {},
             icon: Icon(
-              Icons.notifications_active,
+              Icons.info_outline,
               color: Colors.black,
             ),
           )
