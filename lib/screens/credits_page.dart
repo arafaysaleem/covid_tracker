@@ -11,7 +11,6 @@ class CreditsScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Stack(
         children: <Widget>[
-          //TODO: add credits
           //Back Button & Heading
           Align(
             alignment: Alignment.topLeft,
