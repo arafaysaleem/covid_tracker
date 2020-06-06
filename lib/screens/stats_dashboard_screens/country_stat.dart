@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 import '../../widgets/stats_widgets/country_card_details.dart';
 import '../../network_requests/api_client.dart';
 import '../../network_requests/exceptions.dart';
@@ -84,74 +86,90 @@ class _CountryStatScreenState extends State<CountryStatScreen>
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     //Flag and Name and More
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        //Back Button
-                        InkWell(
-                          onTap: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: Colors.transparent,
-                                borderRadius: BorderRadius.circular(5),
-                                border: Border.all(
-                                  color: Colors.white60,
-                                  width: 1.8,
-                                )),
-                            margin: EdgeInsets.only(left: 20),
-                            padding: EdgeInsets.all(7),
-                            child: Icon(
-                              Icons.arrow_back_ios,
-                              color: Colors.white60,
-                              size: 21,
+                    Expanded(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          //Back Button
+                          InkWell(
+                            onTap: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.transparent,
+                                  borderRadius: BorderRadius.circular(5),
+                                  border: Border.all(
+                                    color: Colors.white60,
+                                    width: 1.8,
+                                  )),
+                              margin: EdgeInsets.only(left: 20),
+                              padding: EdgeInsets.all(7),
+                              child: Icon(
+                                Icons.arrow_back_ios,
+                                color: Colors.white60,
+                                size: 21,
+                              ),
                             ),
                           ),
-                        ),
 
-                        //Name and flag
-                        Padding(
-                          padding: const EdgeInsets.only(top: 6, left: 4),
-                          child: Row(
-                            children: <Widget>[
-                              //Flag
-                              Image.asset(
-                                widget.flagPath,
-                                width: 32,
-                              ),
-
-                              SizedBox(width: 10),
-
-                              //Country Name
-                              Text(
-                                widget.countryName,
-                                style: TextStyle(
-                                  fontFamily: "Montserrat",
-                                  color: Colors.white,
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w600,
+                          //Name and flag
+                          Flexible(
+                            fit: FlexFit.loose,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                //Flag
+                                Flexible(
+                                  fit:FlexFit.loose,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 6, left: 4),
+                                    child: Image.asset(
+                                      widget.flagPath,
+                                      width: 32,
+                                    ),
+                                  ),
                                 ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ],
-                          ),
-                        ),
 
-                        //More Icon
-                        Padding(
-                          padding: const EdgeInsets.only(right: 13, top: 3),
-                          child: InkWell(
-                            child: Icon(
-                              Icons.more_horiz,
-                              color: Colors.white60,
-                              size: 30,
+                                SizedBox(width: 10),
+
+                                //Country Name
+                                Flexible(
+                                  flex: 2,
+                                  fit: FlexFit.loose,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 6, left: 4),
+                                    child: Text(
+                                      widget.countryName,
+                                      style: TextStyle(
+                                        fontFamily: "Montserrat",
+                                        color: Colors.white,
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                            onTap: () {},
                           ),
-                        )
-                      ],
+
+                          //More Icon
+                          Padding(
+                            padding: const EdgeInsets.only(right: 13, top: 3),
+                            child: InkWell(
+                              child: Icon(
+                                Icons.more_horiz,
+                                color: Colors.white60,
+                                size: 30,
+                              ),
+                              onTap: () {},
+                            ),
+                          )
+                        ],
+                      ),
                     ),
 
                     SizedBox(

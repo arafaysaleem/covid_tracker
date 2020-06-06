@@ -43,6 +43,10 @@ class _CountriesScreenState extends State<CountriesScreen> {
     return filteredCountries;
   }
 
+  void _clearFocus(BuildContext context){
+    FocusScope.of(context).unfocus();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -78,93 +82,74 @@ class _CountriesScreenState extends State<CountriesScreen> {
         centerTitle: true,
         backgroundColor: Colors.transparent,
       ),
-      body: Column(
-        children: <Widget>[
-          //Search Bar
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey[200],
-                  offset: Offset(0, 0.8),
-                )
-              ],
-            ),
-            padding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
-            child: TextFormField(
-              cursorColor: themeColor,
-              style: TextStyle(
-                color: themeColor,
-                fontFamily: "Montserrat",
-                fontWeight: FontWeight.normal,
-                fontSize: 18,
+      body: GestureDetector(
+        onTap: ()=> _clearFocus(context),
+        child: Column(
+          children: <Widget>[
+            //Search Bar
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey[200],
+                    offset: Offset(0, 0.8),
+                  )
+                ],
               ),
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(vertical: 17),
-                hintText: "Country Name",
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide(
-                      color: themeColor, width: 1.4, style: BorderStyle.solid),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide(
-                      color: themeColor, width: 1.4, style: BorderStyle.solid),
-                ),
-                prefixIcon: Icon(
-                  Icons.search,
+              padding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
+              child: TextFormField(
+                cursorColor: themeColor,
+                style: TextStyle(
                   color: themeColor,
-                  size: 21,
+                  fontFamily: "Montserrat",
+                  fontWeight: FontWeight.normal,
+                  fontSize: 18,
                 ),
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(vertical: 17),
+                  hintText: "Country Name",
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide: BorderSide(
+                        color: themeColor, width: 1.4, style: BorderStyle.solid),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide: BorderSide(
+                        color: themeColor, width: 1.4, style: BorderStyle.solid),
+                  ),
+                  prefixIcon: Icon(
+                    Icons.search,
+                    color: themeColor,
+                    size: 21,
+                  ),
+                ),
+                onChanged: (String val) {
+                  setState(() {
+                    searchValue = val;
+                  });
+                },
               ),
-              onChanged: (String val) {
-                setState(() {
-                  searchValue = val;
-                });
-              },
             ),
-          ),
 
-          //Countries Grid
-          Expanded(
-            child: FutureBuilder<bool>(
-              future: _future,
-              builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  //error container
-                  return Container(
-                    margin: EdgeInsets.all(15.0),
-                    decoration: BoxDecoration(
-                      color: Color(0xfff3cfff),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Center(
-                      child: Text(
-                        snapshot.error.toString(),
-                        style: TextStyle(
-                          fontFamily: "Montserrat",
-                          fontSize: 21,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.red,
-                        ),
-                      ),
-                    ),
-                  );
-                }
-
-                if (snapshot.hasData) {
-                  if (snapshot.data is FetchDataException) {
+            //Countries Grid
+            Expanded(
+              child: FutureBuilder<bool>(
+                future: _future,
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    //error container
                     return Container(
+                      margin: EdgeInsets.all(15.0),
                       decoration: BoxDecoration(
                         color: Color(0xfff3cfff),
                         borderRadius: BorderRadius.circular(16),
                       ),
+                      padding: EdgeInsets.symmetric(horizontal: 10),
                       child: Center(
                         child: Text(
-                          snapshot.data.toString(),
+                          snapshot.error.toString(),
                           style: TextStyle(
                             fontFamily: "Montserrat",
                             fontSize: 21,
@@ -174,20 +159,42 @@ class _CountriesScreenState extends State<CountriesScreen> {
                         ),
                       ),
                     );
-                  } else {
-
-                    List<SummaryEachCountry> list = getFilteredCountries();
-
-                    //Country Tiles
-                    return CountriesGrid(list: list,);
                   }
-                } else {
-                  return CountryListLoader();
-                }
-              },
+
+                  if (snapshot.hasData) {
+                    if (snapshot.data is FetchDataException) {
+                      return Container(
+                        decoration: BoxDecoration(
+                          color: Color(0xfff3cfff),
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Center(
+                          child: Text(
+                            snapshot.data.toString(),
+                            style: TextStyle(
+                              fontFamily: "Montserrat",
+                              fontSize: 21,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.red,
+                            ),
+                          ),
+                        ),
+                      );
+                    } else {
+
+                      List<SummaryEachCountry> list = getFilteredCountries();
+
+                      //Country Tiles
+                      return CountriesGrid(list: list,);
+                    }
+                  } else {
+                    return CountryListLoader();
+                  }
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
