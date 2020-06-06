@@ -22,6 +22,8 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
   Map<String, dynamic> globalData;
   Future<Map<String,dynamic>> _globalFuture;
   Future<List<SummaryEachCountry>> _topSixFuture;
+  PageController _controller;
+  int selectedBottomBarIndex = 0;
 
 
   Future<List<SummaryEachCountry>> getTopSix() async {
@@ -50,8 +52,15 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
   @override
   void initState() {
     super.initState();
+    _controller=new PageController(initialPage: selectedBottomBarIndex);
     _globalFuture=getGlobalData();
     _topSixFuture=getTopSix();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
