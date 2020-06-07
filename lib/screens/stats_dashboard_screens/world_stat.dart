@@ -108,7 +108,6 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //TODO: Add a bottom navigation bar with Home,CountryList,DefaultCountry,Info tabs
       extendBodyBehindAppBar: true,
       backgroundColor: getScaffoldColor(),
       body: SafeArea(
