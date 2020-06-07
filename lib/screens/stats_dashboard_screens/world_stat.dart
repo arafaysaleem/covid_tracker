@@ -5,8 +5,6 @@ import '../../screens/stats_dashboard_screens/default_country_screen.dart';
 import '../../screens/stats_dashboard_screens/global_stat.dart';
 import '../../values/default_country_data.dart';
 import '../../screens/stats_dashboard_screens/country_list.dart';
-import '../../models/summary_each_country.dart';
-import '../../network_requests/api_client.dart';
 import 'package:flutter/material.dart';
 
 enum CaseType { ACTIVE, DEATHS, RECOVERED }
@@ -17,37 +15,10 @@ class WorldStatScreen extends StatefulWidget {
 }
 
 class _WorldStatScreenState extends State<WorldStatScreen> {
-  ApiClient _client = ApiClient();
-  Map<String, dynamic> globalData;
-  Future<Map<String, dynamic>> _globalFuture;
-  Future<List<SummaryEachCountry>> _topSixFuture;
   PageController _controller;
   int selectedBottomBarIndex = 0;
   List<Widget> pages;
   List<BarItem> barItems;
-
-  Future<List<SummaryEachCountry>> getTopSix() async {
-    List<SummaryEachCountry> listTopSix = [];
-    List<dynamic> json;
-    json = await _client.getStatsResponse(StateLocation.TOP_FIVE);
-    //Initially i fetched top 5 and added pakistan details following that
-    //Because i wanted to show pakistan details in top 6 stats :)
-    var pakStats =
-        await _client.getStatsResponse(StateLocation.SPECIFIC, code: "PK");
-    json.insert(0, pakStats);
-
-    json.forEach((country) {
-      SummaryEachCountry summary = SummaryEachCountry().formMap(country);
-      listTopSix.add(summary);
-    });
-
-    return listTopSix;
-  }
-
-  Future<Map<String, dynamic>> getGlobalData() async {
-    var json = await _client.getStatsResponse(StateLocation.GLOBAL);
-    return json;
-  }
 
   @override
   void initState() {
@@ -89,8 +60,6 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
         color: Color(0xff009a88),
       ),
     ];
-    _globalFuture = getGlobalData();
-    _topSixFuture = getTopSix();
   }
 
   @override
