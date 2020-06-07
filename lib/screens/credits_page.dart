@@ -1,9 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // ignore: must_be_immutable
 class CreditsScreen extends StatelessWidget {
+  final PageController controller;
+
+  const CreditsScreen({Key key, this.controller}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +23,9 @@ class CreditsScreen extends StatelessWidget {
               children: <Widget>[
                 InkWell(
                   onTap: () {
-                    Navigator.of(context).pop();
+                    controller.animateToPage(0,
+                        duration: Duration(milliseconds: 150),
+                        curve: Curves.easeInOut);
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(20),
@@ -61,15 +66,15 @@ class CreditsScreen extends StatelessWidget {
 
           //Column of image, name and button
           Positioned.fill(
-            top: 100,
+            top: 70,
             child: Align(
               alignment: Alignment.center,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Image(
-                    width: 190,
-                    height: 190,
+                    width: 180,
+                    height: 180,
                     image: AssetImage("assets/corona_virus.png"),
                   ),
 
@@ -98,7 +103,7 @@ class CreditsScreen extends StatelessWidget {
                     ),
                   ),
 
-                  SizedBox(height: 15),
+                  SizedBox(height: 10),
 
                   //License Button
                   MaterialButton(
@@ -115,7 +120,7 @@ class CreditsScreen extends StatelessWidget {
                       child: Text(
                         "License",
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 18,
                           fontFamily: "Montserrat",
                           fontWeight: FontWeight.w600,
                           color: Colors.white,
@@ -130,7 +135,7 @@ class CreditsScreen extends StatelessWidget {
 
           //Paragraph
           Positioned(
-            top: 425,
+            top: 375,
             width: MediaQuery.of(context).size.width,
             child: Padding(
               padding: const EdgeInsets.all(15),
@@ -151,7 +156,7 @@ class CreditsScreen extends StatelessWidget {
 
           //Author Credits
           Positioned.fill(
-            bottom: 40,
+            bottom: 25,
             child: Align(
               alignment: Alignment.bottomCenter,
               child: InkWell(

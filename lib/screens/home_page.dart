@@ -1,5 +1,3 @@
-import 'package:covidtracker/screens/credits_page.dart';
-
 import '../widgets/home_page_widgets/home_categories.dart';
 import 'package:flutter/material.dart';
 
@@ -28,9 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: <Widget>[
           IconButton(
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CreditsScreen()));
-            },
+            onPressed: () {},
             icon: Icon(
               Icons.info_outline,
               color: Colors.black,

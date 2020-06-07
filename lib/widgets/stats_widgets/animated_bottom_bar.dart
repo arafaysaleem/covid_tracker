@@ -1,5 +1,7 @@
+import '../../models/bottom_bar_item.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class AnimatedBottomBar extends StatefulWidget {
   final List<BarItem> barItems;
   int currBarItem;
@@ -23,11 +25,12 @@ class _AnimatedBottomBarState extends State<AnimatedBottomBar> with TickerProvid
     return Material(
       elevation: widget.elevation,
       child: Container(
-        height: 70,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        height: 60,
+        padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: _barItemBuilder()),
+            children: _barItemBuilder(),
+        ),
       ),
     );
   }
@@ -42,7 +45,7 @@ class _AnimatedBottomBarState extends State<AnimatedBottomBar> with TickerProvid
         duration: widget.animationDuration,
         decoration: BoxDecoration(
           color: isSelected? barItem.color.withOpacity(0.15): Colors.transparent,
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(20),
         ),
         child: InkWell(
           splashColor: Colors.transparent,
@@ -57,7 +60,7 @@ class _AnimatedBottomBarState extends State<AnimatedBottomBar> with TickerProvid
                 size: barItem.iconSize,
               ),
               SizedBox(
-                width: 10,
+                width: 5,
               ),
               AnimatedSize(
                 curve: Curves.easeInOut,
@@ -67,8 +70,10 @@ class _AnimatedBottomBarState extends State<AnimatedBottomBar> with TickerProvid
                   isSelected ? "${barItem.text}" : "",
                   style: TextStyle(
                       color: barItem.color,
+                      fontFamily: "Montserrat",
                       fontWeight: FontWeight.w600,
-                      fontSize: barItem.textSize),
+                      fontSize: barItem.textSize,
+                  ),
                 ),
               )
             ],
@@ -79,13 +84,4 @@ class _AnimatedBottomBarState extends State<AnimatedBottomBar> with TickerProvid
 
     return barWidgets;
   }
-}
-
-class BarItem {
-  final String text;
-  final IconData icon;
-  final double iconSize, textSize;
-  final Color color;
-
-  BarItem({this.text, this.icon, this.color, this.iconSize, this.textSize});
 }

@@ -1,3 +1,4 @@
+import '../../values/default_country_data.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'cases_progress_bars.dart';
@@ -7,9 +8,10 @@ import 'new_case_boxes.dart';
 class CountryCardDetails extends StatefulWidget {
   Color color;
   int totalCases;
+  final countryName, countryCode, flagPath, isIncreasing;
   Map<String, dynamic> todayJson, yestJson;
   
-  CountryCardDetails({this.color,this.todayJson,this.yestJson,this.totalCases});
+  CountryCardDetails({this.color,this.todayJson,this.yestJson,this.totalCases, this.countryName, this.countryCode, this.flagPath, this.isIncreasing});
   
   @override
   _CountryCardDetailsState createState() => _CountryCardDetailsState();
@@ -149,7 +151,14 @@ class _CountryCardDetailsState extends State<CountryCardDetails> with TickerProv
         //Set as default button
         InkWell(
           onTap: () {
-            //TODO: Implement Default country functionality
+            defaultCountry.countryName=widget.countryName;
+            defaultCountry.countryCode=widget.countryCode;
+            defaultCountry.flagPath=widget.flagPath;
+            defaultCountry.color=widget.color;
+            defaultCountry.totalCases=widget.totalCases;
+            defaultCountry.isIncreasing=widget.isIncreasing;
+            Navigator.of(context).pop();
+            //Add a snackbar to show confirmation
           },
           child: Container(
             width: double.infinity,
