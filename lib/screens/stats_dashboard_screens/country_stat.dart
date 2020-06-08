@@ -24,7 +24,6 @@ class _CountryStatScreenState extends State<CountryStatScreen>{
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: widget.color,
       body: SafeArea(
         child: CountryStatWidget(
           color: widget.color,

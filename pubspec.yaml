@@ -26,6 +26,7 @@ dependencies:
   carousel_slider: ^2.1.0
   rect_getter: ^0.1.0
   url_launcher: ^5.4.10
+  shared_preferences: ^0.5.7+3
 
 
   # The following adds the Cupertino Icons font to your application.

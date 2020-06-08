@@ -1,3 +1,5 @@
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 import '../../widgets/stats_widgets/animated_bottom_bar.dart';
 import '../../models/bottom_bar_item.dart';
 import '../../screens/credits_page.dart';
@@ -19,10 +21,22 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
   int selectedBottomBarIndex = 0;
   List<Widget> pages;
   List<BarItem> barItems;
+  Future<bool> future;
+
+  Future<bool> loadPreferences() async{
+    SharedPreferences prefs=await SharedPreferences.getInstance();
+    var jsonString=prefs.getString('defaultCountry');
+    if(jsonString!=null){
+      defaultCountry=DefaultCountry().fromJson(json.decode(jsonString));
+      return true;
+    }
+    return false;
+  }
 
   @override
   void initState() {
     super.initState();
+    future=loadPreferences();
     _controller = new PageController(initialPage: selectedBottomBarIndex);
     pages=[
       GlobalStatScreen(controller: _controller,),
@@ -71,7 +85,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
   Color getScaffoldColor(){
     if(selectedBottomBarIndex==0) return Colors.grey[100];
     else if(selectedBottomBarIndex==1 || selectedBottomBarIndex==3) return Colors.white;
-    return defaultCountry.countryName==null?Colors.white:defaultCountry.color;
+    return defaultCountry.countryName==null?Colors.white:Colors.transparent;
   }
 
   @override
@@ -80,16 +94,28 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
       extendBodyBehindAppBar: true,
       backgroundColor: getScaffoldColor(),
       body: SafeArea(
-        child: PageView.builder(
-          itemCount: 4,
-          physics: BouncingScrollPhysics(),
-          onPageChanged: (index) {
-            setState(() {
-              selectedBottomBarIndex = index;
-            });
+        child: FutureBuilder<bool>(
+          future: future,
+          builder:(context,snapshot) {
+            if(snapshot.hasData){
+              return PageView.builder(
+                itemCount: 4,
+                physics: BouncingScrollPhysics(),
+                onPageChanged: (index) {
+                  setState(() {
+                    selectedBottomBarIndex = index;
+                  });
+                },
+                controller: _controller,
+                itemBuilder: (context, index) => pages[index],
+              );
+            }
+            return Center(
+              child: CircularProgressIndicator(
+                semanticsLabel: "Loading preferences",
+              ),
+            );
           },
-          controller: _controller,
-          itemBuilder: (context, index) => pages[index],
         ),
       ),
       bottomNavigationBar: AnimatedBottomBar(

@@ -2,14 +2,20 @@ import '../../values/default_country_data.dart';
 import '../../widgets/stats_widgets/country_stat_widget.dart';
 import 'package:flutter/material.dart';
 
-class DefaultCountryScreen extends StatelessWidget {
+// ignore: must_be_immutable
+class DefaultCountryScreen extends StatefulWidget {
   final PageController controller;
 
-  const DefaultCountryScreen({Key key, this.controller}) : super(key: key);
+  DefaultCountryScreen({Key key, this.controller}) : super(key: key);
 
   @override
+  _DefaultCountryScreenState createState() => _DefaultCountryScreenState();
+}
+
+class _DefaultCountryScreenState extends State<DefaultCountryScreen> {
+  @override
   Widget build(BuildContext context) {
-    if(defaultCountry.countryName == null){
+    if(defaultCountry.countryName==null){
       return Padding(
         padding: const EdgeInsets.fromLTRB(15, 350, 15, 0),
         child: Column(
@@ -28,7 +34,7 @@ class DefaultCountryScreen extends StatelessWidget {
             //Choose default country
             InkWell(
               onTap: () {
-                controller.animateToPage(1,
+                widget.controller.animateToPage(1,
                     duration: Duration(milliseconds: 150),
                     curve: Curves.easeInOut);
               },
@@ -58,11 +64,11 @@ class DefaultCountryScreen extends StatelessWidget {
     }
     return CountryStatWidget(
       onBackArrow: (){
-        controller.animateToPage(0, duration: Duration(milliseconds: 150), curve: Curves.easeInOut);
+        widget.controller.animateToPage(0, duration: Duration(milliseconds: 150), curve: Curves.easeInOut);
       },
       countryName: defaultCountry.countryName,
       countryCode: defaultCountry.countryCode,
-      color: defaultCountry.color,
+      color: Color(defaultCountry.color),
       totalCases: defaultCountry.totalCases,
       flagPath: defaultCountry.flagPath,
       isIncreasing: defaultCountry.isIncreasing,

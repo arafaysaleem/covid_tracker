@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../values/default_country_data.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -149,16 +151,20 @@ class _CountryCardDetailsState extends State<CountryCardDetails> with TickerProv
         Expanded(child: SizedBox(height: 35)),
 
         //Set as default button
-        InkWell(
-          onTap: () {
+        defaultCountry.countryName!=widget.countryName
+            ?InkWell(
+          onTap: () async {
             defaultCountry.countryName=widget.countryName;
             defaultCountry.countryCode=widget.countryCode;
+            defaultCountry.color=widget.color.value;
             defaultCountry.flagPath=widget.flagPath;
-            defaultCountry.color=widget.color;
             defaultCountry.totalCases=widget.totalCases;
             defaultCountry.isIncreasing=widget.isIncreasing;
+            var jsonMap=defaultCountry.toJson();
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            prefs.setString("defaultCountry", json.encode(jsonMap));
             Navigator.of(context).pop();
-            //Add a snackbar to show confirmation
+            //TODO: Add a snack bar to show confirmation
           },
           child: Container(
             width: double.infinity,
@@ -180,6 +186,7 @@ class _CountryCardDetailsState extends State<CountryCardDetails> with TickerProv
             ),
           ),
         )
+            :Container(),
       ],
     );
   }
