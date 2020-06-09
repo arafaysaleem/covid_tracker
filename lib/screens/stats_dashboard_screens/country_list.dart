@@ -96,7 +96,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
                 fontSize: 18,
               ),
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(vertical: 17),
+                contentPadding: const EdgeInsets.symmetric(vertical: 17),
                 hintText: "Country Name",
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
@@ -130,12 +130,12 @@ class _CountriesScreenState extends State<CountriesScreen> {
                 if (snapshot.hasError) {
                   //error container
                   return Container(
-                    margin: EdgeInsets.all(15.0),
+                    margin: const EdgeInsets.all(15.0),
                     decoration: BoxDecoration(
                       color: Color(0xfff3cfff),
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Center(
                       child: Text(
                         snapshot.error.toString(),

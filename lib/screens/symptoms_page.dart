@@ -68,7 +68,7 @@ class _SymptomsScreenState extends State<SymptomsScreen> {
                   child: Align(
                     alignment: Alignment.bottomRight,
                     child: Container(
-                        padding: EdgeInsets.only(right: 20.0),
+                        padding: const EdgeInsets.only(right: 20.0),
                         child: Hero(
                             tag: widget.imgPath,
                             child: Image(

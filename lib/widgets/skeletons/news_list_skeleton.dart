@@ -41,7 +41,7 @@ class _NewsListLoaderState extends State<NewsListLoader>
                 borderRadius: BorderRadius.circular(12)),
             width: MediaQuery.of(context).size.width,
             height: 121,
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 13),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
@@ -95,7 +95,7 @@ class _NewsListLoaderState extends State<NewsListLoader>
                 borderRadius: BorderRadius.circular(12)),
             width: MediaQuery.of(context).size.width,
             height: 121,
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 13),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
@@ -149,7 +149,7 @@ class _NewsListLoaderState extends State<NewsListLoader>
                 borderRadius: BorderRadius.circular(12)),
             width: MediaQuery.of(context).size.width,
             height: 121,
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 13),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[

@@ -38,7 +38,7 @@ class _CountryListLoaderState extends State<CountryListLoader> with SingleTicker
 
           //Row 1
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -153,7 +153,7 @@ class _CountryListLoaderState extends State<CountryListLoader> with SingleTicker
 
           //Row 2
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -270,7 +270,7 @@ class _CountryListLoaderState extends State<CountryListLoader> with SingleTicker
           Flexible(
             fit: FlexFit.loose,
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[

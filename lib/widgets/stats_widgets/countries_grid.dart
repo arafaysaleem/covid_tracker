@@ -18,8 +18,7 @@ class _CountriesGridState extends State<CountriesGrid> {
   Widget build(BuildContext context) {
     return GridView.builder(
       physics: BouncingScrollPhysics(),
-      padding:
-      EdgeInsets.all(15),
+      padding: const EdgeInsets.all(15),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 30,

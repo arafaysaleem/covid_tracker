@@ -119,7 +119,7 @@ class MythsScreen extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.bottomRight,
                     child: Container(
-                        padding: EdgeInsets.only(right: 10.0),
+                        padding: const EdgeInsets.only(right: 10.0),
                         child: Hero(
                             tag: imgPath,
                             child: Image(
@@ -201,7 +201,7 @@ class MythsScreen extends StatelessWidget {
 
                     //Dot Indicator
                     Container(
-                      margin: EdgeInsets.only(bottom: 25),
+                      margin: const EdgeInsets.only(bottom: 25),
                       child: SmoothPageIndicator(
                         controller: controller,
                         count: myths.length,

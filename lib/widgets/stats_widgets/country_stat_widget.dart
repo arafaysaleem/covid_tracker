@@ -92,8 +92,8 @@ class _CountryStatWidgetState extends State<CountryStatWidget> with TickerProvid
                                 color: Colors.white60,
                                 width: 1.8,
                               )),
-                          margin: EdgeInsets.only(left: 20),
-                          padding: EdgeInsets.all(7),
+                          margin: const EdgeInsets.only(left: 20),
+                          padding: const EdgeInsets.all(7),
                           child: Icon(
                             Icons.arrow_back_ios,
                             color: Colors.white60,
@@ -221,7 +221,7 @@ class _CountryStatWidgetState extends State<CountryStatWidget> with TickerProvid
                   if (snapshot.hasError) {
                     //error container
                     return Container(
-                      margin: EdgeInsets.all(15.0),
+                      margin: const EdgeInsets.all(15.0),
                       decoration: BoxDecoration(
                         color: Color(0xfff3cfff),
                         borderRadius: BorderRadius.circular(16),

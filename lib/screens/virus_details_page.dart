@@ -5,7 +5,7 @@ class VirusDetailsScreen extends StatelessWidget {
   final imgPath;
   final Color color;
 
-  List<Map<String, String>> details = [
+  static List<Map<String, String>> details = [
     {
       "detail": "Introduction",
       "desc":
@@ -48,7 +48,7 @@ class VirusDetailsScreen extends StatelessWidget {
     },
   ];
 
-  VirusDetailsScreen({Key key, this.imgPath, this.color}) : super(key: key);
+  const VirusDetailsScreen({Key key, this.imgPath, this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +124,7 @@ class VirusDetailsScreen extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(25, 20, 25, 0),
                 child: ListView.builder(
                   physics: BouncingScrollPhysics(),
-                  padding: EdgeInsets.all(0),
+                  padding: const EdgeInsets.all(0),
                   scrollDirection: Axis.vertical,
                   itemCount: details.length,
                   itemBuilder: (context, index) {

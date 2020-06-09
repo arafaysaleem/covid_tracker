@@ -37,7 +37,7 @@ class CreditsScreen extends StatelessWidget {
                             color: Colors.black,
                             width: 1.8,
                           )),
-                      padding: EdgeInsets.all(6),
+                      padding: const EdgeInsets.all(6),
                       child: Icon(
                         Icons.arrow_back_ios,
                         color: Colors.black,
@@ -180,8 +180,8 @@ class CreditsScreen extends StatelessWidget {
                     ),
                     borderRadius: BorderRadius.circular(6),
                   ),
-                  margin: EdgeInsets.symmetric(horizontal: 15),
-                  padding: EdgeInsets.symmetric(vertical: 10),
+                  margin: const EdgeInsets.symmetric(horizontal: 15),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,

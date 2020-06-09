@@ -73,7 +73,7 @@ class _WorldStatLoaderState extends State<WorldStatLoader> with SingleTickerProv
 
           //Image Container
           Padding(
-            padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+            padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
             child: Material(
               elevation: 6,
               borderRadius: BorderRadius.circular(16),
@@ -83,11 +83,11 @@ class _WorldStatLoaderState extends State<WorldStatLoader> with SingleTickerProv
                   borderRadius: BorderRadius.circular(16),
                 ),
                 width: double.infinity,
-                padding: EdgeInsets.symmetric(vertical: 15),
+                padding: const EdgeInsets.symmetric(vertical: 15),
                 child: Column(
                   children: <Widget>[
                     Container(
-                      margin: EdgeInsets.symmetric(horizontal: 18, vertical: 7),
+                      margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 7),
                       decoration: BoxDecoration(
                         color: Colors.grey,
                         borderRadius: BorderRadius.circular(10),
@@ -96,7 +96,7 @@ class _WorldStatLoaderState extends State<WorldStatLoader> with SingleTickerProv
                       width: double.infinity,
                     ),
                     Container(
-                      margin: EdgeInsets.symmetric(horizontal: 18, vertical: 7),
+                      margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 7),
                       decoration: BoxDecoration(
                         color: Colors.grey,
                         borderRadius: BorderRadius.circular(10),
@@ -105,7 +105,7 @@ class _WorldStatLoaderState extends State<WorldStatLoader> with SingleTickerProv
                       width: double.infinity,
                     ),
                     Container(
-                      margin: EdgeInsets.symmetric(horizontal: 18, vertical: 7),
+                      margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 7),
                       decoration: BoxDecoration(
                         color: Colors.grey,
                         borderRadius: BorderRadius.circular(10),
@@ -114,7 +114,7 @@ class _WorldStatLoaderState extends State<WorldStatLoader> with SingleTickerProv
                       width: double.infinity,
                     ),
                     Container(
-                      margin: EdgeInsets.symmetric(horizontal: 18, vertical: 7),
+                      margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 7),
                       decoration: BoxDecoration(
                         color: Colors.grey,
                         borderRadius: BorderRadius.circular(10),
@@ -123,7 +123,7 @@ class _WorldStatLoaderState extends State<WorldStatLoader> with SingleTickerProv
                       width: double.infinity,
                     ),
                     Container(
-                      margin: EdgeInsets.symmetric(horizontal: 18, vertical: 7),
+                      margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 7),
                       decoration: BoxDecoration(
                         color: Colors.grey,
                         borderRadius: BorderRadius.circular(10),
@@ -132,7 +132,7 @@ class _WorldStatLoaderState extends State<WorldStatLoader> with SingleTickerProv
                       width: double.infinity,
                     ),
                     Container(
-                      margin: EdgeInsets.symmetric(horizontal: 18, vertical: 7),
+                      margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 7),
                       decoration: BoxDecoration(
                         color: Colors.grey,
                         borderRadius: BorderRadius.circular(10),
@@ -152,7 +152,7 @@ class _WorldStatLoaderState extends State<WorldStatLoader> with SingleTickerProv
 
           //Radial & Global Cases Container
           Padding(
-            padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+            padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
             child: Material(
               borderRadius: BorderRadius.circular(16),
               elevation: 4,
@@ -162,7 +162,7 @@ class _WorldStatLoaderState extends State<WorldStatLoader> with SingleTickerProv
                   borderRadius: BorderRadius.circular(16),
                 ),
                 height: 308,
-                padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
+                padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -314,7 +314,7 @@ class _WorldStatLoaderState extends State<WorldStatLoader> with SingleTickerProv
                 ),
                 height: 225,
                 width: double.infinity,
-                padding: EdgeInsets.symmetric(vertical: 30, horizontal: 25),
+                padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 25),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16.0),

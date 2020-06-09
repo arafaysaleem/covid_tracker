@@ -5,9 +5,9 @@ import 'my_web_view.dart';
 
 // ignore: must_be_immutable
 class NewsTile extends StatelessWidget {
-  Map<String, dynamic> article;
+  final Map<String, dynamic> article;
 
-  NewsTile({this.article});
+  const NewsTile({this.article});
 
   @override
   Widget build(BuildContext context) {

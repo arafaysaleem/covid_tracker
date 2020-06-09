@@ -63,7 +63,7 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
 
           //error container
           return Container(
-            margin: EdgeInsets.all(15.0),
+            margin: const EdgeInsets.all(15.0),
             decoration: BoxDecoration(
               color: Color(0xfff3cfff),
               borderRadius: BorderRadius.circular(16),
@@ -161,7 +161,7 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
 
                 //Global Cases Container
                 Padding(
-                  padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                  padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
                   child: GlobalCaseContainer(globalData: globalData,),
                 ),
 
@@ -185,7 +185,7 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
                     children: <Widget>[
                       //Title and View All
                       Padding(
-                        padding: EdgeInsets.fromLTRB(15, 0, 6, 0),
+                        padding: const EdgeInsets.fromLTRB(15, 0, 6, 0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[

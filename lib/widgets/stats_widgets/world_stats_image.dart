@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class WorldStatsImage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+      padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
       child: Material(
         elevation: 6,
         borderRadius: BorderRadius.circular(16),
@@ -12,7 +14,7 @@ class WorldStatsImage extends StatelessWidget {
           decoration: BoxDecoration(
               color: Colors.purple[900],
               borderRadius: BorderRadius.circular(16)),
-          padding: EdgeInsets.fromLTRB(12, 20, 12, 20),
+          padding: const EdgeInsets.fromLTRB(12, 20, 12, 20),
           child: Container(
             child: Image(
               width:

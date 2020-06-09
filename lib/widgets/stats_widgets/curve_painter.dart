@@ -40,6 +40,12 @@ class _CurvePainterState extends State<CurvePainter>
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       height: widget.size.height,

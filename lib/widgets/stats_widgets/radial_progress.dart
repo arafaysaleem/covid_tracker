@@ -57,6 +57,20 @@ class _RadialProgressState extends State<RadialProgress> with TickerProviderStat
   Widget build(BuildContext context) {
 
     return AnimatedBuilder(
+      child: Material(
+        animationDuration: fillDuration,
+        elevation: 4,
+        borderRadius: BorderRadius.circular(10),
+        child: Container(
+          width: 17,
+          height: 17,
+          decoration: BoxDecoration(
+            color: widget.endClr,
+            border: Border.all(color: Colors.white, width: 4),
+            shape: BoxShape.circle,
+          ),
+        ),
+      ),
       animation: _radialAnimation,
       builder: (context, child) => Container(
         width: 168,
@@ -69,7 +83,7 @@ class _RadialProgressState extends State<RadialProgress> with TickerProviderStat
               child: Container(
                 height: 152.0,
                 width: 152.0,
-                padding: EdgeInsets.all(40.0),
+                padding: const EdgeInsets.all(40.0),
                 child: AnimatedOpacity(
                   curve: Curves.fastLinearToSlowEaseIn,
                   opacity: double.parse(getPercent()) > 0.3 ? 1.0 : 0.0,
@@ -101,20 +115,7 @@ class _RadialProgressState extends State<RadialProgress> with TickerProviderStat
                   cos((2*pi*progressDegrees/360.0)-(pi/2)),
                   sin((2*pi*progressDegrees/360.0)-(pi/2))
                 ),
-                child: Material(
-                  animationDuration: fillDuration,
-                  elevation: 4,
-                  borderRadius: BorderRadius.circular(10),
-                  child: Container(
-                    width: 17,
-                    height: 17,
-                    decoration: BoxDecoration(
-                      color: widget.endClr,
-                      border: Border.all(color: Colors.white, width: 4),
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                ),
+                child: child,
               ),
             )
           ],

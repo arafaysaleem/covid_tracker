@@ -102,6 +102,7 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
                 itemCount: 4,
                 physics: BouncingScrollPhysics(),
                 onPageChanged: (index) {
+                  selectedBottomBarIndex = index;
                   setState(() {
                     selectedBottomBarIndex = index;
                   });
@@ -120,10 +121,8 @@ class _WorldStatScreenState extends State<WorldStatScreen> {
       ),
       bottomNavigationBar: AnimatedBottomBar(
         onItemTap: (index) {
-          setState(() {
-            _controller.animateToPage(index,
-                duration: Duration(milliseconds: 150), curve: Curves.easeInOut);
-          });
+          _controller.animateToPage(index,
+              duration: Duration(milliseconds: 150), curve: Curves.easeInOut);
         },
         barItems: barItems,
         currBarItem: selectedBottomBarIndex,

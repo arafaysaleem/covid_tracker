@@ -76,7 +76,7 @@ class _GlobalCaseContainerState extends State<GlobalCaseContainer> {
             color: Colors.white,
             borderRadius: BorderRadius.circular(16)),
         height: 298,
-        padding: EdgeInsets.fromLTRB(5, 16, 5, 16),
+        padding: const EdgeInsets.fromLTRB(5, 16, 5, 16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -209,7 +209,7 @@ class _GlobalCaseContainerState extends State<GlobalCaseContainer> {
                                 : Colors.white,
                             borderRadius:
                             BorderRadius.circular(10)),
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                           vertical: 12,
                         ),
                         child: Center(

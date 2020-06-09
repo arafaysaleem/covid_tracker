@@ -11,7 +11,7 @@ class SmallGraphPanel extends StatelessWidget {
   final Color lineColor;
   final bool isIncreasing;
 
-  SmallGraphPanel({
+  const SmallGraphPanel({
     @required this.label,
     @required this.icon,
     @required this.value,
@@ -28,7 +28,7 @@ class SmallGraphPanel extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       width: 185,
       height: 62,
-      padding: EdgeInsets.only(left: 5, right: 6),
+      padding: const EdgeInsets.only(left: 5, right: 6),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         gradient: LinearGradient(

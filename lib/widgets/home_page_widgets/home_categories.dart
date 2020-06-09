@@ -3,7 +3,9 @@ import 'home_category.dart';
 
 // ignore: must_be_immutable
 class HomeCategories extends StatelessWidget {
-  List<Map<String,dynamic>> categoryData=[
+  const HomeCategories();
+
+  static List<Map<String,dynamic>> categoryData=[
     {
       "imgLeft": 5.0,
       "imgBottom": 19.0,
@@ -79,4 +81,5 @@ class HomeCategories extends StatelessWidget {
       },
     );
   }
+
 }

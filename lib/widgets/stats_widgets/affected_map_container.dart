@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AffectedAreasContainer extends StatelessWidget {
+
+  const AffectedAreasContainer();
+
   @override
   Widget build(BuildContext context) {
     return  Material(

@@ -27,7 +27,7 @@ class NewCaseBoxes extends StatelessWidget {
                   color: color,
                   borderRadius: BorderRadius.circular(13),
                 ),
-                padding: EdgeInsets.fromLTRB(12, 12, 12, 10),
+                padding: const EdgeInsets.fromLTRB(12, 12, 12, 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -66,7 +66,7 @@ class NewCaseBoxes extends StatelessWidget {
                 color: Colors.grey[200],
                 borderRadius: BorderRadius.circular(13),
               ),
-              padding: EdgeInsets.fromLTRB(12, 12, 12, 10),
+              padding: const EdgeInsets.fromLTRB(12, 12, 12, 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -111,7 +111,7 @@ class NewCaseBoxes extends StatelessWidget {
                 color: Colors.grey[200],
                 borderRadius: BorderRadius.circular(13),
               ),
-              padding: EdgeInsets.fromLTRB(12, 12, 12, 10),
+              padding: const EdgeInsets.fromLTRB(12, 12, 12, 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -149,7 +149,7 @@ class NewCaseBoxes extends StatelessWidget {
                   color: color,
                   borderRadius: BorderRadius.circular(13),
                 ),
-                padding: EdgeInsets.fromLTRB(12, 12, 12, 10),
+                padding: const EdgeInsets.fromLTRB(12, 12, 12, 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

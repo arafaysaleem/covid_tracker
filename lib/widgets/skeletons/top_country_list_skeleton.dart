@@ -160,14 +160,14 @@ class _TopCountryLoaderState extends State<TopCountryLoader>
                     ),
                     height: 170,
                     width: 138,
-                    padding: EdgeInsets.only(left: 24),
+                    padding: const EdgeInsets.only(left: 24),
                     child: Column(
                       children: <Widget>[
                         SizedBox(
                           height: 16,
                         ),
                         Container(
-                          margin: EdgeInsets.only(left: 20),
+                          margin: const EdgeInsets.only(left: 20),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(8),

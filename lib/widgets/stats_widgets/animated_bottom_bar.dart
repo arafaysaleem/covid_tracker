@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 import '../../models/bottom_bar_item.dart';
 import 'package:flutter/material.dart';
 
@@ -29,59 +31,110 @@ class _AnimatedBottomBarState extends State<AnimatedBottomBar> with TickerProvid
         padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: _barItemBuilder(),
+            children: <Widget>[
+
+              AnimatedBarItem(
+                currBarItem: widget.currBarItem,
+                isSelected: widget.currBarItem == 0,
+                animationDuration: widget.animationDuration,
+                barItem: widget.barItems[0],
+                elevation: widget.elevation,
+                onItemTap: widget.onItemTap,
+                thisItemIndex: 0,
+              ),
+
+              AnimatedBarItem(
+                currBarItem: widget.currBarItem,
+                isSelected: widget.currBarItem == 1,
+                animationDuration: widget.animationDuration,
+                barItem: widget.barItems[1],
+                elevation: widget.elevation,
+                onItemTap: widget.onItemTap,
+                thisItemIndex: 1,
+              ),
+
+              AnimatedBarItem(
+                currBarItem: widget.currBarItem,
+                isSelected: widget.currBarItem == 2,
+                animationDuration: widget.animationDuration,
+                barItem: widget.barItems[2],
+                elevation: widget.elevation,
+                onItemTap: widget.onItemTap,
+                thisItemIndex: 2,
+              ),
+
+              AnimatedBarItem(
+                currBarItem: widget.currBarItem,
+                isSelected: widget.currBarItem == 3,
+                animationDuration: widget.animationDuration,
+                barItem: widget.barItems[3],
+                elevation: widget.elevation,
+                onItemTap: widget.onItemTap,
+                thisItemIndex: 3,
+              ),
+            ],
+          ),
+        ),
+    );
+  }
+}
+
+// ignore: must_be_immutable
+class AnimatedBarItem extends StatefulWidget {
+  bool isSelected;int currBarItem;BarItem barItem;
+  int thisItemIndex;
+  final Duration animationDuration;
+  final double elevation;
+  final ValueChanged<int> onItemTap;
+  
+  AnimatedBarItem({this.isSelected, this.thisItemIndex,this.barItem,this.currBarItem,this.animationDuration, this.elevation, this.onItemTap});
+  @override
+  _AnimatedBarItemState createState() => _AnimatedBarItemState();
+}
+
+class _AnimatedBarItemState extends State<AnimatedBarItem> with TickerProviderStateMixin{
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedContainer(
+      padding: widget.isSelected? EdgeInsets.symmetric(horizontal: 18, vertical: 8) :EdgeInsets.symmetric(horizontal: 0,vertical: 8),
+      duration: widget.animationDuration,
+      decoration: BoxDecoration(
+        color: widget.isSelected? widget.barItem.color.withOpacity(0.15): Colors.transparent,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: InkWell(
+        splashColor: Colors.transparent,
+        onTap: () {
+          widget.onItemTap(widget.thisItemIndex);
+        },
+        child: Row(
+          children: <Widget>[
+            Icon(
+              widget.barItem.icon,
+              color: widget.isSelected ? widget.barItem.color : Colors.black,
+              size: widget.barItem.iconSize,
+            ),
+            SizedBox(
+              width: 5,
+            ),
+            AnimatedSize(
+              curve: Curves.easeInOut,
+              duration: widget.animationDuration,
+              vsync: this,
+              child: Text(
+                widget.isSelected ? "${widget.barItem.text}" : "",
+                style: TextStyle(
+                  color: widget.barItem.color,
+                  fontFamily: "Montserrat",
+                  fontWeight: FontWeight.w600,
+                  fontSize: widget.barItem.textSize,
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );
   }
-
-  List<Widget> _barItemBuilder() {
-    List<Widget> barWidgets = [];
-    for (int i = 0; i < widget.barItems.length; i++) {
-      BarItem barItem = widget.barItems[i];
-      bool isSelected = widget.currBarItem == i;
-      barWidgets.add(AnimatedContainer(
-        padding: isSelected? const EdgeInsets.symmetric(horizontal: 18, vertical: 8) :const EdgeInsets.symmetric(horizontal: 0,vertical: 8),
-        duration: widget.animationDuration,
-        decoration: BoxDecoration(
-          color: isSelected? barItem.color.withOpacity(0.15): Colors.transparent,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: InkWell(
-          splashColor: Colors.transparent,
-          onTap: () {
-            widget.onItemTap(i);
-          },
-          child: Row(
-            children: <Widget>[
-              Icon(
-                barItem.icon,
-                color: isSelected ? barItem.color : Colors.black,
-                size: barItem.iconSize,
-              ),
-              SizedBox(
-                width: 5,
-              ),
-              AnimatedSize(
-                curve: Curves.easeInOut,
-                duration: widget.animationDuration,
-                vsync: this,
-                child: Text(
-                  isSelected ? "${barItem.text}" : "",
-                  style: TextStyle(
-                      color: barItem.color,
-                      fontFamily: "Montserrat",
-                      fontWeight: FontWeight.w600,
-                      fontSize: barItem.textSize,
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-      ));
-    }
-
-    return barWidgets;
-  }
 }
+

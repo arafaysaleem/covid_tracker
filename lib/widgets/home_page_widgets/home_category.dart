@@ -9,9 +9,9 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class CategoryTab extends StatelessWidget {
   final imgPath, tabName, tabDesc, imgHeight, imgLeft, imgBottom;
-  Color color;
+  final Color color;
 
-  CategoryTab(
+  const CategoryTab(
       {this.imgPath,
       this.tabName,
       this.color,
@@ -52,7 +52,7 @@ class CategoryTab extends StatelessWidget {
     return InkWell(
       onTap: getPage(tabName, context),
       child: Container(
-        margin: EdgeInsets.fromLTRB(20, 0, 20, 15),
+        margin: const EdgeInsets.fromLTRB(20, 0, 20, 15),
         height: 142,
         child: Stack(
           children: <Widget>[
@@ -61,7 +61,7 @@ class CategoryTab extends StatelessWidget {
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
-                  padding: EdgeInsets.only(left: 150, right: 20),
+                  padding: const EdgeInsets.only(left: 150, right: 20),
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),

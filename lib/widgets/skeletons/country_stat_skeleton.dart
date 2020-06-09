@@ -83,7 +83,7 @@ class _CountryStatLoaderState extends State<CountryStatLoader> with TickerProvid
                         color: Colors.grey[300],
                         borderRadius: BorderRadius.circular(13),
                       ),
-                      padding: EdgeInsets.fromLTRB(12, 12, 12, 10),
+                      padding: const EdgeInsets.fromLTRB(12, 12, 12, 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -123,7 +123,7 @@ class _CountryStatLoaderState extends State<CountryStatLoader> with TickerProvid
                       color: Colors.grey[300],
                       borderRadius: BorderRadius.circular(13),
                     ),
-                    padding: EdgeInsets.fromLTRB(12, 12, 12, 10),
+                    padding: const EdgeInsets.fromLTRB(12, 12, 12, 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -168,7 +168,7 @@ class _CountryStatLoaderState extends State<CountryStatLoader> with TickerProvid
                       color: Colors.grey[300],
                       borderRadius: BorderRadius.circular(13),
                     ),
-                    padding: EdgeInsets.fromLTRB(12, 12, 12, 10),
+                    padding: const EdgeInsets.fromLTRB(12, 12, 12, 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -207,7 +207,7 @@ class _CountryStatLoaderState extends State<CountryStatLoader> with TickerProvid
                         color: Colors.grey[300],
                         borderRadius: BorderRadius.circular(13),
                       ),
-                      padding: EdgeInsets.fromLTRB(12, 12, 12, 10),
+                      padding: const EdgeInsets.fromLTRB(12, 12, 12, 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -262,7 +262,7 @@ class _CountryStatLoaderState extends State<CountryStatLoader> with TickerProvid
             FadeTransition(
               opacity: _controller,
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 10,vertical: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 16),
                 decoration: BoxDecoration(
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(13),
