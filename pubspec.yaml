@@ -27,6 +27,7 @@ dependencies:
   rect_getter: ^0.1.0
   url_launcher: ^5.4.10
   shared_preferences: ^0.5.7+3
+  flutter_launcher_icons: ^0.7.5
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -36,6 +37,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/launcher/launcher.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -57,6 +63,7 @@ flutter:
      - assets/updates/
      - assets/stats/
      - assets/flags/
+     - assets/launcher/
   fonts:
      - family: Montserrat
        fonts:
