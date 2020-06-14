@@ -49,7 +49,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Covid-19 Updates",
           style: TextStyle(
               color: Colors.black,
@@ -59,7 +59,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
         ),
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: Colors.black,
             size: 26,
@@ -76,7 +76,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                 refresh();
               });
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.refresh,
               color: Colors.black,
               size: 26,
@@ -109,7 +109,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                   //Sort by
                   Padding(
                     padding: MediaQuery.of(context).size.width>360.0? EdgeInsets.only(left: 20):EdgeInsets.only(left: 0),
-                    child: Text(
+                    child: const Text(
                       "Sort By",
                       style: TextStyle(
                         fontFamily: "Montserrat",
@@ -122,7 +122,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
 
                   SizedBox(width: 10),
 
-                  Expanded(child: Icon(Icons.filter_list,size: 26,)),
+                  Expanded(child: const Icon(Icons.filter_list,size: 26,)),
 
                   SizedBox(width: 10),
 
@@ -149,14 +149,14 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                           ),
                           elevation: 20,
                           iconSize: 28,
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.expand_more,
                             color: Colors.white,
                           ),
                           items: <DropdownMenuItem<String>>[
-                            DropdownMenuItem(
+                            const DropdownMenuItem(
                               value: "publishedAt",
-                              child: Text(
+                              child: const Text(
                                 "Latest",
                                 style: TextStyle(
                                   fontFamily: "Montserrat",
@@ -166,9 +166,9 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                                 ),
                               ),
                             ),
-                            DropdownMenuItem(
+                            const  DropdownMenuItem(
                               value: "popular",
-                              child: Text(
+                              child: const Text(
                                 "Popular",
                                 style: TextStyle(
                                   fontFamily: "Montserrat",
@@ -178,9 +178,9 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                                 ),
                               ),
                             ),
-                            DropdownMenuItem(
+                            const DropdownMenuItem(
                               value: "Last Week",
-                              child: Text(
+                              child: const Text(
                                 "Last Week",
                                 style: TextStyle(
                                   fontFamily: "Montserrat",
@@ -190,9 +190,9 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                                 ),
                               ),
                             ),
-                            DropdownMenuItem(
+                            const DropdownMenuItem(
                               value: "Last 15",
-                              child: Text(
+                              child: const Text(
                                 "Last 15 days",
                                 style: TextStyle(
                                   fontFamily: "Montserrat",
@@ -202,9 +202,9 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                                 ),
                               ),
                             ),
-                            DropdownMenuItem(
+                            const DropdownMenuItem(
                               value: "Last Month",
-                              child: Text(
+                              child: const Text(
                                 "Last Month",
                                 style: TextStyle(
                                   fontFamily: "Montserrat",

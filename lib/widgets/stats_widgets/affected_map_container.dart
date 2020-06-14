@@ -36,9 +36,9 @@ class AffectedAreasContainer extends StatelessWidget {
 
                   //More horiz icon
                   IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.more_horiz,
-                      color: Colors.purple[700],
+                      color: Color(0xFF7B1FA2),
                       size: 28,
                     ),
                     onPressed: () {},

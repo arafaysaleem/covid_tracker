@@ -72,6 +72,7 @@ class CategoryTab extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      
                       Text(
                         "$tabName",
                         style: TextStyle(

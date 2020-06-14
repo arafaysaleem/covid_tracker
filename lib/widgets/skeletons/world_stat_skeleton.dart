@@ -44,7 +44,7 @@ class _WorldStatLoaderState extends State<WorldStatLoader> with SingleTickerProv
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 15, right: 15, bottom: 5),
-                  child: Icon(
+                  child: const Icon(
                     Icons.arrow_back,
                     color: Colors.grey,
                     size: 30,

@@ -46,7 +46,7 @@ class _DefaultCountryScreenState extends State<DefaultCountryScreen> {
                   borderRadius: BorderRadius.circular(13),
                 ),
                 child: Center(
-                  child: Text(
+                  child: const Text(
                     "Choose a default",
                     style: TextStyle(
                       fontSize: 20,

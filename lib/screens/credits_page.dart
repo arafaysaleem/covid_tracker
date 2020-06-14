@@ -38,7 +38,7 @@ class CreditsScreen extends StatelessWidget {
                             width: 1.8,
                           )),
                       padding: const EdgeInsets.all(6),
-                      child: Icon(
+                      child: const Icon(
                         Icons.arrow_back_ios,
                         color: Colors.black,
                         size: 18,
@@ -50,7 +50,7 @@ class CreditsScreen extends StatelessWidget {
                     width: MediaQuery.of(context).size.width > 360 ? 80 : 60),
                 Padding(
                   padding: const EdgeInsets.only(top: 25),
-                  child: Text(
+                  child: const Text(
                     "Credits",
                     style: TextStyle(
                       fontSize: 21,
@@ -117,7 +117,7 @@ class CreditsScreen extends StatelessWidget {
                       ),
                       padding:
                           EdgeInsets.symmetric(horizontal: 25, vertical: 8),
-                      child: Text(
+                      child: const Text(
                         "License",
                         style: TextStyle(
                           fontSize: 18,
@@ -139,7 +139,7 @@ class CreditsScreen extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             child: Padding(
               padding: const EdgeInsets.all(15),
-              child: Text(
+              child: const Text(
                 "Covid Tracker is an app made with Flutter framework to provide worldwide information related to Covid-19 pandemic. It shows the affected, recovered, deaths, tests and infection probability for each country. As it is an open source app feel free to contribute and clap in GitHub.",
                 style: TextStyle(
                   fontSize: 16,
@@ -196,7 +196,7 @@ class CreditsScreen extends StatelessWidget {
                           color: Colors.black,
                         ),
                       ),
-                      Icon(
+                      const Icon(
                         Icons.favorite,
                         color: Colors.red,
                         size: 18,

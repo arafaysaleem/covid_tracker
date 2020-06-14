@@ -21,7 +21,7 @@ class GlobalStatScreen extends StatefulWidget {
 class _GlobalStatScreenState extends State<GlobalStatScreen> {
   ApiClient _client = ApiClient();
   Map<String, dynamic> globalData;
-  Future<Map<String,dynamic>> _globalFuture;
+  Future<Map<String, dynamic>> _globalFuture;
   Future<List<SummaryEachCountry>> _topSixFuture;
 
   Future<List<SummaryEachCountry>> getTopSix() async {
@@ -31,7 +31,7 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
     //Initially i fetched top 5 and added pakistan details following that
     //Because i wanted to show pakistan details in top 6 stats :)
     var pakStats =
-    await _client.getStatsResponse(StateLocation.SPECIFIC, code: "PK");
+        await _client.getStatsResponse(StateLocation.SPECIFIC, code: "PK");
     json.insert(0, pakStats);
 
     json.forEach((country) {
@@ -50,8 +50,8 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
   @override
   void initState() {
     super.initState();
-    _globalFuture=getGlobalData();
-    _topSixFuture=getTopSix();
+    _globalFuture = getGlobalData();
+    _topSixFuture = getTopSix();
   }
 
   @override
@@ -60,7 +60,6 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
       future: _globalFuture,
       builder: (context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
         if (snapshot.hasError) {
-
           //error container
           return Container(
             margin: const EdgeInsets.all(15.0),
@@ -102,17 +101,15 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
               ),
             );
           } else {
-
             globalData = snapshot.data;
 
             //Actual Body
             return ListView(
               physics: BouncingScrollPhysics(),
               children: <Widget>[
-
                 //Back Arrow And Title
                 Padding(
-                  padding: const EdgeInsets.only(top:15),
+                  padding: const EdgeInsets.only(top: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,18 +118,18 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
                       InkWell(
                         onTap: () => Navigator.of(context).pop(),
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 15,right: 15,bottom: 5),
-                          child: Icon(
+                          padding: const EdgeInsets.only(
+                              left: 15, right: 15, bottom: 5),
+                          child: const Icon(
                             Icons.arrow_back,
-                            color: Colors.purple[900],
+                            color: Color(0xFF4A148C),
                             size: 26,
                           ),
                         ),
                       ),
 
                       SizedBox(
-                        width: MediaQuery.of(context).size.width >
-                            360.0
+                        width: MediaQuery.of(context).size.width > 360.0
                             ? 55.0
                             : 40.0,
                       ),
@@ -150,7 +147,7 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
                   ),
                 ),
 
-                SizedBox(height:10),
+                SizedBox(height: 10),
 
                 //Image Container
                 WorldStatsImage(),
@@ -162,7 +159,9 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
                 //Global Cases Container
                 Padding(
                   padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-                  child: GlobalCaseContainer(globalData: globalData,),
+                  child: GlobalCaseContainer(
+                    globalData: globalData,
+                  ),
                 ),
 
                 SizedBox(
@@ -207,14 +206,16 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
                                     curve: Curves.easeInOut);
                               },
                               child: Padding(
-                                padding: const EdgeInsets.fromLTRB(10, 4, 10, 4),
-                                child: Text(
+                                padding:
+                                    const EdgeInsets.fromLTRB(10, 4, 10, 4),
+                                child: const Text(
                                   "View all",
                                   style: TextStyle(
-                                      fontFamily: "Montserrat",
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.purple[800]),
+                                    fontFamily: "Montserrat",
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    color: Color(0xFF6A1B9A),
+                                  ),
                                 ),
                               ),
                             ),
@@ -232,11 +233,10 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
                           future: _topSixFuture,
                           builder: (context,
                               AsyncSnapshot<List<SummaryEachCountry>>
-                              snapshot) {
+                                  snapshot) {
                             if (snapshot.hasError) {
                               return Container(
-                                margin:
-                                EdgeInsets.symmetric(horizontal: 15.0),
+                                margin: const EdgeInsets.symmetric(horizontal: 15.0),
                                 decoration: BoxDecoration(
                                   color: Color(0xfff3cfff),
                                   borderRadius: BorderRadius.circular(16),
@@ -256,27 +256,27 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
                             }
                             return snapshot.hasData
                                 ? snapshot.data is FetchDataException
-                                ? Container(
-                              decoration: BoxDecoration(
-                                color: Color(0xfff3cfff),
-                                borderRadius:
-                                BorderRadius.circular(16),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  snapshot.data.toString(),
-                                  style: TextStyle(
-                                    fontFamily: "Montserrat",
-                                    fontSize: 21,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.red,
-                                  ),
-                                ),
-                              ),
-                            )
-                                : TopCountryList(
-                              topSixList: snapshot.data,
-                            )
+                                    ? Container(
+                                        decoration: BoxDecoration(
+                                          color: Color(0xfff3cfff),
+                                          borderRadius:
+                                              BorderRadius.circular(16),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            snapshot.data.toString(),
+                                            style: TextStyle(
+                                              fontFamily: "Montserrat",
+                                              fontSize: 21,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.red,
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    : TopCountryList(
+                                        topSixList: snapshot.data,
+                                      )
                                 : TopCountryLoader();
                           },
                         ),
@@ -287,8 +287,7 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
               ],
             );
           }
-        }
-        else {
+        } else {
           return WorldStatLoader();
         }
       },

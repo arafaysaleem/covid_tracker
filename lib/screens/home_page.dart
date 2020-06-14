@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 0,
         leading: IconButton(
           onPressed: () {},
-          icon: Icon(
+          icon: const Icon(
             Icons.menu,
             color: Colors.black,
           ),
@@ -27,14 +27,14 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: <Widget>[
           IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.info_outline,
               color: Colors.black,
             ),
           )
         ],
         centerTitle: true,
-        title: Text(
+        title: const Text(
           "Covid-19 Tracker",
           style: TextStyle(
             fontSize: 20,

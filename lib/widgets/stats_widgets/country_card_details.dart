@@ -174,7 +174,7 @@ class _CountryCardDetailsState extends State<CountryCardDetails> with TickerProv
               borderRadius: BorderRadius.circular(13),
             ),
             child: Center(
-              child: Text(
+              child: const Text(
                 "Set as default",
                 style: TextStyle(
                   fontSize: 20,

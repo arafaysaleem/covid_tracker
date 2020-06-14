@@ -31,12 +31,12 @@ class _MyWebViewState extends State<MyWebView> {
           onTap: () {
             Navigator.of(context).pop();
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back,
             color: Colors.black,
           ),
         ),
-        title: Text(
+        title: const Text(
           "COVID TODAY",
           style: TextStyle(
               color: Colors.black,
@@ -61,7 +61,7 @@ class _MyWebViewState extends State<MyWebView> {
             ? Expanded(
                 child: Align(
                 alignment: Alignment.center,
-                child: Text("HTTP 404 Error: Failed to load resource",style: TextStyle(color: Colors.grey,fontSize: 30),),
+                child: const Text("HTTP 404 Error: Failed to load resource",style: TextStyle(color: Colors.grey,fontSize: 30),),
                 ),
             ) 
             :Flexible(

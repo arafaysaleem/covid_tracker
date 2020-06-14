@@ -51,13 +51,13 @@ class _CaseBarsState extends State<CaseBars> {
               SizedBox(width: 15),
 
               Expanded(
-                child: Text(
+                child: const Text(
                   "Total Active",
                   style: TextStyle(
                     fontSize: 14,
                     fontFamily: "Montserrat",
                     fontWeight: FontWeight.w600,
-                    color: Colors.grey[800],
+                    color: Color(0xFF424242),
                   ),
                 ),
               ),
@@ -126,13 +126,13 @@ class _CaseBarsState extends State<CaseBars> {
               SizedBox(width: 15),
 
               Expanded(
-                child: Text(
+                child: const Text(
                   "Total Recovered",
                   style: TextStyle(
                     fontSize: 14,
                     fontFamily: "Montserrat",
                     fontWeight: FontWeight.w600,
-                    color: Colors.grey[800],
+                    color: Color(0xFF424242),
                   ),
                 ),
               ),
@@ -201,13 +201,13 @@ class _CaseBarsState extends State<CaseBars> {
               SizedBox(width: 15),
 
               Expanded(
-                child: Text(
+                child: const Text(
                   "Total Deaths",
                   style: TextStyle(
                     fontSize: 14,
                     fontFamily: "Montserrat",
                     fontWeight: FontWeight.w600,
-                    color: Colors.grey[800],
+                    color: Color(0xFF424242),
                   ),
                 ),
               ),

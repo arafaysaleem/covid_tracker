@@ -5,6 +5,7 @@ import '../../widgets/skeletons/country_stat_skeleton.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+// ignore: must_be_immutable
 class CountryStatWidget extends StatefulWidget {
   final color, countryName, countryCode, flagPath, isIncreasing, totalCases;
   Function onBackArrow;
@@ -89,14 +90,15 @@ class _CountryStatWidgetState extends State<CountryStatWidget> with TickerProvid
                               color: Colors.transparent,
                               borderRadius: BorderRadius.circular(5),
                               border: Border.all(
-                                color: Colors.white60,
+                                color: Color(0x99FFFFFF),
                                 width: 1.8,
-                              )),
+                              ),
+                          ),
                           margin: const EdgeInsets.only(left: 20),
                           padding: const EdgeInsets.all(7),
-                          child: Icon(
+                          child: const Icon(
                             Icons.arrow_back_ios,
-                            color: Colors.white60,
+                            color: Color(0x99FFFFFF),
                             size: 21,
                           ),
                         ),
@@ -148,7 +150,7 @@ class _CountryStatWidgetState extends State<CountryStatWidget> with TickerProvid
                       Padding(
                         padding: const EdgeInsets.only(right: 13, top: 3),
                         child: InkWell(
-                          child: Icon(
+                          child: const Icon(
                             Icons.more_horiz,
                             color: Colors.white60,
                             size: 30,

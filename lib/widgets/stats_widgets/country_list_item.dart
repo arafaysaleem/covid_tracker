@@ -51,7 +51,8 @@ class CountryListItem extends StatelessWidget {
             width: width,
             decoration: BoxDecoration(
                 color: itemColorData.backgroundColor,
-                borderRadius: BorderRadius.circular(20)),
+                borderRadius: BorderRadius.circular(20),
+            ),
             child: Stack(
               children: <Widget>[
 
@@ -71,7 +72,8 @@ class CountryListItem extends StatelessWidget {
                               itemColorData.backgroundColor,
                             ],
                             begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter),
+                            end: Alignment.bottomCenter,
+                        ),
                       ),
                     ),
                   ),
@@ -94,10 +96,9 @@ class CountryListItem extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
 
-                      //TODO: Optimize rebuilding of images
                       //Flag
-                      Image.asset(
-                        flagPath,
+                      Image(
+                        image: AssetImage(flagPath),
                         width: 40,
                       ),
 
@@ -145,7 +146,7 @@ class CountryListItem extends StatelessWidget {
                           //Arrow
                           Transform.rotate(
                               angle: isIncreasing ? pi / 4 : (pi / 4) * 3,
-                              child: Icon(
+                              child: const Icon(
                                 Icons.arrow_upward,
                                 color: Colors.white,
                                 size: 19.5,

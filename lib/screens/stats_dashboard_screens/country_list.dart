@@ -64,13 +64,13 @@ class _CountriesScreenState extends State<CountriesScreen> {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(top: 15,bottom: 20),
-            child: Text(
+            child: const Text(
               "Search Any Country",
               style: TextStyle(
                 fontSize: 20,
                 fontFamily: "Montserrat",
                 fontWeight: FontWeight.w600,
-                color: Colors.grey[800],
+                color: Color(0xFF424242),
               ),
             ),
           ),

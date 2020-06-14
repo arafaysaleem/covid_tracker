@@ -119,10 +119,10 @@ class _GlobalCaseContainerState extends State<GlobalCaseContainer> {
                         vertical: 12,
                       ),
                       child: Center(
-                        child: Text(
+                        child: const Text(
                           "Active",
                           style: TextStyle(
-                            color: Colors.purpleAccent[700],
+                            color: Color(0xFFAA00FF),
                             fontFamily: "Montserrat",
                             fontSize: 16,
                             letterSpacing: 0.5,
@@ -168,10 +168,10 @@ class _GlobalCaseContainerState extends State<GlobalCaseContainer> {
                         vertical: 12,
                       ),
                       child: Center(
-                        child: Text(
+                        child: const Text(
                           "Deaths",
                           style: TextStyle(
-                            color: Colors.redAccent[700],
+                            color: Color(0xFFD50000),
                             fontFamily: "Montserrat",
                             fontSize: 16,
                             letterSpacing: 0.5,
@@ -213,10 +213,10 @@ class _GlobalCaseContainerState extends State<GlobalCaseContainer> {
                           vertical: 12,
                         ),
                         child: Center(
-                          child: Text(
+                          child: const Text(
                             "Recovered",
                             style: TextStyle(
-                              color: Colors.greenAccent[700],
+                              color: Color(0xFF00C853),
                               fontFamily: "Montserrat",
                               fontSize: 16,
                               letterSpacing: 0.5,
