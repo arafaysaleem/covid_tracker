@@ -1,7 +1,7 @@
 on:
   push:
-    branches:
-      - master
+    tags:
+      - '*'
 name: Analyze, Build and Release apk(w/o tests)
 jobs:
   build:
