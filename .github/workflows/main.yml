@@ -20,7 +20,7 @@ jobs:
       - run: flutter build apk --split-per-abi
       - uses: actions/upload-artifact@v2
         with:
-          name: release-apk
+          name: stable-release-apk
           path: build/app/outputs/apk/release/*.apk
 #      - name: Create a Release APK
 #        uses: ncipollo/release-action@v1
