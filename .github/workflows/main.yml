@@ -19,7 +19,7 @@ jobs:
       - run: flutter analyze .
       - run: flutter build apk --split-per-abi
       - name: Create a Release APK
-          uses: ncipollo/release-action@v1
-          with:
-            artifacts: "build/app/outputs/apk/release/*.apk"
-            token: ${{ secrets.COVID_TRACKER_TOKEN }}
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/app/outputs/apk/release/*.apk"
+          token: ${{ secrets.COVID_TRACKER_TOKEN }}
