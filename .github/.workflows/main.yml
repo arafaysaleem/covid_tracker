@@ -17,7 +17,7 @@ jobs:
           channel: 'stable'
       - run: flutter pub get
       - run: flutter analyze .
-      - run: flutter build apk --release --split-per-abi
+      - run: flutter build apk --split-per-abi
       - uses: actions/upload-artifact@v1
           with:
             name: release-apk-bundle
