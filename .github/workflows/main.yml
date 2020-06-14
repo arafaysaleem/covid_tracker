@@ -18,7 +18,8 @@ jobs:
       - run: flutter pub get
       - run: flutter analyze .
       - run: flutter build apk --split-per-abi
-      - uses: actions/upload-artifact@v1
-        with:
-          name: release-apk-bundle
-          path: build/app/outputs/apk/release/*.apk
+      - name: Create a Release APK
+          uses: ncipollo/release-action@v1
+          with:
+            artifacts: "build/app/outputs/apk/release/*.apk"
+            token: ${{ secrets.COVID_TRACKER_TOKEN }}
