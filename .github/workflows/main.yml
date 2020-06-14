@@ -1,7 +1,7 @@
 on:
   push:
     tags:
-      - '*'
+      - v*
 name: Analyze, Build and Release apk(w/o tests)
 jobs:
   build:
@@ -18,8 +18,12 @@ jobs:
       - run: flutter pub get
       - run: flutter analyze .
       - run: flutter build apk --split-per-abi
-      - name: Create a Release APK
-        uses: ncipollo/release-action@v1
+        uses: actions/upload-artifact@v2
         with:
-          artifacts: "build/app/outputs/apk/release/*.apk"
-          token: ${{ secrets.COVID_TRACKER_TOKEN }}
+          name: release-apk
+          path: build/app/outputs/apk/release/*.apk
+#      - name: Create a Release APK
+#        uses: ncipollo/release-action@v1
+#        with:
+#          artifacts: "build/app/outputs/apk/release/*.apk"
+#          token: ${{ secrets.COVID_TRACKER_TOKEN }}
