@@ -5,8 +5,8 @@ import '../../widgets/skeletons/top_country_list_skeleton.dart';
 import '../../widgets/skeletons/world_stat_skeleton.dart';
 import '../../widgets/stats_widgets/top_country_list.dart';
 import '../../models/summary_each_country.dart';
-import '../../network_requests/api_client.dart';
 import '../../network_requests/exceptions.dart';
+import '../../network_requests/api_client.dart';
 import 'package:flutter/material.dart';
 
 class GlobalStatScreen extends StatefulWidget {
