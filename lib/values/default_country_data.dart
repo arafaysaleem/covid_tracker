@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class DefaultCountry{
   int color; String countryName, countryCode, flagPath;
   bool isIncreasing;

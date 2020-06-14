@@ -1,5 +1,6 @@
-import 'file:///C:/Users/Rafay/flutter_projects/covid_tracker/lib/widgets/home_page_widgets/precaution_card_grid.dart';
+import '../widgets/home_page_widgets/precaution_card_grid.dart';
 import 'package:flutter/material.dart';
+
 
 // ignore: must_be_immutable
 class PrecautionsScreen extends StatefulWidget {
