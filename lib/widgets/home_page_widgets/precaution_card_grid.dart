@@ -72,7 +72,7 @@ class _PrecautionCardGridState extends State<PrecautionCardGrid> {
                 curve: Curves.fastOutSlowIn,
                 duration: Duration(milliseconds: 650),
                 decoration: BoxDecoration(
-                  color: selectedIndex==index? Colors.teal[50]:Colors.white,
+                  color: index==selectedIndex? Colors.teal[50]:Colors.white,
                   borderRadius: BorderRadius.circular(15.0),
                 ),
                 padding: const EdgeInsets.fromLTRB(14, 20, 14, 0),
