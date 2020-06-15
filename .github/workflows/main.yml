@@ -33,6 +33,6 @@ jobs:
           # Value should be a secret that is set in your repository settings
           DROPBOX_ACCESS_TOKEN: ${{ secrets.DROPBOX_ACCESS_TOKEN }}
           # Glob that you want to save to Dropbox e.g dir1/dir2/**/*.md or **/*.txt
-          GLOB: build/app/outputs/apk/release/*.apk
+          GLOB: '/build/app/outputs/apk/release/*.apk'
           # The destination path prefix to save to in Dropbox. This will prepend the individual globs. Default value is "/"
           DROPBOX_DESTINATION_PATH_PREFIX: # optional, default is /
