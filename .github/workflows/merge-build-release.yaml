@@ -1,0 +1,39 @@
+on:
+  pull_request:
+    types: [closed]
+name: Build Release APK with new tag On PR Merge
+jobs:
+  build:
+    if: github.event.pull_request.merged == true
+    name: Build Release APK
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-java@v1
+      with:
+        java-version: '12.x'
+    - uses: subosito/flutter-action@v1
+      with:
+        channel: 'stable'
+    - run: flutter pub get
+    - run: flutter analyze .
+    - run: flutter build apk --split-per-abi
+    - name: Bump version and push tag
+      uses: mathieudutour/github-tag-action@v4.5
+      with:
+        github_token: ${{ secrets.COVID_TRACKER_TOKEN }}
+      id: generate-tag
+    - name: Create a Release APK
+      uses: ncipollo/release-action@v1
+      with:
+        tag: "${{ steps.generate-tag.outputs.new_tag }}"
+        artifacts: "build/app/outputs/apk/release/*.apk"
+        token: ${{ secrets.COVID_TRACKER_TOKEN }}
+    - uses: mkrakowitzer/actions-googledrive@master
+      with:
+        upload-from: ./build/app/outputs/apk/release/
+        upload-to: APKS/covid_tracker/
+        skicka-tokencache-json: ${{ secrets.SKICKA_TOKENCACHE_JSON }}
+        google-client-id: ${{ secrets.DRIVE_CLIENT_ID }}
+        google-client-secret: ${{ secrets.DRIVE_CLIENT_SECRET }}
+        remove-outdated: 'false'
