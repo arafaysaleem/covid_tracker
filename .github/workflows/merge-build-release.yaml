@@ -1,6 +1,8 @@
 on:
   pull_request:
     types: [closed]
+    branches:
+      - master
 name: Build Release APK with new tag On PR Merge
 jobs:
   build:
