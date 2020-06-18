@@ -10,13 +10,23 @@ class CountryStatWidget extends StatefulWidget {
   final color, countryName, countryCode, flagPath, isIncreasing, totalCases;
   Function onBackArrow;
 
-  CountryStatWidget({Key key, this.color,this.onBackArrow, this.countryName, this.countryCode, this.flagPath, this.isIncreasing, this.totalCases}) : super(key: key);
+  CountryStatWidget(
+      {Key key,
+      this.color,
+      this.onBackArrow,
+      this.countryName,
+      this.countryCode,
+      this.flagPath,
+      this.isIncreasing,
+      this.totalCases})
+      : super(key: key);
 
   @override
   _CountryStatWidgetState createState() => _CountryStatWidgetState();
 }
 
-class _CountryStatWidgetState extends State<CountryStatWidget> with TickerProviderStateMixin {
+class _CountryStatWidgetState extends State<CountryStatWidget>
+    with TickerProviderStateMixin {
   AnimationController _controller1, _controller2;
   Duration textScaleDuration;
   final formatter = new NumberFormat("#,###");
@@ -40,7 +50,7 @@ class _CountryStatWidgetState extends State<CountryStatWidget> with TickerProvid
         lowerBound: 0.7,
         upperBound: 1);
     _controller1.forward();
-    _countryFuture=getCountryData();
+    _countryFuture = getCountryData();
   }
 
   Future<bool> getCountryData() async {
@@ -59,7 +69,6 @@ class _CountryStatWidgetState extends State<CountryStatWidget> with TickerProvid
     _controller2.dispose();
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -87,12 +96,12 @@ class _CountryStatWidgetState extends State<CountryStatWidget> with TickerProvid
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                              color: Colors.transparent,
-                              borderRadius: BorderRadius.circular(5),
-                              border: Border.all(
-                                color: Color(0x99FFFFFF),
-                                width: 1.8,
-                              ),
+                            color: Colors.transparent,
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(
+                              color: Color(0x99FFFFFF),
+                              width: 1.8,
+                            ),
                           ),
                           margin: const EdgeInsets.only(left: 20),
                           padding: const EdgeInsets.all(7),
@@ -112,7 +121,7 @@ class _CountryStatWidgetState extends State<CountryStatWidget> with TickerProvid
                           children: <Widget>[
                             //Flag
                             Flexible(
-                              fit:FlexFit.loose,
+                              fit: FlexFit.loose,
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 6, left: 4),
                                 child: Image.asset(
@@ -172,14 +181,52 @@ class _CountryStatWidgetState extends State<CountryStatWidget> with TickerProvid
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         //Number
-                        Text(
-                          formatter.format(widget.totalCases),
-                          style: TextStyle(
-                              fontFamily: "Montserrat",
-                              color: Colors.white,
-                              fontSize: 37,
-                              letterSpacing: 1.1,
-                              fontWeight: FontWeight.w600),
+                        FutureBuilder<bool>(
+                          future: _countryFuture,
+                          builder: (context, snapshot) {
+                            if (snapshot.hasError) {
+                              return Text(
+                                "Unavailable",
+                                style: TextStyle(
+                                    fontFamily: "Montserrat",
+                                    color: Colors.white,
+                                    fontSize: 37,
+                                    letterSpacing: 1.1,
+                                    fontWeight: FontWeight.w600),
+                              );
+                            }
+                            if (snapshot.hasData) {
+                              if (todayJson is FetchDataException) {
+                                return Text(
+                                  snapshot.data.toString(),
+                                  style: TextStyle(
+                                      fontFamily: "Montserrat",
+                                      color: Colors.white,
+                                      fontSize: 37,
+                                      letterSpacing: 1.1,
+                                      fontWeight: FontWeight.w600),
+                                );
+                              }
+                              return Text(
+                                formatter.format(todayJson["cases"]),
+                                style: TextStyle(
+                                    fontFamily: "Montserrat",
+                                    color: Colors.white,
+                                    fontSize: 37,
+                                    letterSpacing: 1.1,
+                                    fontWeight: FontWeight.w600),
+                              );
+                            }
+                            return Text(
+                              formatter.format(widget.totalCases),
+                              style: TextStyle(
+                                  fontFamily: "Montserrat",
+                                  color: Colors.white,
+                                  fontSize: 37,
+                                  letterSpacing: 1.1,
+                                  fontWeight: FontWeight.w600),
+                            );
+                          },
                         ),
 
                         SizedBox(
@@ -262,9 +309,7 @@ class _CountryStatWidgetState extends State<CountryStatWidget> with TickerProvid
                           ),
                         ),
                       );
-                    }
-                    else {
-
+                    } else {
                       //Main Body
                       return CountryCardDetails(
                         countryCode: widget.countryCode,
@@ -278,7 +323,9 @@ class _CountryStatWidgetState extends State<CountryStatWidget> with TickerProvid
                       );
                     }
                   } else {
-                    return CountryStatLoader(color: widget.color,);
+                    return CountryStatLoader(
+                      color: widget.color,
+                    );
                   }
                 },
               ),

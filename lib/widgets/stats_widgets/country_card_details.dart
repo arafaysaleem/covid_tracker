@@ -125,7 +125,7 @@ class _CountryCardDetailsState extends State<CountryCardDetails> with TickerProv
           affected: widget.yestJson["todayCases"],
           deaths: widget.yestJson["todayDeaths"],
           tested: widget.yestJson["tests"],
-          totalCases: widget.totalCases,
+          totalCases: widget.todayJson["cases"],
           today: false,
         ),
 
@@ -158,8 +158,8 @@ class _CountryCardDetailsState extends State<CountryCardDetails> with TickerProv
             defaultCountry.countryCode=widget.countryCode;
             defaultCountry.color=widget.color.value;
             defaultCountry.flagPath=widget.flagPath;
-            defaultCountry.totalCases=widget.totalCases;
-            defaultCountry.isIncreasing=widget.isIncreasing;
+            defaultCountry.totalCases=widget.todayJson["cases"];
+            defaultCountry.isIncreasing=widget.todayJson["cases"]>widget.yestJson["cases"];
             var jsonMap=defaultCountry.toJson();
             SharedPreferences prefs = await SharedPreferences.getInstance();
             prefs.setString("defaultCountry", json.encode(jsonMap));
