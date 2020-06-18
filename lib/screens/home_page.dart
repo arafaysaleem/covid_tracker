@@ -14,7 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
       resizeToAvoidBottomInset: false,
       resizeToAvoidBottomPadding: false,
       appBar: AppBar(
-        //TODO: Add a drawer
+        //TODO: Add a drawer window
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
