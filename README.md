@@ -1,16 +1,44 @@
-# covidtracker
+# Covid Tracker - A covid-19 statistics app
 
-A new Flutter application.
+![Test Pull Request, Build APK](https://github.com/arafaysaleem/covid_tracker/workflows/Test%20Pull%20Request,%20Build%20APK/badge.svg) [![GitHub release](https://img.shields.io/github/release/arafaysaleem/covid_tracker?color=blue)](https://github.com/arafaysaleem/covid_tracker/releases) [![GitHub stars](https://img.shields.io/github/stars/arafaysaleem/covid_tracker?color=orange)](https://github.com/arafaysaleem/covid_tracker/stargazers) [![GitHub issues](https://img.shields.io/github/issues/arafaysaleem/covid_tracker?color=red)](https://github.com/arafaysaleem/covid_tracker/issues) [![GitHub issues](https://img.shields.io/github/issues-closed/arafaysaleem/covid_tracker?color=brightgreen)](https://github.com/arafaysaleem/covid_tracker/issues?q=is%3Aissue+is%3Aclosed) [![GitHub forks](https://img.shields.io/github/forks/arafaysaleem/covid_tracker?color=yellow)](https://github.com/arafaysaleem/covid_tracker/network) [![License: MIT](https://img.shields.io/github/license/arafaysaleem/covid_tracker)](https://github.com/arafaysaleem/covid_tracker/blob/master/LICENSE) [![made-with-python](https://img.shields.io/badge/Made%20With-Flutter-blue)](https://flutter.dev/)
 
-## Getting Started
+Covid Tracker is an app made with Flutter framework to provide worldwide information related to Covid-19 pandemic. The api used for the data can be found [here](https://corona.lmao.ninja/docs/).
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+  - Global case count.
+  - Case, death and recovery count of each country
+  - Total tests and infection probability of each country
+  - News updates related to vaccine developement
+  - Info, symptoms, precautions and myths of the virus
+  - Setting a default country
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+The UI is inspired by [Dribbble](https://dribbble.com/shots/10847147-Coronavirus-Covid-19-Dashboard)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![App Tour](Readme/app_tour.gif)
+![Home Screen](Readme/home_screen.png)![Country Screen](Readme/country_screen.png)![Symptoms Screen](Readme/symptoms_screen.png)
+![News Screen](Readme/news_screen.png)![Myths Screen](Readme/news_screen.png)![Credits Screen](Readme/credits_screen.png)
+
+**The release apk is available under the release tags. It's also available on this drive link - [Covid Tracker APK](https://drive.google.com/drive/folders/1xazOX_VaaAPzuccusj-hk0zsPZaomDLc?usp=sharing)**
+
+## ⭐ Future Features
+
+  - Drawer for easier navigation
+  - Onboarding screens
+  - Login authentication using Firebase
+  - Maps API to detect nearby danger spots
+
+*Feel free to fork and contribute to include these features.* ❤︎
+
+## 🚀 Technologies
+
+  - [Flutter v1.17.4](https://storage.googleapis.com/flutter_infra/releases/stable/windows/flutter_windows_1.17.4-stable.zip)
+  - [Dart v2.8.4](https://dart.dev/get-dart)
+
+## 🤝 Feedback
+
+Feel free to send us feedback on [Twitter](https://twitter.com/gitpointapp) or [file an issue](https://github.com/arafaysaleem/covid_tracker/issues/new). Feature requests are always welcome.
+
+## 📝 License
+
+Licensed under the [MIT License](./LICENSE).
