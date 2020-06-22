@@ -1,5 +1,5 @@
 on: pull_request
-name: Test Pull Request, Build APK
+name: Test PR
 jobs:
   build:
     name: Build APK

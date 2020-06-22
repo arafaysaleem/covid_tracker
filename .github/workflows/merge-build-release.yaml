@@ -3,7 +3,7 @@ on:
     types: [closed]
     branches:
       - master
-name: Build Release APK with new tag On PR Merge
+name: PR Merge
 jobs:
   build:
     if: github.event.pull_request.merged == true

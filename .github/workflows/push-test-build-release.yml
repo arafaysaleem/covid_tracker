@@ -2,7 +2,7 @@ on:
   push:
     branches:
       - master
-name: Build Release APK with new tag On PR Merge
+name: build-release
 jobs:
   build:
     name: Build Release APK
