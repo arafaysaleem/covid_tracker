@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
         centerTitle: true,
-        title: const Text(
+        title: Text(
           "Covid-19 Tracker",
           style: TextStyle(
             fontSize: 20,
