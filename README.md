@@ -15,12 +15,12 @@ Covid Tracker is an app made with **Flutter** framework to provide worldwide inf
 
 The UI is inspired by [Dribbble](https://dribbble.com/shots/10847147-Coronavirus-Covid-19-Dashboard)
 
-![App Tour](Readme_files/app_tour.gif)
+<div align="center"><kbd><img alt="App Tour" src="Readme_files/app_tour.gif" width="260" height="538" style="border-style: solid; border-color: #FFFFFF; border-width:1px;"/></kbd></div>
 <br></br>
 <div align="center">
-<img src="Readme_files/home_screen.png" width="280" height="580">&nbsp;<img src="Readme_files/global_screen.png" width="280" height="580">&nbsp;&nbsp;<img src="Readme_files/country_list.png" width="280" height="580"><br></br>
-<img src="Readme_files/news_screen.png" width="280" height="580"><img src="Readme_files/country_screen.png" width="280" height="580">&nbsp;<img src="Readme_files/credits_screen.png" width="280" height="580"><br></br>
-<img src="Readme_files/precautions_screen.png" width="280" height="580">&nbsp;&nbsp;&nbsp;<img src="Readme_files/myths_screen.png" width="280" height="580">
+<img src="Readme_files/home_screen.png" width="260" height="538"/>&nbsp;<img src="Readme_files/global_screen.png" width="260" height="538"/>&nbsp;&nbsp;<img src="Readme_files/country_list.png" width="260" height="538"/><br></br>
+<img src="Readme_files/news_screen.png" width="260" height="538"/><img src="Readme_files/country_screen.png" width="260" height="538"/>&nbsp;<img src="Readme_files/credits_screen.png" width="260" height="538"/><br></br>
+<img src="Readme_files/precautions_screen.png" width="260" height="538"/>&nbsp;&nbsp;&nbsp;<img src="Readme_files/myths_screen.png" width="260" height="538"/>
 </div>
 
 
@@ -38,7 +38,12 @@ The UI is inspired by [Dribbble](https://dribbble.com/shots/10847147-Coronavirus
   - [Flutter v1.17.4](https://storage.googleapis.com/flutter_infra/releases/stable/windows/flutter_windows_1.17.4-stable.zip)
   - [Dart v2.8.4](https://dart.dev/get-dart)
 
-## 🤝 Feedback
+## 🤝 Contribute
+
+To contribute, fork the repository and push the changes to the **dev** branch. Then submit a pull request for merging with the source. If your code passes the review and checks it will be merged into the dev branch.
+Code is pushed to master only for releases.
+
+## 💬 Feedback
 
 Feel free to send us feedback on [Twitter](https://twitter.com/gitpointapp) or [file an issue](https://github.com/arafaysaleem/covid_tracker/issues/new). Feature requests are always welcome.
 
