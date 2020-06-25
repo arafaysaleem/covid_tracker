@@ -15,7 +15,7 @@ Covid Tracker is an app made with **Flutter** framework to provide worldwide inf
 
 The UI is inspired by [Dribbble](https://dribbble.com/shots/10847147-Coronavirus-Covid-19-Dashboard)
 
-<div align="center"><img alt="App Tour" src="Readme_files/app_tour.gif" width="280" height="580"/></div>
+<div align="center"><img alt="App Tour" src="Readme_files/app_tour.gif" border="1" width="280" height="580"/></div>
 <br></br>
 <div align="center">
 <img src="Readme_files/home_screen.png" width="280" height="580">&nbsp;<img src="Readme_files/global_screen.png" width="280" height="580">&nbsp;&nbsp;<img src="Readme_files/country_list.png" width="280" height="580"><br></br>
