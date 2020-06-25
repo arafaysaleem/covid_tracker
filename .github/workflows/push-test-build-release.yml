@@ -1,12 +1,10 @@
 on:
-  pull_request:
-    types: [closed]
+  push:
     branches:
       - master
-name: PR Merge
+name: build-release
 jobs:
   build:
-    if: github.event.pull_request.merged == true
     name: Build Release APK
     runs-on: ubuntu-latest
     steps:
