@@ -8,6 +8,7 @@ class MythsScreen extends StatelessWidget {
   );
 
   final imgPath;
+  
   final Color color;
 
   List<Map<String, String>> myths = [
