@@ -6,7 +6,7 @@ on:
 name: PR Merge
 jobs:
   build:
-    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true && github.ref == 'refs/heads/master'
     name: Build Release APK
     runs-on: ubuntu-latest
     steps:
