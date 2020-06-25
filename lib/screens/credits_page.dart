@@ -139,7 +139,7 @@ class CreditsScreen extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             child: Padding(
               padding: const EdgeInsets.all(15),
-              child: const Text(
+              child: Text(
                 "Covid Tracker is an app made with Flutter framework to provide worldwide information related to Covid-19 pandemic. It shows the affected, recovered, deaths, tests and infection probability for each country. As it is an open source app feel free to contribute and star in GitHub.",
                 style: TextStyle(
                   fontSize: 16,
