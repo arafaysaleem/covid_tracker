@@ -50,7 +50,7 @@ class CreditsScreen extends StatelessWidget {
                     width: MediaQuery.of(context).size.width > 360 ? 80 : 60),
                 Padding(
                   padding: const EdgeInsets.only(top: 25),
-                  child: const Text(
+                  child: Text(
                     "Credits",
                     style: TextStyle(
                       fontSize: 21,
