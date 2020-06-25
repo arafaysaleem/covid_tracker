@@ -40,8 +40,7 @@ The UI is inspired by [Dribbble](https://dribbble.com/shots/10847147-Coronavirus
 
 ## 🤝 Contribute
 
-To contribute, fork the repository and push the changes to the **dev** branch. Then submit a pull request for merging with the source. If your code passes the review and checks it will be merged into the dev branch.
-Code is pushed to master only for releases.
+To contribute, fork the repository and push the changes to the **master** branch. Then submit a pull request for merging with the source. If your code passes the review and checks it will be merged into the master branch.
 
 ## 💬 Feedback
 
