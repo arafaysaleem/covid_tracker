@@ -1,3 +1,5 @@
+import 'package:auto_size_text/auto_size_text.dart';
+
 import '../../screens/stats_dashboard_screens/world_stat.dart';
 import 'package:flutter/material.dart';
 import 'radial_progress.dart';
@@ -119,7 +121,7 @@ class _GlobalCaseContainerState extends State<GlobalCaseContainer> {
                         vertical: 12,
                       ),
                       child: Center(
-                        child: const Text(
+                        child: AutoSizeText(
                           "Active",
                           style: TextStyle(
                             color: Color(0xFFAA00FF),
@@ -128,6 +130,7 @@ class _GlobalCaseContainerState extends State<GlobalCaseContainer> {
                             letterSpacing: 0.5,
                             fontWeight: FontWeight.w700,
                           ),
+                          maxFontSize: 16,
                         ),
                       ),
                     ),
@@ -168,7 +171,7 @@ class _GlobalCaseContainerState extends State<GlobalCaseContainer> {
                         vertical: 12,
                       ),
                       child: Center(
-                        child: const Text(
+                        child: AutoSizeText(
                           "Deaths",
                           style: TextStyle(
                             color: Color(0xFFD50000),
@@ -177,6 +180,7 @@ class _GlobalCaseContainerState extends State<GlobalCaseContainer> {
                             letterSpacing: 0.5,
                             fontWeight: FontWeight.w700,
                           ),
+                          maxFontSize: 16,
                         ),
                       ),
                     ),
@@ -213,7 +217,7 @@ class _GlobalCaseContainerState extends State<GlobalCaseContainer> {
                           vertical: 12,
                         ),
                         child: Center(
-                          child: const Text(
+                          child: AutoSizeText(
                             "Recovered",
                             style: TextStyle(
                               color: Color(0xFF00C853),
@@ -222,6 +226,7 @@ class _GlobalCaseContainerState extends State<GlobalCaseContainer> {
                               letterSpacing: 0.5,
                               fontWeight: FontWeight.w700,
                             ),
+                            maxFontSize: 16,
                           ),
                         ),
                       ),

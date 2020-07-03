@@ -1,12 +1,12 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class AffectedAreasContainer extends StatelessWidget {
-
   const AffectedAreasContainer();
 
   @override
   Widget build(BuildContext context) {
-    return  Material(
+    return Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(16.0),
       child: Container(
@@ -20,18 +20,19 @@ class AffectedAreasContainer extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(15, 0, 3, 0),
               child: Row(
-                mainAxisAlignment:
-                MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   //Affected Areas Text
-                  Text(
+                  AutoSizeText(
                     "Affected Areas",
                     style: TextStyle(
-                        fontFamily: "Montserrat",
-                        fontSize: 17,
-                        letterSpacing: 0.5,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black),
+                      fontFamily: "Montserrat",
+                      fontSize: 17,
+                      letterSpacing: 0.5,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                    ),
+                    maxFontSize: 17,
                   ),
 
                   //More horiz icon
@@ -46,10 +47,8 @@ class AffectedAreasContainer extends StatelessWidget {
                 ],
               ),
             ),
-
             Padding(
-              padding:
-              const EdgeInsets.fromLTRB(20, 0, 17, 14),
+              padding: const EdgeInsets.fromLTRB(20, 0, 17, 14),
               child: Image(
                 image: AssetImage("assets/stats/map.png"),
                 fit: BoxFit.contain,

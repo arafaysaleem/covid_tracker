@@ -1,3 +1,5 @@
+import 'package:auto_size_text/auto_size_text.dart';
+
 import '../../widgets/stats_widgets/affected_map_container.dart';
 import '../../widgets/stats_widgets/global_case_container.dart';
 import '../../widgets/stats_widgets/world_stats_image.dart';
@@ -135,13 +137,15 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
                       ),
 
                       //Text
-                      Text(
+                      AutoSizeText(
                         "Global Statistics",
                         style: TextStyle(
-                            color: Colors.purple[900],
-                            fontFamily: "Montserrat",
-                            fontSize: 21,
-                            fontWeight: FontWeight.w600),
+                          color: Colors.purple[900],
+                          fontFamily: "Montserrat",
+                          fontSize: 21,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        maxFontSize: 21,
                       ),
                     ],
                   ),
@@ -189,13 +193,15 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             //Top Country
-                            Text(
+                            AutoSizeText(
                               "Top Countries",
                               style: TextStyle(
                                   fontFamily: "Montserrat",
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600,
-                                  color: Colors.black),
+                                  color: Colors.black,
+                              ),
+                              maxFontSize: 18,
                             ),
 
                             //View all
@@ -208,7 +214,7 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
                               child: Padding(
                                 padding:
                                     const EdgeInsets.fromLTRB(10, 4, 10, 4),
-                                child: const Text(
+                                child: AutoSizeText(
                                   "View all",
                                   style: TextStyle(
                                     fontFamily: "Montserrat",
@@ -216,6 +222,7 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
                                     fontWeight: FontWeight.w600,
                                     color: Color(0xFF6A1B9A),
                                   ),
+                                  maxFontSize: 16,
                                 ),
                               ),
                             ),
@@ -236,7 +243,8 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
                                   snapshot) {
                             if (snapshot.hasError) {
                               return Container(
-                                margin: const EdgeInsets.symmetric(horizontal: 15.0),
+                                margin: const EdgeInsets.symmetric(
+                                    horizontal: 15.0),
                                 decoration: BoxDecoration(
                                   color: Color(0xfff3cfff),
                                   borderRadius: BorderRadius.circular(16),

@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:auto_size_text/auto_size_text.dart';
 import "package:flutter/material.dart";
 import 'package:vector_math/vector_math_64.dart' as math;
 
@@ -14,7 +15,8 @@ class RadialProgress extends StatefulWidget {
   _RadialProgressState createState() => _RadialProgressState();
 }
 
-class _RadialProgressState extends State<RadialProgress> with TickerProviderStateMixin {
+class _RadialProgressState extends State<RadialProgress>
+    with TickerProviderStateMixin {
   AnimationController _radialController;
   Animation<double> _radialAnimation;
   double progressDegrees = 0;
@@ -37,7 +39,9 @@ class _RadialProgressState extends State<RadialProgress> with TickerProviderStat
   @override
   void didUpdateWidget(RadialProgress oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if(oldWidget.startClr!=widget.startClr||oldWidget.endClr!=widget.endClr||oldWidget.bgClr!=widget.bgClr){
+    if (oldWidget.startClr != widget.startClr ||
+        oldWidget.endClr != widget.endClr ||
+        oldWidget.bgClr != widget.bgClr) {
       _radialController.reset();
       _radialController.forward();
     }
@@ -55,7 +59,6 @@ class _RadialProgressState extends State<RadialProgress> with TickerProviderStat
 
   @override
   Widget build(BuildContext context) {
-
     return AnimatedBuilder(
       child: Material(
         animationDuration: fillDuration,
@@ -89,13 +92,15 @@ class _RadialProgressState extends State<RadialProgress> with TickerProviderStat
                   opacity: double.parse(getPercent()) > 0.3 ? 1.0 : 0.0,
                   duration: fadeInDuration,
                   child: Center(
-                    child: Text(
+                    child: AutoSizeText(
                       "${getPercent()}%",
                       style: TextStyle(
-                          fontFamily: "Montserrat",
-                          color: widget.endClr,
-                          fontSize: 17,
-                          fontWeight: FontWeight.w600),
+                        fontFamily: "Montserrat",
+                        color: widget.endClr,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      maxFontSize: 17,
                     ),
                   ),
                 ),
@@ -112,9 +117,8 @@ class _RadialProgressState extends State<RadialProgress> with TickerProviderStat
             Positioned.fill(
               child: Align(
                 alignment: Alignment(
-                  cos((2*pi*progressDegrees/360.0)-(pi/2)),
-                  sin((2*pi*progressDegrees/360.0)-(pi/2))
-                ),
+                    cos((2 * pi * progressDegrees / 360.0) - (pi / 2)),
+                    sin((2 * pi * progressDegrees / 360.0) - (pi / 2))),
                 child: child,
               ),
             )

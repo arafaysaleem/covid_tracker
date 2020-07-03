@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'curve_painter.dart';
 
@@ -37,63 +38,67 @@ class SmallGraphPanel extends StatelessWidget {
           end: Alignment.centerLeft,
         ),
       ),
-      child: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            //Column of case label and case number
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                //Row of case label and icon
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    //Case Type Name
-                    Text(
-                      label,
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontFamily: "Montserrat",
-                        color: fontColor,
-                        letterSpacing: 0.3,
+      child: LayoutBuilder(
+        builder:(ctx,constraint)=> Center(
+          child:Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              //Column of case label and case number
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  //Row of case label and icon
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      //Case Type Name
+                      AutoSizeText(
+                        label,
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontFamily: "Montserrat",
+                          color: fontColor,
+                          letterSpacing: 0.3,
+                        ),
+                        maxFontSize: 13,
                       ),
-                    ),
 
-                    //Arrow Icon
-                    Icon(
-                      icon,
-                      size: 21,
-                      color: iconColor,
-                    )
-                  ],
-                ),
-
-                //Cases Number
-                Text(
-                  (value / 1000).toStringAsPrecision(5) + "k",
-                  style: TextStyle(
-                    color: fontColor,
-                    fontFamily: "Montserrat",
-                    letterSpacing: 0.3,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
+                      //Arrow Icon
+                      Icon(
+                        icon,
+                        size: 21,
+                        color: iconColor,
+                      )
+                    ],
                   ),
-                )
-              ],
-            ),
 
-            //Curve line
-            CurvePainter(
-              duration: Duration(seconds: 1),
-              size: isIncreasing? Size(40, 20): Size(40, 10),
-              color: lineColor,
-              isIncreasing: isIncreasing,
-            ),
-          ],
+                  //Cases Number
+                  AutoSizeText(
+                    (value / 1000).toStringAsPrecision(5) + "k",
+                    style: TextStyle(
+                      color: fontColor,
+                      fontFamily: "Montserrat",
+                      letterSpacing: 0.3,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxFontSize: 15,
+                  )
+                ],
+              ),
+
+              //Curve line
+              CurvePainter(
+                duration: Duration(seconds: 1),
+                size: isIncreasing? Size(40, 20): Size(40, 10),
+                color: lineColor,
+                isIncreasing: isIncreasing,
+              ),
+            ],
+          ),
         ),
       ),
     );
