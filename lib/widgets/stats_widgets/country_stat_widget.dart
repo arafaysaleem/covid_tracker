@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:covidtracker/values/default_country_data.dart';
 
 import '../../widgets/stats_widgets/country_card_details.dart';
 import '../../network_requests/api_client.dart';
@@ -336,6 +337,7 @@ class _CountryStatWidgetState extends State<CountryStatWidget>
                   } else {
                     return CountryStatLoader(
                       color: widget.color,
+                      isDefault: defaultCountry.countryName==widget.countryName,
                     );
                   }
                 },

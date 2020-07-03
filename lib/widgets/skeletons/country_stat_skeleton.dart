@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class CountryStatLoader extends StatefulWidget {
   final Color color;
+  final bool isDefault;
 
-  const CountryStatLoader({Key key, this.color}) : super(key: key);
+  const CountryStatLoader({Key key, this.color, this.isDefault}) : super(key: key);
 
 
   @override
@@ -413,7 +414,7 @@ class _CountryStatLoaderState extends State<CountryStatLoader> with TickerProvid
         Expanded(child: SizedBox(height: 20)),
 
         //Set as default button
-        Container(
+        if(!widget.isDefault) Container(
           width: double.infinity,
           height: 50,
           decoration: BoxDecoration(
