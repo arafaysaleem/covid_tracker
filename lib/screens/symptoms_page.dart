@@ -1,3 +1,5 @@
+import 'package:auto_size_text/auto_size_text.dart';
+
 import '../widgets/home_page_widgets/symptom_card_grid.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +15,6 @@ class SymptomsScreen extends StatefulWidget {
 }
 
 class _SymptomsScreenState extends State<SymptomsScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,41 +44,52 @@ class _SymptomsScreenState extends State<SymptomsScreen> {
                 ),
                 color: widget.color.withOpacity(0.2)),
             width: MediaQuery.of(context).size.width,
-            child: Stack(
-              children: <Widget>[
-                //title
-                Positioned.fill(
-                  top: 20,
-                  left: 20,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "Symptoms",
-                      style: TextStyle(
-                          color: widget.color,
-                          fontFamily: "Montserrat",
-                          fontSize: 31,
-                          fontWeight: FontWeight.w700),
+            child: LayoutBuilder(
+              builder: (ctx, constraint) => Stack(
+                children: <Widget>[
+                  //title
+                  Positioned(
+                    top: constraint.maxHeight * 0.4,
+                    left: 20,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: SizedBox(
+                        width: constraint.maxWidth * 0.5,
+                        child: AutoSizeText(
+                          "Symptoms",
+                          style: TextStyle(
+                            color: widget.color,
+                            fontFamily: "Montserrat",
+                            fontSize: 31,
+                            fontWeight: FontWeight.w700,
+                          ),
+                          stepGranularity: 2,
+                        ),
+                      ),
                     ),
                   ),
-                ),
 
-                //image
-                Positioned.fill(
-                  bottom: -20.0,
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: Container(
+                  //image
+                  Positioned.fill(
+                    bottom: -20.0,
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: Container(
                         padding: const EdgeInsets.only(right: 20.0),
-                        child: Hero(
+                        child: LayoutBuilder(
+                          builder: (ctx, constraint) => Hero(
                             tag: widget.imgPath,
                             child: Image(
                               image: AssetImage(widget.imgPath),
-                              height: 230.0,
-                            ))),
+                              height: constraint.maxHeight * 0.93,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
 
@@ -91,4 +103,3 @@ class _SymptomsScreenState extends State<SymptomsScreen> {
     );
   }
 }
-

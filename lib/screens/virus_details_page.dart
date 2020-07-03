@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -48,7 +49,8 @@ class VirusDetailsScreen extends StatelessWidget {
     },
   ];
 
-  const VirusDetailsScreen({Key key, this.imgPath, this.color}) : super(key: key);
+  const VirusDetailsScreen({Key key, this.imgPath, this.color})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -81,40 +83,49 @@ class VirusDetailsScreen extends StatelessWidget {
                   ),
                   color: color.withOpacity(0.2)),
               width: MediaQuery.of(context).size.width,
-              child: Stack(
-                children: <Widget>[
-                  //Title
-                  Positioned.fill(
-                    top: 10,
-                    left: 20,
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "SARS-CoV-2",
-                        style: TextStyle(
-                            color: color,
-                            fontFamily: "Montserrat",
-                            fontSize: 30,
-                            fontWeight: FontWeight.w700),
+              child: LayoutBuilder(
+                builder: (ctx, constraint) => Stack(
+                  children: <Widget>[
+                    //Title
+                    Positioned(
+                      top: constraint.maxHeight * 0.45,
+                      left: 20,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: SizedBox(
+                          width: constraint.maxWidth * 0.55,
+                          child: AutoSizeText(
+                            "SARS-CoV-2",
+                            style: TextStyle(
+                              color: color,
+                              fontFamily: "Montserrat",
+                              fontSize: 30,
+                              fontWeight: FontWeight.w700,
+                            ),
+                            stepGranularity: 2,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
 
-                  //Image
-                  Positioned.fill(
-                    right: -90,
-                    bottom: -30,
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: Hero(
-                          tag: imgPath,
-                          child: Image(
-                            image: AssetImage(imgPath),
-                            height: 230.0,
-                          )),
+                    //Image
+                    Positioned.fill(
+                      right: -90,
+                      bottom: -30,
+                      child: Align(
+                        alignment: Alignment.bottomRight,
+                        child: LayoutBuilder(
+                          builder: (ctx, constraint) => Hero(
+                              tag: imgPath,
+                              child: Image(
+                                image: AssetImage(imgPath),
+                                height: constraint.maxHeight * 0.92,
+                              )),
+                        ),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
 
@@ -134,7 +145,7 @@ class VirusDetailsScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
-                          Text(
+                          AutoSizeText(
                             "${details[index]["detail"]}",
                             textAlign: TextAlign.left,
                             style: TextStyle(
@@ -143,11 +154,12 @@ class VirusDetailsScreen extends StatelessWidget {
                               color: color,
                               fontWeight: FontWeight.w700,
                             ),
+                            stepGranularity: 2,
                           ),
                           SizedBox(
                             height: 10,
                           ),
-                          Text(
+                          AutoSizeText(
                             "${details[index]['desc']}",
                             textAlign: TextAlign.justify,
                             style: TextStyle(
@@ -157,6 +169,7 @@ class VirusDetailsScreen extends StatelessWidget {
                               color: Colors.grey[850],
                               fontWeight: FontWeight.w500,
                             ),
+                            stepGranularity: 2,
                           ),
                         ],
                       ),

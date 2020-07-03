@@ -1,12 +1,12 @@
+import 'package:auto_size_text/auto_size_text.dart';
+
 import '../widgets/home_page_widgets/precaution_card_grid.dart';
 import 'package:flutter/material.dart';
-
 
 // ignore: must_be_immutable
 class PrecautionsScreen extends StatefulWidget {
   final imgPath;
   final Color color;
-
 
   PrecautionsScreen({this.imgPath, this.color});
 
@@ -15,8 +15,6 @@ class PrecautionsScreen extends StatefulWidget {
 }
 
 class _PrecautionsScreenState extends State<PrecautionsScreen> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,40 +48,50 @@ class _PrecautionsScreenState extends State<PrecautionsScreen> {
                   ),
                   color: widget.color.withOpacity(0.2)),
               width: MediaQuery.of(context).size.width,
-              child: Stack(
-                children: <Widget>[
-                  //Name
-                  Positioned.fill(
-                    top: -10,
-                    left: 20,
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "Precautions",
-                        style: TextStyle(
-                            color: widget.color,
-                            fontFamily: "Montserrat",
-                            fontSize: 31,
-                            fontWeight: FontWeight.w700),
+              child: LayoutBuilder(
+                builder: (ctx, constraint) => Stack(
+                  children: <Widget>[
+                    //Name
+                    Positioned(
+                      top: constraint.maxHeight * 0.4,
+                      left: 20,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: SizedBox(
+                          width: constraint.maxWidth * 0.55,
+                          child: AutoSizeText(
+                            "Precautions",
+                            style: TextStyle(
+                              color: widget.color,
+                              fontFamily: "Montserrat",
+                              fontSize: 31,
+                              fontWeight: FontWeight.w700,
+                            ),
+                            stepGranularity: 2,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
 
-                  //Image
-                  Positioned.fill(
-                    bottom: -25.0,
-                    right: -6.0,
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: Hero(
-                          tag: widget.imgPath,
-                          child: Image(
-                            image: AssetImage(widget.imgPath),
-                            height: 230.0,
-                          )),
+                    //Image
+                    Positioned.fill(
+                      bottom: -25.0,
+                      right: -6.0,
+                      child: Align(
+                        alignment: Alignment.bottomRight,
+                        child: LayoutBuilder(
+                          builder: (ctx, constraint) => Hero(
+                            tag: widget.imgPath,
+                            child: Image(
+                              image: AssetImage(widget.imgPath),
+                              height: constraint.maxHeight * 0.93,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

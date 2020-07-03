@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -8,7 +9,7 @@ class MythsScreen extends StatelessWidget {
   );
 
   final imgPath;
-  
+
   final Color color;
 
   List<Map<String, String>> myths = [
@@ -43,9 +44,9 @@ class MythsScreen extends StatelessWidget {
     {
       "myth": "Parcels from China CANNOT spread coronavirus",
       "desc":
-          "Scientists believe that the virus can't survive on letters or packages"+
-          " for an extended period of time. There is very " +
-          "low risk of spread from shipped products or packages",
+          "Scientists believe that the virus can't survive on letters or packages" +
+              " for an extended period of time. There is very " +
+              "low risk of spread from shipped products or packages",
       "imgPath": "assets/myths/package.png",
     },
     {
@@ -89,47 +90,59 @@ class MythsScreen extends StatelessWidget {
           Container(
             height: 230,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(25.0),
-                  bottomRight: Radius.circular(25.0),
-                ),
-                color: color.withOpacity(0.2)),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(25.0),
+                bottomRight: Radius.circular(25.0),
+              ),
+              color: color.withOpacity(0.2),
+            ),
             width: MediaQuery.of(context).size.width,
-            child: Stack(
-              children: <Widget>[
-                //Title
-                Positioned.fill(
-                  top: 20,
-                  left: 20,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "Virus Myths",
-                      style: TextStyle(
-                          color: color,
-                          fontFamily: "Montserrat",
-                          fontSize: 31,
-                          fontWeight: FontWeight.w700),
+            child: LayoutBuilder(
+              builder: (ctx, constraint) => Stack(
+                children: <Widget>[
+                  //Title
+                  Positioned(
+                    top: constraint.maxHeight * 0.45,
+                    left: 20,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: SizedBox(
+                        width: constraint.maxWidth * 0.55,
+                        child: AutoSizeText(
+                          "Virus Myths",
+                          style: TextStyle(
+                            color: color,
+                            fontFamily: "Montserrat",
+                            fontSize: 31,
+                            fontWeight: FontWeight.w700,
+                          ),
+                          stepGranularity: 2,
+                        ),
+                      ),
                     ),
                   ),
-                ),
 
-                //Image
-                Positioned.fill(
-                  bottom: -17.0,
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: Container(
+                  //Image
+                  Positioned.fill(
+                    bottom: -17.0,
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: Container(
                         padding: const EdgeInsets.only(right: 10.0),
-                        child: Hero(
+                        child: LayoutBuilder(
+                          builder: (ctx, constraint) => Hero(
                             tag: imgPath,
                             child: Image(
                               image: AssetImage(imgPath),
-                              height: 230.0,
-                            ))),
+                              height: constraint.maxHeight * 0.93,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
 
@@ -221,8 +234,10 @@ class MythsScreen extends StatelessWidget {
               ),
             ),
           ),
-        
-          SizedBox(height: 8,),
+
+          SizedBox(
+            height: 8,
+          ),
         ],
       ),
     );
