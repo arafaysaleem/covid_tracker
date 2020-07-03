@@ -1,3 +1,5 @@
+import 'package:auto_size_text/auto_size_text.dart';
+
 import '../../values/default_country_data.dart';
 import '../../widgets/stats_widgets/country_stat_widget.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +22,7 @@ class _DefaultCountryScreenState extends State<DefaultCountryScreen> {
         padding: const EdgeInsets.fromLTRB(15, 350, 15, 0),
         child: Column(
           children: <Widget>[
-            Text(
+            AutoSizeText(
               "No default country selected yet",
               style: TextStyle(
                 fontSize: 18,
@@ -28,6 +30,7 @@ class _DefaultCountryScreenState extends State<DefaultCountryScreen> {
                 fontWeight: FontWeight.normal,
                 color: Colors.black,
               ),
+              maxFontSize: 18,
             ),
             SizedBox(height: 20),
 
@@ -46,7 +49,7 @@ class _DefaultCountryScreenState extends State<DefaultCountryScreen> {
                   borderRadius: BorderRadius.circular(13),
                 ),
                 child: Center(
-                  child: const Text(
+                  child: AutoSizeText(
                     "Choose a default",
                     style: TextStyle(
                       fontSize: 20,
@@ -54,6 +57,7 @@ class _DefaultCountryScreenState extends State<DefaultCountryScreen> {
                       fontWeight: FontWeight.w600,
                       color: Colors.white,
                     ),
+                    maxFontSize: 20,
                   ),
                 ),
               ),

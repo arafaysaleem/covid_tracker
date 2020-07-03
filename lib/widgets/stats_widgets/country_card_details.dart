@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../values/default_country_data.dart';
 import 'package:flutter/material.dart';
@@ -12,19 +13,28 @@ class CountryCardDetails extends StatefulWidget {
   int totalCases;
   final countryName, countryCode, flagPath, isIncreasing;
   Map<String, dynamic> todayJson, yestJson;
-  
-  CountryCardDetails({this.color,this.todayJson,this.yestJson,this.totalCases, this.countryName, this.countryCode, this.flagPath, this.isIncreasing});
-  
+
+  CountryCardDetails(
+      {this.color,
+      this.todayJson,
+      this.yestJson,
+      this.totalCases,
+      this.countryName,
+      this.countryCode,
+      this.flagPath,
+      this.isIncreasing});
+
   @override
   _CountryCardDetailsState createState() => _CountryCardDetailsState();
 }
 
-class _CountryCardDetailsState extends State<CountryCardDetails> with TickerProviderStateMixin {
+class _CountryCardDetailsState extends State<CountryCardDetails>
+    with TickerProviderStateMixin {
   AnimationController _controller1, _controller2;
   Duration textScaleDuration;
   final formatter = new NumberFormat("#,###");
   int selectedIndex;
-  
+
   @override
   void initState() {
     super.initState();
@@ -49,7 +59,7 @@ class _CountryCardDetailsState extends State<CountryCardDetails> with TickerProv
     _controller2.dispose();
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -69,7 +79,7 @@ class _CountryCardDetailsState extends State<CountryCardDetails> with TickerProv
                     _controller1.forward();
                   });
                 },
-                child: Text(
+                child: AutoSizeText(
                   "Today",
                   style: TextStyle(
                       fontFamily: "Montserrat",
@@ -77,7 +87,9 @@ class _CountryCardDetailsState extends State<CountryCardDetails> with TickerProv
                           ? FontWeight.w700
                           : FontWeight.w600,
                       color: Colors.grey[800],
-                      fontSize: 22.0),
+                      fontSize: 22.0,
+                  ),
+                  maxFontSize: 22,
                 ),
               ),
             ),
@@ -92,7 +104,7 @@ class _CountryCardDetailsState extends State<CountryCardDetails> with TickerProv
                     _controller2.forward();
                   });
                 },
-                child: Text(
+                child: AutoSizeText(
                   "Yesterday",
                   style: TextStyle(
                       fontFamily: "Montserrat",
@@ -100,7 +112,9 @@ class _CountryCardDetailsState extends State<CountryCardDetails> with TickerProv
                           ? FontWeight.w600
                           : FontWeight.w700,
                       color: Colors.grey[800],
-                      fontSize: 22.0),
+                      fontSize: 22.0,
+                  ),
+                  maxFontSize: 22,
                 ),
               ),
             ),
@@ -112,81 +126,85 @@ class _CountryCardDetailsState extends State<CountryCardDetails> with TickerProv
         //New case boxes
         selectedIndex == 0
             ? NewCaseBoxes(
-          color: widget.color,
-          affected: widget.todayJson["todayCases"],
-          deaths: widget.todayJson["todayDeaths"],
-          recovered: widget.todayJson["recovered"] - widget.yestJson["recovered"],
-          tested: widget.todayJson["tests"],
-          totalCases: widget.todayJson["cases"],
-          today: true,
-        )
+                color: widget.color,
+                affected: widget.todayJson["todayCases"],
+                deaths: widget.todayJson["todayDeaths"],
+                recovered: widget.todayJson["recovered"] -
+                    widget.yestJson["recovered"],
+                tested: widget.todayJson["tests"],
+                totalCases: widget.todayJson["cases"],
+                today: true,
+              )
             : NewCaseBoxes(
-          color: widget.color,
-          affected: widget.yestJson["todayCases"],
-          deaths: widget.yestJson["todayDeaths"],
-          tested: widget.yestJson["tests"],
-          totalCases: widget.todayJson["cases"],
-          today: false,
-        ),
+                color: widget.color,
+                affected: widget.yestJson["todayCases"],
+                deaths: widget.yestJson["todayDeaths"],
+                tested: widget.yestJson["tests"],
+                totalCases: widget.todayJson["cases"],
+                today: false,
+              ),
 
         SizedBox(height: 25),
 
         //Total Case Bars
         selectedIndex == 0
             ? CaseBars(
-          color: widget.color,
-          totalActive: widget.todayJson["active"],
-          totalDeaths: widget.todayJson["deaths"],
-          totalCases: widget.todayJson["cases"],
-          totalRecovered: widget.todayJson["recovered"],
-        )
+                color: widget.color,
+                totalActive: widget.todayJson["active"],
+                totalDeaths: widget.todayJson["deaths"],
+                totalCases: widget.todayJson["cases"],
+                totalRecovered: widget.todayJson["recovered"],
+              )
             : CaseBars(
-          color: widget.color,
-          totalActive: widget.yestJson["active"],
-          totalDeaths: widget.yestJson["deaths"],
-          totalCases: widget.yestJson["cases"],
-          totalRecovered: widget.yestJson["recovered"],
-        ),
+                color: widget.color,
+                totalActive: widget.yestJson["active"],
+                totalDeaths: widget.yestJson["deaths"],
+                totalCases: widget.yestJson["cases"],
+                totalRecovered: widget.yestJson["recovered"],
+              ),
 
         Expanded(child: SizedBox(height: 35)),
 
         //Set as default button
-        defaultCountry.countryName!=widget.countryName
-            ?InkWell(
-          onTap: () async {
-            defaultCountry.countryName=widget.countryName;
-            defaultCountry.countryCode=widget.countryCode;
-            defaultCountry.color=widget.color.value;
-            defaultCountry.flagPath=widget.flagPath;
-            defaultCountry.totalCases=widget.todayJson["cases"];
-            defaultCountry.isIncreasing=widget.todayJson["cases"]>widget.yestJson["cases"];
-            var jsonMap=defaultCountry.toJson();
-            SharedPreferences prefs = await SharedPreferences.getInstance();
-            prefs.setString("defaultCountry", json.encode(jsonMap));
-            Navigator.of(context).pop();
-            //TODO: Add a snack bar to show confirmation
-          },
-          child: Container(
-            width: double.infinity,
-            height: 50,
-            decoration: BoxDecoration(
-              color: widget.color,
-              borderRadius: BorderRadius.circular(13),
-            ),
-            child: Center(
-              child: const Text(
-                "Set as default",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontFamily: "Montserrat",
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
+        defaultCountry.countryName != widget.countryName
+            ? InkWell(
+                onTap: () async {
+                  defaultCountry.countryName = widget.countryName;
+                  defaultCountry.countryCode = widget.countryCode;
+                  defaultCountry.color = widget.color.value;
+                  defaultCountry.flagPath = widget.flagPath;
+                  defaultCountry.totalCases = widget.todayJson["cases"];
+                  defaultCountry.isIncreasing =
+                      widget.todayJson["cases"] > widget.yestJson["cases"];
+                  var jsonMap = defaultCountry.toJson();
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  prefs.setString("defaultCountry", json.encode(jsonMap));
+                  Navigator.of(context).pop();
+                  //TODO: Add a snack bar to show confirmation
+                },
+                child: Container(
+                  width: double.infinity,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: widget.color,
+                    borderRadius: BorderRadius.circular(13),
+                  ),
+                  child: Center(
+                    child: AutoSizeText(
+                      "Set as default",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontFamily: "Montserrat",
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                      maxFontSize: 20,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ),
-        )
-            :Container(),
+              )
+            : Container(),
       ],
     );
   }

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -21,7 +22,7 @@ class _CaseBarsState extends State<CaseBars> {
     return Column(
       children: <Widget>[
 
-        Text(
+        AutoSizeText(
           "Overall Statistics",
           style: TextStyle(
             fontSize: 22,
@@ -29,6 +30,7 @@ class _CaseBarsState extends State<CaseBars> {
             fontWeight: FontWeight.w700,
             color: Colors.grey[800],
           ),
+          maxFontSize: 22,
         ),
 
         SizedBox(height: 20),
@@ -51,7 +53,7 @@ class _CaseBarsState extends State<CaseBars> {
               SizedBox(width: 15),
 
               Expanded(
-                child: const Text(
+                child: const AutoSizeText(
                   "Total Active",
                   style: TextStyle(
                     fontSize: 14,
@@ -59,10 +61,11 @@ class _CaseBarsState extends State<CaseBars> {
                     fontWeight: FontWeight.w600,
                     color: Color(0xFF424242),
                   ),
+                  maxFontSize: 14,
                 ),
               ),
 
-              Text(
+              AutoSizeText(
                 "${formatter.format(widget.totalActive)}",
                 style: TextStyle(
                   fontSize: 14,
@@ -71,6 +74,7 @@ class _CaseBarsState extends State<CaseBars> {
                   fontWeight: FontWeight.w600,
                   color: Colors.grey[800],
                 ),
+                maxFontSize: 14,
               ),
 
             ],
@@ -126,7 +130,7 @@ class _CaseBarsState extends State<CaseBars> {
               SizedBox(width: 15),
 
               Expanded(
-                child: const Text(
+                child: AutoSizeText(
                   "Total Recovered",
                   style: TextStyle(
                     fontSize: 14,
@@ -134,10 +138,11 @@ class _CaseBarsState extends State<CaseBars> {
                     fontWeight: FontWeight.w600,
                     color: Color(0xFF424242),
                   ),
+                  maxFontSize: 14,
                 ),
               ),
 
-              Text(
+              AutoSizeText(
                 "${formatter.format(widget.totalRecovered)}",
                 style: TextStyle(
                   fontSize: 14,
@@ -146,6 +151,7 @@ class _CaseBarsState extends State<CaseBars> {
                   fontWeight: FontWeight.w600,
                   color: Colors.grey[800],
                 ),
+                maxFontSize: 14,
               ),
 
             ],
@@ -201,7 +207,7 @@ class _CaseBarsState extends State<CaseBars> {
               SizedBox(width: 15),
 
               Expanded(
-                child: const Text(
+                child: const AutoSizeText(
                   "Total Deaths",
                   style: TextStyle(
                     fontSize: 14,
@@ -209,10 +215,11 @@ class _CaseBarsState extends State<CaseBars> {
                     fontWeight: FontWeight.w600,
                     color: Color(0xFF424242),
                   ),
+                  maxFontSize: 14,
                 ),
               ),
 
-              Text(
+              AutoSizeText(
                 "${formatter.format(widget.totalDeaths)}",
                 style: TextStyle(
                   fontSize: 14,
@@ -221,6 +228,7 @@ class _CaseBarsState extends State<CaseBars> {
                   fontWeight: FontWeight.w600,
                   color: Colors.grey[800],
                 ),
+                maxFontSize: 14,
               ),
             ],
           ),

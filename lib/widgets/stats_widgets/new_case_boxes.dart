@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -32,7 +33,7 @@ class NewCaseBoxes extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text(
+                    AutoSizeText(
                       "New Affected",
                       style: TextStyle(
                         fontSize: 15,
@@ -40,8 +41,9 @@ class NewCaseBoxes extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                         color: Colors.white,
                       ),
+                      maxFontSize: 15,
                     ),
-                    Text(
+                    AutoSizeText(
                       formatter.format(affected),
                       style: TextStyle(
                         fontSize: 21,
@@ -50,6 +52,7 @@ class NewCaseBoxes extends StatelessWidget {
                         fontWeight: FontWeight.w700,
                         color: Colors.white,
                       ),
+                      maxFontSize: 21,
                     ),
                   ],
                 ),
@@ -71,7 +74,7 @@ class NewCaseBoxes extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text(
+                  AutoSizeText(
                     "New Deaths",
                     style: TextStyle(
                       fontSize: 15,
@@ -79,8 +82,9 @@ class NewCaseBoxes extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       color: color,
                     ),
+                    maxFontSize: 15,
                   ),
-                  Text(
+                  AutoSizeText(
                     formatter.format(deaths),
                     style: TextStyle(
                       fontSize: 21,
@@ -89,6 +93,7 @@ class NewCaseBoxes extends StatelessWidget {
                       letterSpacing: 1,
                       color: color,
                     ),
+                    maxFontSize: 21,
                   ),
                 ],
               ),
@@ -116,7 +121,7 @@ class NewCaseBoxes extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text(
+                  AutoSizeText(
                     "Total Tested",
                     style: TextStyle(
                       fontSize: 15,
@@ -124,8 +129,9 @@ class NewCaseBoxes extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       color: color,
                     ),
+                    maxFontSize: 15,
                   ),
-                  Text(
+                  AutoSizeText(
                     formatter.format(tested),
                     style: TextStyle(
                       fontSize: 21,
@@ -134,6 +140,7 @@ class NewCaseBoxes extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                       color: color,
                     ),
+                    maxFontSize: 21,
                   ),
                 ],
               ),
@@ -154,7 +161,7 @@ class NewCaseBoxes extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text(
+                    AutoSizeText(
                       today? "Recovered": "Infection Probability",
                       style: TextStyle(
                         fontSize: 15,
@@ -162,8 +169,9 @@ class NewCaseBoxes extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                         color: Colors.white,
                       ),
+                      maxFontSize: 15,
                     ),
-                    Text(
+                    AutoSizeText(
                       today?formatter.format(recovered):"${(totalCases/tested*100).toStringAsFixed(1)}%",
                       style: TextStyle(
                         fontSize: 21,
@@ -172,6 +180,7 @@ class NewCaseBoxes extends StatelessWidget {
                         fontWeight: FontWeight.w700,
                         color: Colors.white,
                       ),
+                      maxFontSize: 21,
                     ),
                   ],
                 ),

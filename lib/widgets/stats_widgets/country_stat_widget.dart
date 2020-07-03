@@ -1,3 +1,5 @@
+import 'package:auto_size_text/auto_size_text.dart';
+
 import '../../widgets/stats_widgets/country_card_details.dart';
 import '../../network_requests/api_client.dart';
 import '../../network_requests/exceptions.dart';
@@ -139,7 +141,7 @@ class _CountryStatWidgetState extends State<CountryStatWidget>
                               fit: FlexFit.loose,
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 6, left: 4),
-                                child: Text(
+                                child: AutoSizeText(
                                   widget.countryName,
                                   style: TextStyle(
                                     fontFamily: "Montserrat",
@@ -147,6 +149,7 @@ class _CountryStatWidgetState extends State<CountryStatWidget>
                                     fontSize: 22,
                                     fontWeight: FontWeight.w600,
                                   ),
+                                  maxFontSize: 22,
                                   textAlign: TextAlign.center,
                                 ),
                               ),
@@ -185,46 +188,54 @@ class _CountryStatWidgetState extends State<CountryStatWidget>
                           future: _countryFuture,
                           builder: (context, snapshot) {
                             if (snapshot.hasError) {
-                              return Text(
+                              return AutoSizeText(
                                 "Unavailable",
                                 style: TextStyle(
                                     fontFamily: "Montserrat",
                                     color: Colors.white,
                                     fontSize: 37,
                                     letterSpacing: 1.1,
-                                    fontWeight: FontWeight.w600),
+                                    fontWeight: FontWeight.w600,
+                                ),
+                                maxFontSize: 37,
                               );
                             }
                             if (snapshot.hasData) {
                               if (todayJson is FetchDataException) {
-                                return Text(
+                                return AutoSizeText(
                                   snapshot.data.toString(),
                                   style: TextStyle(
                                       fontFamily: "Montserrat",
                                       color: Colors.white,
                                       fontSize: 37,
                                       letterSpacing: 1.1,
-                                      fontWeight: FontWeight.w600),
+                                      fontWeight: FontWeight.w600,
+                                  ),
+                                  maxFontSize: 37,
                                 );
                               }
-                              return Text(
+                              return AutoSizeText(
                                 formatter.format(todayJson["cases"]),
                                 style: TextStyle(
                                     fontFamily: "Montserrat",
                                     color: Colors.white,
                                     fontSize: 37,
                                     letterSpacing: 1.1,
-                                    fontWeight: FontWeight.w600),
+                                    fontWeight: FontWeight.w600,
+                                ),
+                                maxFontSize: 37,
                               );
                             }
-                            return Text(
+                            return AutoSizeText(
                               formatter.format(widget.totalCases),
                               style: TextStyle(
                                   fontFamily: "Montserrat",
                                   color: Colors.white,
                                   fontSize: 37,
                                   letterSpacing: 1.1,
-                                  fontWeight: FontWeight.w600),
+                                  fontWeight: FontWeight.w600,
+                              ),
+                              maxFontSize: 37,
                             );
                           },
                         ),
