@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flushbar/flushbar.dart';
+import 'package:flushbar/flushbar_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../values/default_country_data.dart';
 import 'package:flutter/material.dart';
@@ -184,12 +185,13 @@ class _CountryCardDetailsState extends State<CountryCardDetails>
                   Navigator.of(context).pop();
                   Flushbar(
                     messageText: AutoSizeText(
-                      "${widget.countryName} set as default",
+                      "${widget.countryName} set as default country",
                       style: TextStyle(
                         fontFamily: "Montserrat",
-                        fontSize: 16
+                        fontSize: 17,
+                        color: Colors.white
                       ),
-                      maxFontSize: 16,
+                      maxFontSize: 17,
                     ),
                     flushbarPosition: FlushbarPosition.BOTTOM,
                     flushbarStyle: FlushbarStyle.FLOATING,
@@ -198,6 +200,9 @@ class _CountryCardDetailsState extends State<CountryCardDetails>
                       size: 28.0,
                       color: widget.color,
                     ),
+                    padding: EdgeInsets.fromLTRB(20, 20, 0, 20),
+                    shouldIconPulse: false,
+                    dismissDirection: FlushbarDismissDirection.HORIZONTAL,
                     duration: Duration(seconds: 3),
                     leftBarIndicatorColor: widget.color,
                   )..show(context);
