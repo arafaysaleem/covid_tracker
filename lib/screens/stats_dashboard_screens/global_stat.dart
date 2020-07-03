@@ -24,16 +24,25 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
   ApiClient _client = ApiClient();
   Map<String, dynamic> globalData;
   Future<Map<String, dynamic>> _globalFuture;
-  Future<List<SummaryEachCountry>> _topSixFuture;
+  Future<dynamic> _topSixFuture;
 
-  Future<List<SummaryEachCountry>> getTopSix() async {
+  Future<dynamic> getTopSix() async {
     List<SummaryEachCountry> listTopSix = [];
     List<dynamic> json;
-    json = await _client.getStatsResponse(StateLocation.TOP_FIVE);
+    try {
+      json = json = await _client.getStatsResponse(StateLocation.TOP_FIVE);
+    } on FetchDataException catch (fde) {
+      return fde;
+    }
     //Initially i fetched top 5 and added pakistan details following that
     //Because i wanted to show pakistan details in top 6 stats :)
-    var pakStats =
-        await _client.getStatsResponse(StateLocation.SPECIFIC, code: "PK");
+    var pakStats;
+    try {
+      pakStats =
+      await _client.getStatsResponse(StateLocation.SPECIFIC, code: "PK");
+    } on FetchDataException catch (fde) {
+      return fde;
+    }
     json.insert(0, pakStats);
 
     json.forEach((country) {
@@ -236,10 +245,10 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
 
                       //Country Cards List
                       Expanded(
-                        child: FutureBuilder<List<SummaryEachCountry>>(
+                        child: FutureBuilder<dynamic>(
                           future: _topSixFuture,
                           builder: (context,
-                              AsyncSnapshot<List<SummaryEachCountry>>
+                              AsyncSnapshot<dynamic>
                                   snapshot) {
                             if (snapshot.hasError) {
                               return Container(
