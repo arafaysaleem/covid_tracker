@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../models/bottom_bar_item.dart';
 import 'package:flutter/material.dart';
@@ -121,7 +121,7 @@ class _AnimatedBarItemState extends State<AnimatedBarItem> with TickerProviderSt
               curve: Curves.easeInOut,
               duration: widget.animationDuration,
               vsync: this,
-              child: Text(
+              child: AutoSizeText(
                 widget.isSelected ? "${widget.barItem.text}" : "",
                 style: TextStyle(
                   color: widget.barItem.color,
@@ -129,6 +129,7 @@ class _AnimatedBarItemState extends State<AnimatedBarItem> with TickerProviderSt
                   fontWeight: FontWeight.w600,
                   fontSize: widget.barItem.textSize,
                 ),
+                maxFontSize: widget.barItem.textSize,
               ),
             )
           ],

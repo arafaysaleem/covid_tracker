@@ -117,32 +117,35 @@ class NewCaseBoxes extends StatelessWidget {
                 borderRadius: BorderRadius.circular(13),
               ),
               padding: const EdgeInsets.fromLTRB(12, 12, 12, 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  AutoSizeText(
-                    "Total Tested",
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontFamily: "Montserrat",
-                      fontWeight: FontWeight.w600,
-                      color: color,
+              child: LayoutBuilder(
+                builder:(ctx,constraint)=> Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    AutoSizeText(
+                      "Total Tested",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontFamily: "Montserrat",
+                        fontWeight: FontWeight.w600,
+                        color: color,
+                      ),
+                      maxFontSize: 15,
                     ),
-                    maxFontSize: 15,
-                  ),
-                  AutoSizeText(
-                    formatter.format(tested),
-                    style: TextStyle(
-                      fontSize: 21,
-                      fontFamily: "Montserrat",
-                      letterSpacing: 1,
-                      fontWeight: FontWeight.w700,
-                      color: color,
+                    AutoSizeText(
+                      formatter.format(tested),
+                      style: TextStyle(
+                        fontSize: 21,
+                        fontFamily: "Montserrat",
+                        letterSpacing: 1,
+                        fontWeight: FontWeight.w700,
+                        color: color,
+                      ),
+                      maxLines: 1,
+                      maxFontSize: 21,
                     ),
-                    maxFontSize: 21,
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
 
