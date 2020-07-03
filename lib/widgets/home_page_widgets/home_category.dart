@@ -1,3 +1,5 @@
+import 'package:auto_size_text/auto_size_text.dart';
+
 import '../../screens/myths_page.dart';
 import '../../screens/precautions_page.dart';
 import '../../screens/symptoms_page.dart';
@@ -73,21 +75,25 @@ class CategoryTab extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       
-                      Text(
+                      AutoSizeText(
                         "$tabName",
                         style: TextStyle(
                             color: color,
                             fontFamily: "Montserrat",
                             fontSize: 23,
-                            fontWeight: FontWeight.w700),
+                            fontWeight: FontWeight.w700,
+                        ),
+                        stepGranularity: 2,
                       ),
-                      Text(
+                      AutoSizeText(
                         "$tabDesc",
                         style: TextStyle(
                             color: color,
                             fontFamily: "Montserrat",
                             fontSize: 19,
-                            fontWeight: FontWeight.w500),
+                            fontWeight: FontWeight.w500,
+                        ),
+                        stepGranularity: 2,
                       ),
                     ],
                   ),
