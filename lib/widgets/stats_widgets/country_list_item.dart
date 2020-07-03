@@ -1,3 +1,5 @@
+import 'package:auto_size_text/auto_size_text.dart';
+
 import '../../screens/stats_dashboard_screens/country_stat.dart';
 import '../../models/item_color_data.dart';
 import 'package:flutter/material.dart';
@@ -92,68 +94,78 @@ class CountryListItem extends StatelessWidget {
                 //Country Details Column
                 Align(
                   alignment: Alignment(0, -0.65),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
+                  child: LayoutBuilder(
+                    builder:(ctx,constraint) => Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
 
-                      //Flag
-                      Image(
-                        image: AssetImage(flagPath),
-                        width: 40,
-                      ),
-
-                      SizedBox(
-                        height: 8,
-                      ),
-
-                      //Country Name
-                      Text(
-                        countryName,
-                        style: TextStyle(
-                          fontFamily: "Montserrat",
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
+                        //Flag
+                        Image(
+                          image: AssetImage(flagPath),
+                          width: 40,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
 
-                      SizedBox(
-                        height: 4,
-                      ),
+                        SizedBox(
+                          height: 8,
+                        ),
 
-                      //Number of Cases
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          SizedBox(width:6),
-
-                          //Number
-                          Text(
-                            formatter.format(value),
+                        //Country Name
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 11),
+                          child: AutoSizeText(
+                            countryName,
                             style: TextStyle(
-                                fontFamily: "Montserrat",
-                                color: Colors.white,
-                                fontSize: 19,
-                                letterSpacing: 1,
-                                fontWeight: FontWeight.w700),
+                              fontFamily: "Montserrat",
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                            maxFontSize: 16,
+                            textAlign: TextAlign.center,
                           ),
+                        ),
 
-                          SizedBox(
-                            width: 3,
-                          ),
+                        SizedBox(
+                          height: 4,
+                        ),
 
-                          //Arrow
-                          Transform.rotate(
-                              angle: isIncreasing ? pi / 4 : (pi / 4) * 3,
-                              child: const Icon(
-                                Icons.arrow_upward,
-                                color: Colors.white,
-                                size: 19.5,
-                              ))
-                        ],
-                      )
-                    ],
+                        //Number of Cases
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            SizedBox(width:6),
+
+                            //Number
+                            LimitedBox(
+                              maxWidth: constraint.maxWidth * 0.78,
+                              child: AutoSizeText(
+                                formatter.format(value),
+                                style: TextStyle(
+                                    fontFamily: "Montserrat",
+                                    color: Colors.white,
+                                    fontSize: 19,
+                                    letterSpacing: 1,
+                                    fontWeight: FontWeight.w700,
+                                ),
+                                maxFontSize: 19,
+                              ),
+                            ),
+
+                            SizedBox(width: 3),
+
+                            //Arrow
+                            Transform.rotate(
+                                angle: isIncreasing ? pi / 4 : (pi / 4) * 3,
+                                child: const Icon(
+                                  Icons.arrow_upward,
+                                  color: Colors.white,
+                                  size: 19.5,
+                                ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 )
               ],

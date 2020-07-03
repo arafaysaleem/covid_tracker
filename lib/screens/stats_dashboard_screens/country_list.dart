@@ -1,3 +1,5 @@
+import 'package:auto_size_text/auto_size_text.dart';
+
 import '../../widgets/stats_widgets/countries_grid.dart';
 import '../../widgets/skeletons/country_list_skeleton.dart';
 import '../../models/summary_each_country.dart';
@@ -43,7 +45,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
     return filteredCountries;
   }
 
-  void _clearFocus(BuildContext context){
+  void _clearFocus(BuildContext context) {
     FocusScope.of(context).unfocus();
   }
 
@@ -59,12 +61,12 @@ class _CountriesScreenState extends State<CountriesScreen> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ()=> _clearFocus(context),
+      onTap: () => _clearFocus(context),
       child: Column(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(top: 15,bottom: 20),
-            child: const Text(
+            padding: const EdgeInsets.only(top: 15, bottom: 20),
+            child: AutoSizeText(
               "Search Any Country",
               style: TextStyle(
                 fontSize: 20,
@@ -72,6 +74,8 @@ class _CountriesScreenState extends State<CountriesScreen> {
                 fontWeight: FontWeight.w600,
                 color: Color(0xFF424242),
               ),
+              stepGranularity: 1,
+              maxFontSize: 20,
             ),
           ),
 
@@ -93,7 +97,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
                 color: themeColor,
                 fontFamily: "Montserrat",
                 fontWeight: FontWeight.normal,
-                fontSize: 18,
+                fontSize: MediaQuery.of(context).size.width<360.0?16:18,
               ),
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.symmetric(vertical: 17),
@@ -101,12 +105,16 @@ class _CountriesScreenState extends State<CountriesScreen> {
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
                   borderSide: BorderSide(
-                      color: themeColor, width: 1.4, style: BorderStyle.solid),
+                    color: themeColor,
+                    width: 1.4,
+                    style: BorderStyle.solid,
+                  ),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
                   borderSide: BorderSide(
-                      color: themeColor, width: 1.4, style: BorderStyle.solid),
+                      color: themeColor, width: 1.4, style: BorderStyle.solid,
+                  ),
                 ),
                 prefixIcon: Icon(
                   Icons.search,
@@ -170,11 +178,12 @@ class _CountriesScreenState extends State<CountriesScreen> {
                       ),
                     );
                   } else {
-
                     List<SummaryEachCountry> list = getFilteredCountries();
 
                     //Country Tiles
-                    return CountriesGrid(list: list,);
+                    return CountriesGrid(
+                      list: list,
+                    );
                   }
                 } else {
                   return CountryListLoader();
