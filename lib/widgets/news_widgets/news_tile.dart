@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
@@ -71,7 +72,7 @@ class NewsTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   //Title
-                  Text(
+                  AutoSizeText(
                     "${article["title"]}",
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -81,13 +82,15 @@ class NewsTile extends StatelessWidget {
                       color: Colors.black,
                       fontWeight: FontWeight.w600,
                     ),
+                    stepGranularity: 1,
+                    maxFontSize: 13,
                   ),
 
                   SizedBox(height: 5),
 
                   //Description
                   Flexible(
-                    child: Text(
+                    child: AutoSizeText(
                       article["description"] == null
                           ? "Read More for Details"
                           : "${article["description"]}",
@@ -98,6 +101,9 @@ class NewsTile extends StatelessWidget {
                         color: Colors.grey[600],
                         fontWeight: FontWeight.w500,
                       ),
+                      stepGranularity: 0.2,
+                      maxFontSize: 11.8,
+                      minFontSize: 11.8,
                     ),
                   ),
                 ],
