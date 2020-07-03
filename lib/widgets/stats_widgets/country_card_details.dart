@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flushbar/flushbar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../values/default_country_data.dart';
 import 'package:flutter/material.dart';
@@ -181,7 +182,25 @@ class _CountryCardDetailsState extends State<CountryCardDetails>
                       await SharedPreferences.getInstance();
                   prefs.setString("defaultCountry", json.encode(jsonMap));
                   Navigator.of(context).pop();
-                  //TODO: Add a snack bar to show confirmation
+                  Flushbar(
+                    messageText: AutoSizeText(
+                      "${widget.countryName} set as default",
+                      style: TextStyle(
+                        fontFamily: "Montserrat",
+                        fontSize: 16
+                      ),
+                      maxFontSize: 16,
+                    ),
+                    flushbarPosition: FlushbarPosition.BOTTOM,
+                    flushbarStyle: FlushbarStyle.FLOATING,
+                    icon: Icon(
+                      Icons.info_outline,
+                      size: 28.0,
+                      color: widget.color,
+                    ),
+                    duration: Duration(seconds: 3),
+                    leftBarIndicatorColor: widget.color,
+                  )..show(context);
                 },
                 child: Container(
                   width: double.infinity,
