@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -50,7 +51,7 @@ class CreditsScreen extends StatelessWidget {
                     width: MediaQuery.of(context).size.width > 360 ? 80 : 60),
                 Padding(
                   padding: const EdgeInsets.only(top: 25),
-                  child: Text(
+                  child: AutoSizeText(
                     "Credits",
                     style: TextStyle(
                       fontSize: 21,
@@ -58,6 +59,7 @@ class CreditsScreen extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       color: Colors.black,
                     ),
+                    maxFontSize: 21,
                   ),
                 ),
               ],
@@ -81,7 +83,7 @@ class CreditsScreen extends StatelessWidget {
                   SizedBox(height: 20),
 
                   //App Name
-                  Text(
+                  AutoSizeText(
                     "Covid Tracker",
                     style: TextStyle(
                       fontSize: 25,
@@ -89,10 +91,11 @@ class CreditsScreen extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       color: Colors.black,
                     ),
+                    maxFontSize: 25,
                   ),
 
                   //Version number
-                  Text(
+                  AutoSizeText(
                     "Version 1.0.0",
                     style: TextStyle(
                       fontSize: 18,
@@ -101,6 +104,7 @@ class CreditsScreen extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       color: Color(0xff009a88),
                     ),
+                    maxFontSize: 18,
                   ),
 
                   SizedBox(height: 10),
@@ -117,7 +121,7 @@ class CreditsScreen extends StatelessWidget {
                       ),
                       padding:
                           EdgeInsets.symmetric(horizontal: 25, vertical: 8),
-                      child: const Text(
+                      child: AutoSizeText(
                         "License",
                         style: TextStyle(
                           fontSize: 18,
@@ -125,6 +129,7 @@ class CreditsScreen extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                           color: Colors.white,
                         ),
+                        maxFontSize: 18,
                       ),
                     ),
                   )
@@ -139,7 +144,7 @@ class CreditsScreen extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             child: Padding(
               padding: const EdgeInsets.all(15),
-              child: Text(
+              child: AutoSizeText(
                 "Covid Tracker is an app made with Flutter framework to provide worldwide information related to Covid-19 pandemic. It shows the affected, recovered, deaths, tests and infection probability for each country. As it is an open source app feel free to contribute and star in GitHub.",
                 style: TextStyle(
                   fontSize: 16,
@@ -149,6 +154,7 @@ class CreditsScreen extends StatelessWidget {
                   fontWeight: FontWeight.normal,
                   color: Color(0xff008e7b),
                 ),
+                maxFontSize: 16,
                 textAlign: TextAlign.center,
               ),
             ),
@@ -187,7 +193,7 @@ class CreditsScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       SizedBox(width: 5),
-                      Text(
+                      AutoSizeText(
                         "Made with ",
                         style: TextStyle(
                           fontSize: 15,
@@ -195,13 +201,14 @@ class CreditsScreen extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                           color: Colors.black,
                         ),
+                        maxFontSize: 15,
                       ),
                       const Icon(
                         Icons.favorite,
                         color: Colors.red,
                         size: 18,
                       ),
-                      Text(
+                      AutoSizeText(
                         " by ",
                         style: TextStyle(
                           fontSize: 15,
@@ -209,8 +216,9 @@ class CreditsScreen extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                           color: Colors.black,
                         ),
+                        maxFontSize: 15,
                       ),
-                      Text(
+                      AutoSizeText(
                         "Abdur Rafay Saleem",
                         style: TextStyle(
                           fontSize: 15,
@@ -218,6 +226,7 @@ class CreditsScreen extends StatelessWidget {
                           fontWeight: FontWeight.w700,
                           color: Colors.black,
                         ),
+                        maxFontSize: 15,
                       ),
                       SizedBox(width: 5),
                       Image(
