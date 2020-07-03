@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class PrecautionCardGrid extends StatefulWidget {
@@ -7,7 +8,7 @@ class PrecautionCardGrid extends StatefulWidget {
 
 class _PrecautionCardGridState extends State<PrecautionCardGrid> {
   int selectedIndex=0;
-  List<Map<String, String>> preventions = [
+  final List<Map<String, String>> preventions = const [
     {
       "prevention": "Protective Mask",
       "desc":
@@ -76,42 +77,49 @@ class _PrecautionCardGridState extends State<PrecautionCardGrid> {
                   borderRadius: BorderRadius.circular(15.0),
                 ),
                 padding: const EdgeInsets.fromLTRB(14, 20, 14, 0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    Image(
-                      image: AssetImage(preventions[index]["imgPath"]),
-                      height: 95.0,
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      "${preventions[index]["prevention"]}",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontFamily: "Montserrat",
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
+                child: LayoutBuilder(
+                  builder: (ctx, constraint) => Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      Image(
+                        image: AssetImage(preventions[index]["imgPath"]),
+                        height: constraint.maxHeight * 0.46,
                       ),
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Expanded(
-                      child: Text(
-                        "${preventions[index]['desc']}",
+                      SizedBox(
+                        height: 8,
+                      ),
+                      AutoSizeText(
+                        "${preventions[index]["prevention"]}",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 14,
                           fontFamily: "Montserrat",
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        maxFontSize: 14,
+                        stepGranularity: 2,
+                      ),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      Expanded(
+                        child: AutoSizeText(
+                          "${preventions[index]['desc']}",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontFamily: "Montserrat",
+                            color: Colors.grey,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          maxFontSize: 12,
+                          stepGranularity: 2,
                         ),
                       ),
-                    ),
-                  ],
+                      SizedBox(height: 10),
+                    ],
+                  ),
                 ),
               ),
             ),

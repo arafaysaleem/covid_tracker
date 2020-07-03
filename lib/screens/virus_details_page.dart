@@ -154,6 +154,7 @@ class VirusDetailsScreen extends StatelessWidget {
                               color: color,
                               fontWeight: FontWeight.w700,
                             ),
+                            maxFontSize: 28,
                             stepGranularity: 2,
                           ),
                           SizedBox(
@@ -169,6 +170,7 @@ class VirusDetailsScreen extends StatelessWidget {
                               color: Colors.grey[850],
                               fontWeight: FontWeight.w500,
                             ),
+                            maxFontSize: 18,
                             stepGranularity: 2,
                           ),
                         ],

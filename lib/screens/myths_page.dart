@@ -169,45 +169,52 @@ class MythsScreen extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return Container(
                               margin: const EdgeInsets.fromLTRB(23, 35, 23, 15),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: <Widget>[
-                                  Image(
-                                    image: AssetImage(
-                                        "${myths[index]["imgPath"]}"),
-                                    height: 100.0,
-                                  ),
-                                  SizedBox(
-                                    height: 40,
-                                  ),
-                                  Text(
-                                    "${myths[index]["myth"]}",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 19,
-                                      height: 1.1,
-                                      fontFamily: "Montserrat",
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600,
+                              child: LayoutBuilder(
+                                builder: (ctx, constraint) => Column(
+                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  children: <Widget>[
+                                    Image(
+                                      image: AssetImage(
+                                          "${myths[index]["imgPath"]}"),
+                                      height: 100.0,
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: 13,
-                                  ),
-                                  Expanded(
-                                    child: Text(
-                                      "${myths[index]['desc']}",
+                                    SizedBox(
+                                      height: 40,
+                                    ),
+                                    AutoSizeText(
+                                      "${myths[index]["myth"]}",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                        fontSize: 16.5,
-                                        height: 1.4,
+                                        fontSize: 19,
+                                        height: 1.1,
                                         fontFamily: "Montserrat",
-                                        color: Colors.grey,
-                                        fontWeight: FontWeight.w500,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                      maxFontSize: 20,
+                                      stepGranularity: 2,
+                                    ),
+                                    SizedBox(
+                                      height: 13,
+                                    ),
+                                    Expanded(
+                                      child: AutoSizeText(
+                                        "${myths[index]['desc']}",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 16.5,
+                                          height: 1.4,
+                                          fontFamily: "Montserrat",
+                                          color: Colors.grey,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        maxFontSize: 16.5,
+                                        stepGranularity: 1.5,
                                       ),
                                     ),
-                                  ),
-                                ],
+                                    SizedBox(height: 55),
+                                  ],
+                                ),
                               ),
                             );
                           }),

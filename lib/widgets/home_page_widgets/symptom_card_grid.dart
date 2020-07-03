@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class SymptomCardGrid extends StatefulWidget {
@@ -7,7 +8,7 @@ class SymptomCardGrid extends StatefulWidget {
 
 class _SymptomCardGridState extends State<SymptomCardGrid> {
   int selectedIndex=0;
-  List<Map<String, String>> symptoms = [
+  final List<Map<String, String>> symptoms = const [
     {
       "symptom": "Fever",
       "desc":
@@ -78,42 +79,49 @@ class _SymptomCardGridState extends State<SymptomCardGrid> {
                   borderRadius: BorderRadius.circular(15.0),
                 ),
                 padding: const EdgeInsets.fromLTRB(14, 20, 14, 0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    Image(
-                      image: AssetImage(symptoms[index]["imgPath"]),
-                      height: 95.0,
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      "${symptoms[index]["symptom"]}",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontFamily: "Montserrat",
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
+                child: LayoutBuilder(
+                  builder: (ctx, constraint) => Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      Image(
+                        image: AssetImage(symptoms[index]["imgPath"]),
+                        height: constraint.maxHeight * 0.46,
                       ),
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Expanded(
-                      child: Text(
-                        "${symptoms[index]['desc']}",
+                      SizedBox(
+                        height: 8,
+                      ),
+                      AutoSizeText(
+                        "${symptoms[index]["symptom"]}",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 14,
                           fontFamily: "Montserrat",
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        maxFontSize: 14,
+                        stepGranularity: 2,
+                      ),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      Expanded(
+                        child: AutoSizeText(
+                          "${symptoms[index]['desc']}",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontFamily: "Montserrat",
+                            color: Colors.grey,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          maxFontSize: 12,
+                          stepGranularity: 2,
                         ),
                       ),
-                    ),
-                  ],
+                      SizedBox(height: 10),
+                    ],
+                  ),
                 ),
               ),
             ),
