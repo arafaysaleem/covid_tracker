@@ -49,11 +49,15 @@ class VirusDetailsScreen extends StatelessWidget {
     },
   ];
 
+  static AutoSizeGroup titleGrp = AutoSizeGroup();
+  static AutoSizeGroup descGrp = AutoSizeGroup();
+
   const VirusDetailsScreen({Key key, this.imgPath, this.color})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    double pageHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.grey[100],
       extendBodyBehindAppBar: true,
@@ -70,7 +74,7 @@ class VirusDetailsScreen extends StatelessWidget {
         elevation: 0,
       ),
       body: Container(
-        height: MediaQuery.of(context).size.height,
+        height: pageHeight,
         child: Column(
           children: <Widget>[
             //image tag container
@@ -103,6 +107,8 @@ class VirusDetailsScreen extends StatelessWidget {
                               fontWeight: FontWeight.w700,
                             ),
                             stepGranularity: 2,
+                            maxFontSize: 30,
+                            maxLines: 1,
                           ),
                         ),
                       ),
@@ -130,54 +136,62 @@ class VirusDetailsScreen extends StatelessWidget {
             ),
 
             //Details List
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(25, 20, 25, 0),
-                child: ListView.builder(
-                  physics: BouncingScrollPhysics(),
-                  padding: const EdgeInsets.all(0),
-                  scrollDirection: Axis.vertical,
-                  itemCount: details.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 20),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: <Widget>[
-                          AutoSizeText(
-                            "${details[index]["detail"]}",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              fontSize: 28,
-                              fontFamily: "Montserrat",
-                              color: color,
-                              fontWeight: FontWeight.w700,
+            Container(
+              height: pageHeight - 220,
+              padding: const EdgeInsets.fromLTRB(25, 20, 25, 0),
+              child: ListView.builder(
+                physics: BouncingScrollPhysics(),
+                padding: const EdgeInsets.all(0),
+                scrollDirection: Axis.vertical,
+                itemCount: details.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: LayoutBuilder(
+                      builder: (ctx, constraint) => LimitedBox(
+                        maxWidth: constraint.maxWidth,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: <Widget>[
+                            AutoSizeText(
+                              "${details[index]["detail"]}",
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontSize: 28,
+                                fontFamily: "Montserrat",
+                                color: color,
+                                fontWeight: FontWeight.w700,
+                              ),
+                              maxFontSize: 28,
+                              stepGranularity: 2,
+                              maxLines: 3,
+                              group: titleGrp,
                             ),
-                            maxFontSize: 28,
-                            stepGranularity: 2,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          AutoSizeText(
-                            "${details[index]['desc']}",
-                            textAlign: TextAlign.justify,
-                            style: TextStyle(
-                              fontSize: 18,
-                              height: 1.5,
-                              fontFamily: "Montserrat",
-                              color: Colors.grey[850],
-                              fontWeight: FontWeight.w500,
+                            SizedBox(
+                              height: 10,
                             ),
-                            maxFontSize: 18,
-                            stepGranularity: 2,
-                          ),
-                        ],
+                            AutoSizeText(
+                              "${details[index]['desc']}",
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontSize: 18,
+                                height: 1.5,
+                                fontFamily: "Montserrat",
+                                color: Colors.grey[850],
+                                letterSpacing: 0.5,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              maxFontSize: 18,
+                              group: descGrp,
+                              stepGranularity: 2,
+                            ),
+                          ],
+                        ),
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
             )
           ],

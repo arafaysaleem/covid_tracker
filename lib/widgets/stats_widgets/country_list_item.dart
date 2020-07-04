@@ -137,6 +137,7 @@ class CountryListItem extends StatelessWidget {
 
                             //Number
                             LimitedBox(
+                              maxHeight: constraint.maxHeight * 0.13,
                               maxWidth: constraint.maxWidth * 0.78,
                               child: AutoSizeText(
                                 formatter.format(value),
@@ -148,6 +149,7 @@ class CountryListItem extends StatelessWidget {
                                     fontWeight: FontWeight.w700,
                                 ),
                                 maxFontSize: 19,
+                                maxLines: 1,
                               ),
                             ),
 

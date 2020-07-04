@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 class CategoryTab extends StatelessWidget {
   final imgPath, tabName, tabDesc, imgHeight, imgLeft, imgBottom;
   final Color color;
+  final AutoSizeGroup titleGrp,descGrp;
 
   const CategoryTab(
       {this.imgPath,
@@ -20,7 +21,9 @@ class CategoryTab extends StatelessWidget {
       this.tabDesc,
       this.imgHeight = 150.0,
       this.imgLeft = 15.0,
-      this.imgBottom = -8.0});
+      this.imgBottom = -8.0,
+      this.titleGrp, this.descGrp}
+  );
 
   Function getPage(tabName, context) {
     switch (tabName) {
@@ -40,8 +43,11 @@ class CategoryTab extends StatelessWidget {
             builder: (context) =>
                 VirusDetailsScreen(color: color, imgPath: imgPath)));
       case ("Updates"):
-        return () => Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => UpdatesScreen(color: color,imgPath: imgPath,)));
+        return () => Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => UpdatesScreen(
+                  color: color,
+                  imgPath: imgPath,
+                )));
       case ("Statistics"):
         return () => Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => WorldStatScreen()));
@@ -73,27 +79,33 @@ class CategoryTab extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      
                       AutoSizeText(
                         "$tabName",
                         style: TextStyle(
-                            color: color,
-                            fontFamily: "Montserrat",
-                            fontSize: 23,
-                            fontWeight: FontWeight.w700,
+                          color: color,
+                          fontFamily: "Montserrat",
+                          fontSize: 23,
+                          fontWeight: FontWeight.w700,
                         ),
-                        stepGranularity: 2,
+                        stepGranularity: 1,
+                        maxFontSize: 23,
+                        maxLines: 1,
+                        group: titleGrp,
                       ),
                       AutoSizeText(
                         "$tabDesc",
                         style: TextStyle(
-                            color: color,
-                            fontFamily: "Montserrat",
-                            fontSize: 19,
-                            fontWeight: FontWeight.w500,
+                          color: color,
+                          fontFamily: "Montserrat",
+                          fontSize: 19,
+                          fontWeight: FontWeight.w500,
                         ),
-                        stepGranularity: 2,
+                        stepGranularity: 1,
+                        maxFontSize: 19,
+                        maxLines: 3,
+                        group: descGrp,
                       ),
                     ],
                   ),

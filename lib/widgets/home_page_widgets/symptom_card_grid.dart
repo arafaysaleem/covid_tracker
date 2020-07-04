@@ -45,6 +45,9 @@ class _SymptomCardGridState extends State<SymptomCardGrid> {
     },
   ];
 
+  static AutoSizeGroup titleGrp=AutoSizeGroup();
+  static AutoSizeGroup descGrp=AutoSizeGroup();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -81,6 +84,7 @@ class _SymptomCardGridState extends State<SymptomCardGrid> {
                 padding: const EdgeInsets.fromLTRB(14, 20, 14, 0),
                 child: LayoutBuilder(
                   builder: (ctx, constraint) => Column(
+                    mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
                       Image(
@@ -90,22 +94,29 @@ class _SymptomCardGridState extends State<SymptomCardGrid> {
                       SizedBox(
                         height: 8,
                       ),
-                      AutoSizeText(
-                        "${symptoms[index]["symptom"]}",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: "Montserrat",
-                          color: Colors.black,
-                          fontWeight: FontWeight.w600,
+                      LimitedBox(
+                        maxHeight: constraint.maxHeight * 0.1,
+                        child: AutoSizeText(
+                          "${symptoms[index]["symptom"]}",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontFamily: "Montserrat",
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          maxFontSize: 14,
+                          maxLines: 1,
+                          minFontSize: 11,
+                          stepGranularity: 1,
+                          group: titleGrp,
                         ),
-                        maxFontSize: 14,
-                        stepGranularity: 2,
                       ),
                       SizedBox(
                         height: 8,
                       ),
-                      Expanded(
+                      LimitedBox(
+                        maxHeight: constraint.maxHeight*0.30,
                         child: AutoSizeText(
                           "${symptoms[index]['desc']}",
                           textAlign: TextAlign.center,
@@ -116,10 +127,13 @@ class _SymptomCardGridState extends State<SymptomCardGrid> {
                             fontWeight: FontWeight.w500,
                           ),
                           maxFontSize: 12,
-                          stepGranularity: 2,
+                          minFontSize: 9,
+                          group: descGrp,
+                          stepGranularity: 1,
+                          maxLines: 4,
                         ),
                       ),
-                      SizedBox(height: 10),
+                      SizedBox(height: 5),
                     ],
                   ),
                 ),
