@@ -115,16 +115,20 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                     //Sort by
                     Padding(
                       padding: MediaQuery.of(context).size.width>360.0? EdgeInsets.only(left: 20):EdgeInsets.only(left: 0),
-                      child: AutoSizeText(
-                        "Sort By",
-                        style: TextStyle(
-                          fontFamily: "Montserrat",
-                          fontSize: 18,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w600,
+                      child: SizedBox(
+                        width: 68,
+                        child: AutoSizeText(
+                          "Sort By",
+                          style: TextStyle(
+                            fontFamily: "Montserrat",
+                            fontSize: 18,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          stepGranularity: 2,
+                          maxFontSize: 18,
+                          maxLines: 1,
                         ),
-                        stepGranularity: 2,
-                        maxFontSize: 18,
                       ),
                     ),
 
@@ -164,72 +168,90 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                             items: <DropdownMenuItem<String>>[
                               const DropdownMenuItem(
                                 value: "publishedAt",
-                                child: AutoSizeText(
-                                  "Latest",
-                                  style: TextStyle(
-                                    fontFamily: "Montserrat",
-                                    fontSize: 17,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500,
+                                child: SizedBox(
+                                  width: 55,
+                                  child: AutoSizeText(
+                                    "Latest",
+                                    style: TextStyle(
+                                      fontFamily: "Montserrat",
+                                      fontSize: 17,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    stepGranularity: 1,
+                                    maxFontSize: 17,
                                   ),
-                                  stepGranularity: 1,
-                                  maxFontSize: 17,
                                 ),
                               ),
                               const  DropdownMenuItem(
                                 value: "popular",
-                                child: AutoSizeText(
-                                  "Popular",
-                                  style: TextStyle(
-                                    fontFamily: "Montserrat",
-                                    fontSize: 17,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500,
+                                child: SizedBox(
+                                  width: 68,
+                                  child: AutoSizeText(
+                                    "Popular",
+                                    style: TextStyle(
+                                      fontFamily: "Montserrat",
+                                      fontSize: 17,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    stepGranularity: 1,
+                                    maxFontSize: 17,
                                   ),
-                                  stepGranularity: 1,
-                                  maxFontSize: 17,
                                 ),
                               ),
                               const DropdownMenuItem(
                                 value: "Last Week",
-                                child: AutoSizeText(
-                                  "Last Week",
-                                  style: TextStyle(
-                                    fontFamily: "Montserrat",
-                                    fontSize: 17,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500,
+                                child: SizedBox(
+                                  width: 90,
+                                  child: AutoSizeText(
+                                    "Last Week",
+                                    style: TextStyle(
+                                      fontFamily: "Montserrat",
+                                      fontSize: 17,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    stepGranularity: 1,
+                                    maxFontSize: 17,
+                                    maxLines: 1,
                                   ),
-                                  stepGranularity: 1,
-                                  maxFontSize: 17,
                                 ),
                               ),
                               const DropdownMenuItem(
                                 value: "Last 15",
-                                child: AutoSizeText(
-                                  "Last 15 days",
-                                  style: TextStyle(
-                                    fontFamily: "Montserrat",
-                                    fontSize: 17,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500,
+                                child: SizedBox(
+                                  width: 99,
+                                  child: AutoSizeText(
+                                    "Last 15 days",
+                                    style: TextStyle(
+                                      fontFamily: "Montserrat",
+                                      fontSize: 17,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    stepGranularity: 1,
+                                    maxFontSize: 17,
+                                    maxLines: 1,
                                   ),
-                                  stepGranularity: 1,
-                                  maxFontSize: 17,
                                 ),
                               ),
                               const DropdownMenuItem(
                                 value: "Last Month",
-                                child: AutoSizeText(
-                                  "Last Month",
-                                  style: TextStyle(
-                                    fontFamily: "Montserrat",
-                                    fontSize: 17,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500,
+                                child: SizedBox(
+                                  width: 97,
+                                  child: AutoSizeText(
+                                    "Last Month",
+                                    style: TextStyle(
+                                      fontFamily: "Montserrat",
+                                      fontSize: 17,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    stepGranularity: 1,
+                                    maxFontSize: 17,
+                                    maxLines: 1,
                                   ),
-                                  stepGranularity: 1,
-                                  maxFontSize: 17,
                                 ),
                               ),
                             ],

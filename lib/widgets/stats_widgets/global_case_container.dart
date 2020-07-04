@@ -68,6 +68,8 @@ class _GlobalCaseContainerState extends State<GlobalCaseContainer> {
     updateCasesPanel();
   }
 
+  AutoSizeGroup tabGroup=AutoSizeGroup();
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -131,6 +133,8 @@ class _GlobalCaseContainerState extends State<GlobalCaseContainer> {
                             fontWeight: FontWeight.w700,
                           ),
                           maxFontSize: 16,
+                          group: tabGroup,
+                          maxLines: 1,
                         ),
                       ),
                     ),
@@ -181,6 +185,8 @@ class _GlobalCaseContainerState extends State<GlobalCaseContainer> {
                             fontWeight: FontWeight.w700,
                           ),
                           maxFontSize: 16,
+                          group: tabGroup,
+                          maxLines: 1,
                         ),
                       ),
                     ),
@@ -227,6 +233,8 @@ class _GlobalCaseContainerState extends State<GlobalCaseContainer> {
                               fontWeight: FontWeight.w700,
                             ),
                             maxFontSize: 16,
+                            group: tabGroup,
+                            maxLines: 1,
                           ),
                         ),
                       ),

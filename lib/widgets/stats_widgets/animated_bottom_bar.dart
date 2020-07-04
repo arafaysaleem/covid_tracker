@@ -121,15 +121,19 @@ class _AnimatedBarItemState extends State<AnimatedBarItem> with TickerProviderSt
               curve: Curves.easeInOut,
               duration: widget.animationDuration,
               vsync: this,
-              child: AutoSizeText(
-                widget.isSelected ? "${widget.barItem.text}" : "",
-                style: TextStyle(
-                  color: widget.barItem.color,
-                  fontFamily: "Montserrat",
-                  fontWeight: FontWeight.w600,
-                  fontSize: widget.barItem.textSize,
+              child: LimitedBox(
+                maxWidth: 70,
+                child: AutoSizeText(
+                  widget.isSelected ? "${widget.barItem.text}" : "",
+                  style: TextStyle(
+                    color: widget.barItem.color,
+                    fontFamily: "Montserrat",
+                    fontWeight: FontWeight.w600,
+                    fontSize: widget.barItem.textSize,
+                  ),
+                  maxFontSize: widget.barItem.textSize,
+                  maxLines: 1,
                 ),
-                maxFontSize: widget.barItem.textSize,
               ),
             )
           ],

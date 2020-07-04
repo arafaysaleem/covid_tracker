@@ -20,17 +20,41 @@ class NewsTile extends StatelessWidget {
       child: Container(
         width: MediaQuery.of(context).size.width,
         height: 95,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            //News image
-            article['urlToImage'] != null
-                ? CachedNetworkImage(
-              imageUrl: article['urlToImage'],
-              fit: BoxFit.cover,
-              width: 95,
-              height: 95,
-              placeholder: (context, url) => Container(
+        child: LayoutBuilder(
+          builder: (ctx,constraint) => Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              //News image
+              article['urlToImage'] != null
+                  ? CachedNetworkImage(
+                imageUrl: article['urlToImage'],
+                fit: BoxFit.cover,
+                width: 95,
+                height: 95,
+                placeholder: (context, url) => Container(
+                  width: 95,
+                  height: 95,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/updates/news.png"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                errorWidget: (context, url, dynamic) {
+                  return Container(
+                    width: 95,
+                    height: 95,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/updates/news.png"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  );
+                },
+              )
+                  : Container(
                 width: 95,
                 height: 95,
                 decoration: BoxDecoration(
@@ -40,76 +64,60 @@ class NewsTile extends StatelessWidget {
                   ),
                 ),
               ),
-              errorWidget: (context, url, dynamic) {
-                return Container(
-                  width: 95,
-                  height: 95,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assets/updates/news.png"),
-                      fit: BoxFit.cover,
+
+              SizedBox(width: 8),
+
+              //Column of title and description
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    //Title
+                    SizedBox(
+                      width: constraint.maxWidth * 0.7,
+                      child: AutoSizeText(
+                        "${article["title"]}",
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontFamily: "Montserrat",
+                          fontSize: 13,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        stepGranularity: 1,
+                        maxFontSize: 13,
+                      ),
                     ),
-                  ),
-                );
-              },
-            )
-                : Container(
-              width: 95,
-              height: 95,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/updates/news.png"),
-                  fit: BoxFit.cover,
+
+                    SizedBox(height: 5),
+
+                    //Description
+                    Flexible(
+                      child: SizedBox(
+                        width: constraint.maxWidth * 0.7,
+                        child: AutoSizeText(
+                          article["description"] == null
+                              ? "Read More for Details"
+                              : "${article["description"]}",
+                          maxLines: 4,
+                          style: TextStyle(
+                            fontFamily: "Montserrat",
+                            fontSize: 11.8,
+                            color: Colors.grey[600],
+                            fontWeight: FontWeight.w500,
+                          ),
+                          stepGranularity: 0.2,
+                          maxFontSize: 11.8,
+                          minFontSize: 11.8,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ),
-
-            SizedBox(width: 8),
-
-            //Column of title and description
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  //Title
-                  AutoSizeText(
-                    "${article["title"]}",
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontFamily: "Montserrat",
-                      fontSize: 13,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    stepGranularity: 1,
-                    maxFontSize: 13,
-                  ),
-
-                  SizedBox(height: 5),
-
-                  //Description
-                  Flexible(
-                    child: AutoSizeText(
-                      article["description"] == null
-                          ? "Read More for Details"
-                          : "${article["description"]}",
-                      maxLines: 4,
-                      style: TextStyle(
-                        fontFamily: "Montserrat",
-                        fontSize: 11.8,
-                        color: Colors.grey[600],
-                        fontWeight: FontWeight.w500,
-                      ),
-                      stepGranularity: 0.2,
-                      maxFontSize: 11.8,
-                      minFontSize: 11.8,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

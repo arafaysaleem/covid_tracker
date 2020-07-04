@@ -91,6 +91,7 @@ class CreditsScreen extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       color: Colors.black,
                     ),
+                    maxLines: 1,
                     maxFontSize: 25,
                   ),
 
@@ -105,6 +106,7 @@ class CreditsScreen extends StatelessWidget {
                       color: Color(0xff009a88),
                     ),
                     maxFontSize: 18,
+                    maxLines: 1,
                   ),
 
                   SizedBox(height: 10),
@@ -130,6 +132,7 @@ class CreditsScreen extends StatelessWidget {
                           color: Colors.white,
                         ),
                         maxFontSize: 18,
+                        maxLines: 1,
                       ),
                     ),
                   )
@@ -202,6 +205,7 @@ class CreditsScreen extends StatelessWidget {
                           color: Colors.black,
                         ),
                         maxFontSize: 15,
+                        maxLines: 1,
                       ),
                       const Icon(
                         Icons.favorite,
@@ -217,6 +221,7 @@ class CreditsScreen extends StatelessWidget {
                           color: Colors.black,
                         ),
                         maxFontSize: 15,
+                        maxLines: 1,
                       ),
                       AutoSizeText(
                         "Abdur Rafay Saleem",
@@ -227,6 +232,7 @@ class CreditsScreen extends StatelessWidget {
                           color: Colors.black,
                         ),
                         maxFontSize: 15,
+                        maxLines: 1,
                       ),
                       SizedBox(width: 5),
                       Image(

@@ -27,7 +27,6 @@ class SmallGraphPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.bottomCenter,
-      width: 185,
       height: 62,
       padding: const EdgeInsets.only(left: 5, right: 6),
       decoration: BoxDecoration(
@@ -55,15 +54,20 @@ class SmallGraphPanel extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       //Case Type Name
-                      AutoSizeText(
-                        label,
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontFamily: "Montserrat",
-                          color: fontColor,
-                          letterSpacing: 0.3,
+                      LimitedBox(
+                        maxHeight: constraint.maxHeight*0.26,
+                        child: AutoSizeText(
+                          label,
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontFamily: "Montserrat",
+                            color: fontColor,
+                            letterSpacing: 0.3,
+                          ),
+                          maxFontSize: 13,
+                          maxLines: 1,
+                          minFontSize: 9,
                         ),
-                        maxFontSize: 13,
                       ),
 
                       //Arrow Icon
@@ -76,16 +80,21 @@ class SmallGraphPanel extends StatelessWidget {
                   ),
 
                   //Cases Number
-                  AutoSizeText(
-                    (value / 1000).toStringAsPrecision(5) + "k",
-                    style: TextStyle(
-                      color: fontColor,
-                      fontFamily: "Montserrat",
-                      letterSpacing: 0.3,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
+                  LimitedBox(
+                    maxHeight: constraint.maxHeight * 0.3,
+                    child: AutoSizeText(
+                      (value / 1000).toStringAsPrecision(5) + "k",
+                      style: TextStyle(
+                        color: fontColor,
+                        fontFamily: "Montserrat",
+                        letterSpacing: 0.3,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      maxFontSize: 15,
+                      maxLines: 1,
+                      minFontSize: 9,
                     ),
-                    maxFontSize: 15,
                   )
                 ],
               ),
