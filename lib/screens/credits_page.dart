@@ -60,6 +60,7 @@ class CreditsScreen extends StatelessWidget {
                       color: Colors.black,
                     ),
                     maxFontSize: 21,
+                    maxLines: 1,
                   ),
                 ),
               ],
@@ -71,72 +72,74 @@ class CreditsScreen extends StatelessWidget {
             top: 70,
             child: Align(
               alignment: Alignment.center,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Image(
-                    width: 180,
-                    height: 180,
-                    image: AssetImage("assets/corona_virus.png"),
-                  ),
-
-                  SizedBox(height: 20),
-
-                  //App Name
-                  AutoSizeText(
-                    "Covid Tracker",
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontFamily: "Montserrat",
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
+              child: LayoutBuilder(
+                builder: (ctx,constraint)=>Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Image(
+                      width: constraint.maxHeight*0.31,
+                      height: constraint.maxHeight*0.31,
+                      image: AssetImage("assets/corona_virus.png"),
                     ),
-                    maxLines: 1,
-                    maxFontSize: 25,
-                  ),
 
-                  //Version number
-                  AutoSizeText(
-                    "Version 1.0.0",
-                    style: TextStyle(
-                      fontSize: 18,
-                      letterSpacing: 0.5,
-                      fontFamily: "Montserrat",
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xff009a88),
+                    SizedBox(height: 20),
+
+                    //App Name
+                    AutoSizeText(
+                      "Covid Tracker",
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontFamily: "Montserrat",
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                      maxLines: 1,
+                      maxFontSize: 25,
                     ),
-                    maxFontSize: 18,
-                    maxLines: 1,
-                  ),
 
-                  SizedBox(height: 10),
-
-                  //License Button
-                  MaterialButton(
-                    elevation: 10,
-                    onPressed: () {},
-                    child: Container(
-                      decoration: BoxDecoration(
+                    //Version number
+                    AutoSizeText(
+                      "Version 1.0.0",
+                      style: TextStyle(
+                        fontSize: 18,
+                        letterSpacing: 0.5,
+                        fontFamily: "Montserrat",
+                        fontWeight: FontWeight.w600,
                         color: Color(0xff009a88),
-                        border: Border.all(color: Color(0xff009a88), width: 2),
-                        borderRadius: BorderRadius.circular(5),
                       ),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 25, vertical: 8),
-                      child: AutoSizeText(
-                        "License",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontFamily: "Montserrat",
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        ),
-                        maxFontSize: 18,
-                        maxLines: 1,
-                      ),
+                      maxFontSize: 18,
+                      maxLines: 1,
                     ),
-                  )
-                ],
+
+                    SizedBox(height: 10),
+
+                    //License Button
+                    MaterialButton(
+                      elevation: 10,
+                      onPressed: () {},
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Color(0xff009a88),
+                          border: Border.all(color: Color(0xff009a88), width: 2),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 25, vertical: 8),
+                        child: AutoSizeText(
+                          "License",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontFamily: "Montserrat",
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
+                          maxFontSize: 18,
+                          maxLines: 1,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ),

@@ -76,16 +76,16 @@ class _RadialProgressState extends State<RadialProgress>
       ),
       animation: _radialAnimation,
       builder: (context, child) => Container(
-        width: 168,
-        height: 168,
+        width: MediaQuery.of(context).size.width>340?168:143,
+        height: MediaQuery.of(context).size.width>340?168:143,
         child: Stack(
           alignment: Alignment.center,
           fit: StackFit.loose,
           children: <Widget>[
             CustomPaint(
               child: Container(
-                height: 152.0,
-                width: 152.0,
+                height: MediaQuery.of(context).size.width>340?152.0:130,
+                width: MediaQuery.of(context).size.width>340?152.0:130,
                 padding: const EdgeInsets.all(40.0),
                 child: AnimatedOpacity(
                   curve: Curves.fastLinearToSlowEaseIn,
@@ -101,6 +101,7 @@ class _RadialProgressState extends State<RadialProgress>
                         fontWeight: FontWeight.w600,
                       ),
                       maxFontSize: 17,
+                      maxLines: 1,
                     ),
                   ),
                 ),

@@ -142,7 +142,7 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
                       SizedBox(
                         width: MediaQuery.of(context).size.width > 360.0
                             ? 55.0
-                            : 40.0,
+                            : MediaQuery.of(context).size.width > 340.0? 40 :30,
                       ),
 
                       //Text
@@ -155,6 +155,7 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
                           fontWeight: FontWeight.w600,
                         ),
                         maxFontSize: 21,
+                        maxLines: 1,
                       ),
                     ],
                   ),

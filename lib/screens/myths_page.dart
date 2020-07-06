@@ -175,31 +175,39 @@ class MythsScreen extends StatelessWidget {
                                 builder: (ctx, constraint) => Column(
                                   crossAxisAlignment: CrossAxisAlignment.stretch,
                                   children: <Widget>[
-                                    Image(
-                                      image: AssetImage(
-                                          "${myths[index]["imgPath"]}"),
-                                      height: 100.0,
+                                    LimitedBox(
+                                      maxHeight: constraint.maxHeight*0.27,
+                                      child: Image(
+                                        image: AssetImage(
+                                            "${myths[index]["imgPath"]}"),
+                                        height: 100.0,
+                                      ),
                                     ),
                                     SizedBox(
-                                      height: 40,
+                                      height: constraint.maxHeight*0.11,
                                     ),
-                                    AutoSizeText(
-                                      "${myths[index]["myth"]}",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: 19,
-                                        height: 1.1,
-                                        fontFamily: "Montserrat",
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w600,
+                                    LimitedBox(
+                                      maxHeight: constraint.maxHeight*0.17,
+                                      child: AutoSizeText(
+                                        "${myths[index]["myth"]}",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 19,
+                                          height: 1.1,
+                                          fontFamily: "Montserrat",
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                        maxFontSize: 20,
+                                        stepGranularity: 2,
+                                        maxLines: 3,
                                       ),
-                                      maxFontSize: 20,
-                                      stepGranularity: 2,
                                     ),
                                     SizedBox(
                                       height: 13,
                                     ),
-                                    Expanded(
+                                    LimitedBox(
+                                      maxHeight: constraint.maxHeight*0.45,
                                       child: AutoSizeText(
                                         "${myths[index]['desc']}",
                                         textAlign: TextAlign.center,
@@ -212,9 +220,9 @@ class MythsScreen extends StatelessWidget {
                                         ),
                                         maxFontSize: 16.5,
                                         stepGranularity: 1.5,
+                                        maxLines: 6,
                                       ),
                                     ),
-                                    SizedBox(height: 55),
                                   ],
                                 ),
                               ),

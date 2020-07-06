@@ -68,7 +68,8 @@ class _GlobalCaseContainerState extends State<GlobalCaseContainer> {
     updateCasesPanel();
   }
 
-  AutoSizeGroup tabGroup=AutoSizeGroup();
+  AutoSizeGroup caseTypeGrp=AutoSizeGroup();
+  AutoSizeGroup caseNumGrp=AutoSizeGroup();
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +80,9 @@ class _GlobalCaseContainerState extends State<GlobalCaseContainer> {
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(16)),
-        height: 298,
+        height: MediaQuery.of(context)
+            .size
+            .width >340 ?298:302,
         padding: const EdgeInsets.fromLTRB(5, 16, 5, 16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -119,7 +122,9 @@ class _GlobalCaseContainerState extends State<GlobalCaseContainer> {
                             .width >
                             360.0
                             ? 16
-                            : 14,
+                            : MediaQuery.of(context)
+                            .size
+                            .width >340 ? 14:8,
                         vertical: 12,
                       ),
                       child: Center(
@@ -128,13 +133,13 @@ class _GlobalCaseContainerState extends State<GlobalCaseContainer> {
                           style: TextStyle(
                             color: Color(0xFFAA00FF),
                             fontFamily: "Montserrat",
-                            fontSize: 16,
+                            fontSize: MediaQuery.of(context)
+                                .size
+                                .width >340 ?16:15,
                             letterSpacing: 0.5,
                             fontWeight: FontWeight.w700,
                           ),
                           maxFontSize: 16,
-                          group: tabGroup,
-                          maxLines: 1,
                         ),
                       ),
                     ),
@@ -171,7 +176,9 @@ class _GlobalCaseContainerState extends State<GlobalCaseContainer> {
                             .width >
                             360.0
                             ? 16
-                            : 14,
+                            : MediaQuery.of(context)
+                            .size
+                            .width >340 ? 14:8,
                         vertical: 12,
                       ),
                       child: Center(
@@ -180,13 +187,13 @@ class _GlobalCaseContainerState extends State<GlobalCaseContainer> {
                           style: TextStyle(
                             color: Color(0xFFD50000),
                             fontFamily: "Montserrat",
-                            fontSize: 16,
+                            fontSize: MediaQuery.of(context)
+                                .size
+                                .width >340 ?16:15,
                             letterSpacing: 0.5,
                             fontWeight: FontWeight.w700,
                           ),
                           maxFontSize: 16,
-                          group: tabGroup,
-                          maxLines: 1,
                         ),
                       ),
                     ),
@@ -219,8 +226,11 @@ class _GlobalCaseContainerState extends State<GlobalCaseContainer> {
                                 : Colors.white,
                             borderRadius:
                             BorderRadius.circular(10)),
-                        padding: const EdgeInsets.symmetric(
+                        padding: EdgeInsets.symmetric(
                           vertical: 12,
+                          horizontal: MediaQuery.of(context)
+                              .size
+                              .width > 340 ? 0 : 8,
                         ),
                         child: Center(
                           child: AutoSizeText(
@@ -233,7 +243,6 @@ class _GlobalCaseContainerState extends State<GlobalCaseContainer> {
                               fontWeight: FontWeight.w700,
                             ),
                             maxFontSize: 16,
-                            group: tabGroup,
                             maxLines: 1,
                           ),
                         ),
@@ -283,6 +292,8 @@ class _GlobalCaseContainerState extends State<GlobalCaseContainer> {
                           startColor: panelStartClr,
                           lineColor: panelLineClr,
                           isIncreasing: true,
+                          numGrp: caseNumGrp,
+                          titleGrp: caseTypeGrp,
                         ),
 
                         SizedBox(
@@ -308,6 +319,8 @@ class _GlobalCaseContainerState extends State<GlobalCaseContainer> {
                           startColor: panelStartClr,
                           lineColor: panelLineClr,
                           isIncreasing: true,
+                          numGrp: caseNumGrp,
+                          titleGrp: caseTypeGrp,
                         ),
 
                         SizedBox(
@@ -335,6 +348,8 @@ class _GlobalCaseContainerState extends State<GlobalCaseContainer> {
                           startColor: panelStartClr,
                           lineColor: panelLineClr,
                           isIncreasing: true,
+                          numGrp: caseNumGrp,
+                          titleGrp: caseTypeGrp,
                         ),
                       ],
                     ),

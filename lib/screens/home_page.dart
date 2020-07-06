@@ -45,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           minFontSize: 14,
           stepGranularity: 2,
+          maxLines: 1,
         ),
       ),
       body: HomeCategories(),

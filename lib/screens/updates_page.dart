@@ -50,6 +50,8 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         title: AutoSizeText(
           "Covid-19 Updates",
@@ -61,6 +63,8 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
           ),
           stepGranularity: 2,
           maxFontSize: 20,
+          minFontSize: 14,
+          maxLines: 1,
         ),
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
@@ -115,8 +119,8 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                     //Sort by
                     Padding(
                       padding: MediaQuery.of(context).size.width>360.0? EdgeInsets.only(left: 20):EdgeInsets.only(left: 0),
-                      child: SizedBox(
-                        width: 68,
+                      child: LimitedBox(
+                        maxWidth: 68,
                         child: AutoSizeText(
                           "Sort By",
                           style: TextStyle(
@@ -128,11 +132,12 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                           stepGranularity: 2,
                           maxFontSize: 18,
                           maxLines: 1,
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
 
-                    SizedBox(width: 10),
+                    SizedBox(width: MediaQuery.of(context).size.width > 340.0?10:7),
 
                     Expanded(child: const Icon(Icons.filter_list,size: 26,)),
 
@@ -140,7 +145,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
 
                     //DropDown
                     Container(
-                      width: constraint.maxWidth*0.675,
+                      width: constraint.maxWidth*0.63,
                       padding: const EdgeInsets.only(left: 15, right: 10),
                       decoration: BoxDecoration(
                         color: Colors.black,
@@ -180,6 +185,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                                     ),
                                     stepGranularity: 1,
                                     maxFontSize: 17,
+                                    maxLines: 1,
                                   ),
                                 ),
                               ),
@@ -197,6 +203,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                                     ),
                                     stepGranularity: 1,
                                     maxFontSize: 17,
+                                    maxLines: 1,
                                   ),
                                 ),
                               ),

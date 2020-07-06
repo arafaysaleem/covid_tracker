@@ -100,7 +100,7 @@ class NewsTile extends StatelessWidget {
                           article["description"] == null
                               ? "Read More for Details"
                               : "${article["description"]}",
-                          maxLines: 4,
+                          maxLines: MediaQuery.of(context).size.width > 340.0?4:3,
                           style: TextStyle(
                             fontFamily: "Montserrat",
                             fontSize: 11.8,
@@ -110,6 +110,7 @@ class NewsTile extends StatelessWidget {
                           stepGranularity: 0.2,
                           maxFontSize: 11.8,
                           minFontSize: 11.8,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ),

@@ -11,6 +11,7 @@ class SmallGraphPanel extends StatelessWidget {
   final Color iconColor;
   final Color lineColor;
   final bool isIncreasing;
+  final titleGrp,numGrp;
 
   const SmallGraphPanel({
     @required this.label,
@@ -20,9 +21,8 @@ class SmallGraphPanel extends StatelessWidget {
     @required this.fontColor,
     @required this.iconColor,
     @required this.lineColor,
-    @required this.isIncreasing,
+    @required this.isIncreasing, @required this.titleGrp, @required this.numGrp,
   });
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -56,6 +56,7 @@ class SmallGraphPanel extends StatelessWidget {
                       //Case Type Name
                       LimitedBox(
                         maxHeight: constraint.maxHeight*0.26,
+                        maxWidth: MediaQuery.of(context).size.width>340?constraint.maxWidth * 0.8:constraint.maxWidth*0.5,
                         child: AutoSizeText(
                           label,
                           style: TextStyle(
@@ -67,6 +68,7 @@ class SmallGraphPanel extends StatelessWidget {
                           maxFontSize: 13,
                           maxLines: 1,
                           minFontSize: 9,
+                          group: titleGrp,
                         ),
                       ),
 
@@ -93,6 +95,7 @@ class SmallGraphPanel extends StatelessWidget {
                       ),
                       maxFontSize: 15,
                       maxLines: 1,
+                      group: numGrp,
                       minFontSize: 9,
                     ),
                   )
