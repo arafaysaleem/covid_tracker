@@ -4,7 +4,7 @@
 
 Covid Tracker is an app made with **Flutter** framework to provide worldwide information related to Covid-19 pandemic. The api used for the data can be found [here](https://corona.lmao.ninja/docs/). **The release apk is available under the release tags. It's also available on this drive link - [Covid Tracker APK](https://drive.google.com/drive/folders/1xazOX_VaaAPzuccusj-hk0zsPZaomDLc?usp=sharing)**
 
-## Features
+## :iphone: Features
 
   - Global case count.
   - Case, death and recovery count of each country
