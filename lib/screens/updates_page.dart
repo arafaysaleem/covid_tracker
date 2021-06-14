@@ -51,7 +51,6 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         title: AutoSizeText(
           "Covid-19 Updates",
