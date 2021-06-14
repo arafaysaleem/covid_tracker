@@ -17,7 +17,7 @@ jobs:
         channel: 'stable'
     - run: flutter pub get
     - run: flutter analyze .
-    - run: flutter build apk --split-per-abi --dart-define=API_KEY={{ secrets.API_KEY }}
+    - run: flutter build apk --split-per-abi --dart-define=API_KEY=${{ secrets.API_KEY }}
     - name: Bump version and push tag
       uses: mathieudutour/github-tag-action@v4.5
       with:
