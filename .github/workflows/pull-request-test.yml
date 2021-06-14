@@ -14,4 +14,4 @@ jobs:
         channel: 'stable'
     - run: flutter pub get
     - run: flutter analyze .
-    - run: flutter build apk --debug --dart-define=API_KEY={{ secrets.API_KEY }}
+    - run: flutter build apk --debug --dart-define=API_KEY=${{ secrets.API_KEY }}
