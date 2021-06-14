@@ -17,7 +17,7 @@ class ApiClient {
         "&" +
         endpoint +
         "&" +
-        _apiService.apiKey;
+        ApiService.apiKey;
     try {
       var response = await http.get(url);
       var json = jsonDecode(response.body);
