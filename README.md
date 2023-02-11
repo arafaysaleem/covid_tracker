@@ -15,7 +15,7 @@ The api used for the data can be found [here](https://corona.lmao.ninja/docs/). 
   - Info, symptoms, precautions and myths of the virus
   - Setting a default country
 
-The UI is inspired by [Dribbble](https://dribbble.com/shots/10847147-Coronavirus-Covid-19-Dashboard)
+The UI is inspired by a design on [Dribbble](https://dribbble.com/shots/10847147-Coronavirus-Covid-19-Dashboard) (credits to [Nazirul Hoque](https://dribbble.com/nazirulhoque) on Dribble).
 
 <div align="center"><kbd><img alt="App Tour" src="Readme_files/app_tour.gif" width="260" height="538" style="border-style: solid; border-color: #FFFFFF; border-width:1px;"/></kbd></div>
 <br></br>
@@ -41,14 +41,21 @@ The UI is inspired by [Dribbble](https://dribbble.com/shots/10847147-Coronavirus
     - Flutter is an open source framework by Google for building beautiful, natively compiled, multi-platform applications from a single codebase.
   - [Dart v2.8.4](https://dart.dev/get-dart)
     - Dart SDK helps develop Dart web, command-line, and server apps.
+  
+  ### How to start with Flutter and Dart
+  Note: Download the versions mentioned above for Flutter and Dart for the code to work since a different version might cause some issues.
+  
+  First Download Get and then install FLutter.
+  - Dart - [Get Dart](https://dart.dev/get-dart)
+  - Flutter - [Get Started](https://docs.flutter.dev/get-started/install)
     
 ## 🧠 Further Information
 
 Currently, this app is not available for public download on the Android app store. However, if you would like to see how the current features work, we recommend these steps:
 
-1. Download Android Studio
+1. Download [Android Studio](https://developer.android.com/studio)
 2. Clone this repository
-3. Use the Android Studio emulator, which has options to view the app on different phones/tablets.
+3. Use the Android Studio emulator, which has options to view the app on different phones/tablets [Run apps on the android Emulator](https://developer.android.com/studio/run/emulator).
 
 If anyone would like to add other ways of viewing the app in its current state, contributions are always welcome.
 
