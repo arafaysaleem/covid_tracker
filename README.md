@@ -5,7 +5,7 @@
 ## Description
 Covid Tracker, an Android app built with **Flutter** framework provides global Covid-19 pandemic information to the public, promoting awarness and safety.
 
-The api used for the data can be found [here](https://corona.lmao.ninja/docs/). **The release apk is available under the release tags. It's also available on this drive link - [Covid Tracker APK](https://drive.google.com/drive/folders/1xazOX_VaaAPzuccusj-hk0zsPZaomDLc?usp=sharing)**
+API used for data [here](https://corona.lmao.ninja/docs/). **The release apk is available under the release tags. It's also available on this drive link - [Covid Tracker APK](https://drive.google.com/drive/folders/1xazOX_VaaAPzuccusj-hk0zsPZaomDLc?usp=sharing)**
 
 ## :iphone: Features
 
