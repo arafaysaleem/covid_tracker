@@ -27,7 +27,7 @@ The UI is inspired by a design on [Dribbble](https://dribbble.com/shots/10847147
 </div>
 
 
-## ⭐ Future Features
+## Future Features
 
   - Drawer for easier navigation
   - Onboarding screens
@@ -36,7 +36,7 @@ The UI is inspired by a design on [Dribbble](https://dribbble.com/shots/10847147
 
 *Feel free to fork and contribute to include these features.* ❤︎
 
-## 🚀 Technologies
+## Technologies
 
   - [Flutter v1.17.4](https://storage.googleapis.com/flutter_infra/releases/stable/windows/flutter_windows_1.17.4-stable.zip)
     - Flutter is an open source framework by Google for building beautiful, natively compiled, multi-platform applications from a single codebase.
@@ -50,7 +50,7 @@ The UI is inspired by a design on [Dribbble](https://dribbble.com/shots/10847147
   - Dart - [Get Dart](https://dart.dev/get-dart)
   - Flutter - [Get Started](https://docs.flutter.dev/get-started/install)
     
-## 🧠 Further Information
+## Further Information
 
 Currently, this app is not available for public download on the Android app store. However, if you would like to see how the current features work, we recommend these steps:
 
@@ -62,11 +62,11 @@ If anyone would like to add other ways of viewing the app in its current state, 
 
 As mentioned previously, this application is only available for Android devices. However, we are working to include an IOS version. You can find the working folder for the IOS version under "ios".
 
-## 🤝 Contribute
+## Contribute
 
 To contribute, fork the repository and push the changes to the **master** branch. Then submit a pull request for merging with the source. If your code passes the review and checks it will be merged into the master branch.
 
-## 💌 To Do
+## To Do
 
 1. Find new API to draw data from
 2. Add future features (can be found above)
@@ -74,7 +74,7 @@ To contribute, fork the repository and push the changes to the **master** branch
 4. Create plan to have first version on the Android app store
 5. Continue with IOS version
 
-## 💬 Feedback
+## Feedback
 
 Feel free to send us feedback on [Twitter](https://twitter.com/gitpointapp) or [file an issue](https://github.com/arafaysaleem/covid_tracker/issues/new). Feature requests are always welcome.
 
