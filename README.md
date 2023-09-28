@@ -7,6 +7,17 @@ Covid Tracker, an Android app built with **Flutter** framework provides global C
 
 API used for data [here](https://corona.lmao.ninja/docs/). **The release apk is available under the release tags. It's also available on this drive link - [Covid Tracker APK](https://drive.google.com/drive/folders/1xazOX_VaaAPzuccusj-hk0zsPZaomDLc?usp=sharing)**
 
+## Prerequisites 
+ - [Flutter v1.17.4](https://storage.googleapis.com/flutter_infra/releases/stable/windows/flutter_windows_1.17.4-stable.zip)- An open source framework by Google for building multi-platform applications from a single codebase.
+  - [Dart v2.8.4](https://dart.dev/get-dart) - Helps develop Dart web, command-line, and server apps.
+
+## Installation
+Note: Download the versions mentioned above for Flutter and Dart for the code to work since a different version might cause some issues.
+  
+  First Download Get and then install FLutter.
+  - Dart - [Get Dart](https://dart.dev/get-dart)
+  - Flutter - [Get Started](https://docs.flutter.dev/get-started/install)
+
 ## :iphone: Features
 
   - Worldwide case count
@@ -34,20 +45,9 @@ The UI is inspired by a design on [Dribbble](https://dribbble.com/shots/10847147
   - Maps API to detect nearby danger spots
 
 *Feel free to fork and contribute to include these features.* ❤︎
-
-## Technologies
-
-  - [Flutter v1.17.4](https://storage.googleapis.com/flutter_infra/releases/stable/windows/flutter_windows_1.17.4-stable.zip)
-    - Flutter is an open source framework by Google for building beautiful, natively compiled, multi-platform applications from a single codebase.
-  - [Dart v2.8.4](https://dart.dev/get-dart)
-    - Dart SDK helps develop Dart web, command-line, and server apps.
   
   ### How to start with Flutter and Dart
-  Note: Download the versions mentioned above for Flutter and Dart for the code to work since a different version might cause some issues.
   
-  First Download Get and then install FLutter.
-  - Dart - [Get Dart](https://dart.dev/get-dart)
-  - Flutter - [Get Started](https://docs.flutter.dev/get-started/install)
     
 ## Further Information
 
