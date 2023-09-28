@@ -7,11 +7,11 @@ INTRODUCTION TO COVID TRACKER
 REQUIRED SOFTWARE
 INSTALLATION
 FEATURES
-FUTHER INFORMATION
-CONTRIBUTE 
 TO DO
-FEEDBACK
+FURTHER INFORMATION
+CONTRIBUTE 
 LISCENSE
+CONTACT
 
 ## Description
 Covid Tracker, an Android app built with **Flutter** framework provides global Covid-19 pandemic information to the public while promoting awarness and safety.
@@ -37,6 +37,9 @@ Note: Download the versions mentioned above for Flutter and Dart for the code to
   - Timely news updates on vaccine developements
   - Detailed information on the virus
 
+Future Features in progress: drawer for easier nagivation, onboarding screens, login authentication using firebase, and maps API to detect nearby danger spots.
+*Feel free to fork and contribute to include these features.* 
+
 The UI is inspired by a design on [Dribbble](https://dribbble.com/shots/10847147-Coronavirus-Covid-19-Dashboard) (credits to [Nazirul Hoque](https://dribbble.com/nazirulhoque) on Dribble).
 
 <div align="center"><kbd><img alt="App Tour" src="Readme_files/app_tour.gif" width="260" height="538" style="border-style: solid; border-color: #FFFFFF; border-width:1px;"/></kbd></div>
@@ -47,44 +50,36 @@ The UI is inspired by a design on [Dribbble](https://dribbble.com/shots/10847147
 <img src="Readme_files/precautions_screen.png" width="260" height="538"/>&nbsp;&nbsp;&nbsp;<img src="Readme_files/myths_screen.png" width="260" height="538"/>
 </div>
 
+## To Do
 
-## Future Features
+Here is a list of items that still need to be implemented for this project: 
 
-  - Drawer for easier navigation
-  - Onboarding screens
-  - Login authentication using Firebase
-  - Maps API to detect nearby danger spots
-
-*Feel free to fork and contribute to include these features.* ❤︎
+1. Find new API to draw data from
+2. Add future features (listed above)
+3. Insert comments into code for future contributors
+4. Create plan to have first version on the Android app store
+5. Continue IOS version
     
 ## Further Information
 
-Currently, this app is not available for public download on the Android app store. However, if you would like to see how the current features work, we recommend these steps:
+Currently, this app is not available for public download on the Android app store. However, if you would like to see the current features, we recommend these steps:
 
 1. Download [Android Studio](https://developer.android.com/studio)
 2. Clone this repository
 3. Use the Android Studio emulator, which has options to view the app on different phones/tablets [Run apps on the android Emulator](https://developer.android.com/studio/run/emulator).
 
-If anyone would like to add other ways of viewing the app in its current state, contributions are always welcome.
-
-As mentioned previously, this application is only available for Android devices. However, we are working to include an IOS version. You can find the working folder for the IOS version under "ios".
+We are working to include an IOS version. You can find the working folder for the IOS version under "ios".
 
 ## Contribute
 
 To contribute, fork the repository and push the changes to the **master** branch. Then submit a pull request for merging with the source. If your code passes the review and checks it will be merged into the master branch.
 
-## To Do
-
-1. Find new API to draw data from
-2. Add future features (can be found above)
-3. Insert comments into code for future contributors
-4. Create plan to have first version on the Android app store
-5. Continue with IOS version
-
-## Feedback
-
-Feel free to send us feedback on [Twitter](https://twitter.com/gitpointapp) or [file an issue](https://github.com/arafaysaleem/covid_tracker/issues/new). Feature requests are always welcome.
-
-## 📝 License
+## License
 
 Licensed under the [MIT License](./LICENSE).
+
+## Contact
+
+Contact us on [Twitter](https://twitter.com/gitpointapp) or [file an issue](https://github.com/arafaysaleem/covid_tracker/issues/new). 
+
+
