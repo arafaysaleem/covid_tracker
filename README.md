@@ -29,6 +29,13 @@ Note: Download the versions mentioned above for Flutter and Dart for the code to
   - Dart - [Get Dart](https://dart.dev/get-dart)
   - Flutter - [Get Started](https://docs.flutter.dev/get-started/install)
 
+ # Debugging
+ If there are any issues with Flutter follow these steps which guide you to debug in VS code:
+ 1. Open lib\main.dart file in the Flutter app using VS code
+ 2. Click the bug icon
+ 3. Select "debug"
+ 4. Test the debugger by clicking "_counter++;" in main.dart
+ 
 ## :iphone: Features
 
   - Worldwide case count
@@ -37,7 +44,7 @@ Note: Download the versions mentioned above for Flutter and Dart for the code to
   - Timely news updates on vaccine developements
   - Detailed information on the virus
 
-#Future Features in Progress
+# Future Features in Progress
 - Drawer for easier nagivation
 - Onboarding screens
 - Login authentication using firebase
