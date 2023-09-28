@@ -3,15 +3,15 @@
 ![build-release](https://github.com/arafaysaleem/covid_tracker/workflows/build-release/badge.svg) ![Test PR](https://github.com/arafaysaleem/covid_tracker/workflows/Test%20PR/badge.svg) [![GitHub release](https://img.shields.io/github/release/arafaysaleem/covid_tracker?color=blue)](https://github.com/arafaysaleem/covid_tracker/releases) [![GitHub stars](https://img.shields.io/github/stars/arafaysaleem/covid_tracker?color=orange)](https://github.com/arafaysaleem/covid_tracker/stargazers) [![GitHub issues](https://img.shields.io/github/issues/arafaysaleem/covid_tracker?color=red)](https://github.com/arafaysaleem/covid_tracker/issues) [![GitHub issues](https://img.shields.io/github/issues-closed/arafaysaleem/covid_tracker?color=brightgreen)](https://github.com/arafaysaleem/covid_tracker/issues?q=is%3Aissue+is%3Aclosed) [![GitHub forks](https://img.shields.io/github/forks/arafaysaleem/covid_tracker?color=yellow)](https://github.com/arafaysaleem/covid_tracker/network) [![License: MIT](https://img.shields.io/github/license/arafaysaleem/covid_tracker)](https://github.com/arafaysaleem/covid_tracker/blob/master/LICENSE) [![made-with-python](https://img.shields.io/badge/Made%20With-Flutter-blue)](https://flutter.dev/)
 
 ## Table of Contents
-INTRODUCTION TO COVID TRACKER
-REQUIRED SOFTWARE
-INSTALLATION
-FEATURES
-TO DO
-FURTHER INFORMATION
-CONTRIBUTE 
-LISCENSE
-CONTACT
+1. INTRODUCTION TO COVID TRACKER
+2. REQUIRED SOFTWARE
+3. INSTALLATION
+4. FEATURES
+5. TO DO
+6. FURTHER INFORMATION
+7. CONTRIBUTE 
+8. LISCENSE
+9. CONTACT
 
 ## Description
 Covid Tracker, an Android app built with **Flutter** framework provides global Covid-19 pandemic information to the public while promoting awarness and safety.
@@ -37,7 +37,12 @@ Note: Download the versions mentioned above for Flutter and Dart for the code to
   - Timely news updates on vaccine developements
   - Detailed information on the virus
 
-Future Features in progress: drawer for easier nagivation, onboarding screens, login authentication using firebase, and maps API to detect nearby danger spots.
+#Future Features in Progress
+- Drawer for easier nagivation
+- Onboarding screens
+- Login authentication using firebase
+- Maps API to detect nearby danger spots
+  
 *Feel free to fork and contribute to include these features.* 
 
 The UI is inspired by a design on [Dribbble](https://dribbble.com/shots/10847147-Coronavirus-Covid-19-Dashboard) (credits to [Nazirul Hoque](https://dribbble.com/nazirulhoque) on Dribble).
