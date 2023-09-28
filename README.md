@@ -9,12 +9,11 @@ API used for data [here](https://corona.lmao.ninja/docs/). **The release apk is 
 
 ## :iphone: Features
 
-  - Global case count.
-  - Case, death and recovery count of each country
-  - Total tests and infection probability of each country
-  - News updates related to vaccine developement
-  - Info, symptoms, precautions and myths of the virus
-  - Setting a default country
+  - Worldwide case count
+  - Individual country statistics for cases, deaths, and recoveries
+  - Comprehensive data on total tests and infection probabilies for each nation
+  - Timely news updates on vaccine developements
+  - Detailed information on the virus
 
 The UI is inspired by a design on [Dribbble](https://dribbble.com/shots/10847147-Coronavirus-Covid-19-Dashboard) (credits to [Nazirul Hoque](https://dribbble.com/nazirulhoque) on Dribble).
 
