@@ -6,6 +6,18 @@ Covid Tracker is an Android app made with **Flutter** framework to provide world
 
 The api used for the data can be found [here](https://corona.lmao.ninja/docs/). **The release apk is available under the release tags. It's also available on this drive link - [Covid Tracker APK](https://drive.google.com/drive/folders/1xazOX_VaaAPzuccusj-hk0zsPZaomDLc?usp=sharing)**
 
+## Table of Contents
+
+ 1. [Features](https://github.com/arafaysaleem/covid_tracker/blob/master/README.md#iphone-features)
+ 2. [Future Features](https://github.com/arafaysaleem/covid_tracker/blob/master/README.md#-future-features)
+ 3. [Technologies](https://github.com/arafaysaleem/covid_tracker/blob/master/README.md#-technologies)
+ 4. [How to start with Flutter and Dart](https://github.com/arafaysaleem/covid_tracker/blob/master/README.md#how-to-start-with-flutter-and-dart)
+ 5. [Further Information](https://github.com/arafaysaleem/covid_tracker/blob/master/README.md#-further-information)
+ 6. [Contribute](https://github.com/arafaysaleem/covid_tracker/blob/master/README.md#-contribute)
+ 7. [To Do](https://github.com/arafaysaleem/covid_tracker/blob/master/README.md#-to-do)
+ 8. [Feedback](https://github.com/arafaysaleem/covid_tracker/blob/master/README.md#-feedback)
+
+
 ## :iphone: Features
 
   - Global case count.
@@ -50,12 +62,33 @@ The UI is inspired by a design on [Dribbble](https://dribbble.com/shots/10847147
   - Flutter - [Get Started](https://docs.flutter.dev/get-started/install)
     
 ## 🧠 Further Information
+Your System needs to have the following:
+
+-16 GB RAM
+
+-64-bit Windows, macOS, Linux, or ChromeOS operating system
+
+-16 GB disk space
 
 Currently, this app is not available for public download on the Android app store. However, if you would like to see how the current features work, we recommend these steps:
 
+
+
+
+  
 1. Download [Android Studio](https://developer.android.com/studio)
 2. Clone this repository
 3. Use the Android Studio emulator, which has options to view the app on different phones/tablets [Run apps on the android Emulator](https://developer.android.com/studio/run/emulator).
+
+After you have downloaded Android Studio which contains the emulator:
+1. Create an Android Virtual Device, which is a virtual machine running an Androids OS. To do this Select **More Actions > Virtual Device Manager.** 
+2. After opening the project, select **View > Tool Windows > Device Manager** and select **Create device**.
+3. Once you have created your Virtual Device, in the toolbar select your Android Virtual Device and click **Run**.
+
+While the emulator is running you can use your mouse to mimic your finger on the touch screen and you can use the emulator panel to perform common actions.
+Instructions on how to navigate the emulator screen, [Navigate the emulator screen](https://developer.android.com/studio/run/emulator#:~:text=Navigate%20the%20emulator%20screen).
+
+
 
 If anyone would like to add other ways of viewing the app in its current state, contributions are always welcome.
 
