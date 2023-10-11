@@ -25,7 +25,7 @@ API used for data [here](https://corona.lmao.ninja/docs/). **The release apk is 
 ## Installation
 Note: Download the versions mentioned above for Flutter and Dart for the code to work since a different version might cause some issues.
   
-  First Download Get and then install FLutter.
+  First Download Get and then install Flutter.
   - Dart - [Get Dart](https://dart.dev/get-dart)
   - Flutter - [Get Started](https://docs.flutter.dev/get-started/install)
 
